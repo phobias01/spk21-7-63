@@ -3,14 +3,17 @@ package com.example.supot.spk;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -34,9 +37,9 @@ public class fmSetspk extends Fragment {
     public fmSetspk() {
         // Required empty public constructor
     }
-
+    private ProgressBar pb;
     private ArrayAdapter adapterIp, adapterNum, adapterlistIN;
-    private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP;
+    private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP,arrayAllIp;
     private ListView listSetspk;
     private Button butSetnum, butClear, butScan;
     private Spinner spinIP, spinNum;
@@ -51,6 +54,7 @@ public class fmSetspk extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fm_setspk, container, false);
         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
         editor = sp.edit();
+        pb = (ProgressBar) view.findViewById(R.id.progressBar);
         loadData();
         initsetNumIP(view);
         return view;
@@ -63,11 +67,13 @@ public class fmSetspk extends Fragment {
         String jsonNum = gson.toJson(arrayNum);
         String jsonAddHomeNum = gson.toJson(arrayAddHomeNum);
         String jsonAddHomeIP = gson.toJson(arrayAddHomeIP);
+        String jsonAddAllIp = gson.toJson(arrayAllIp);
         editor.putString(Const.spk_setnumip, jsonlistIN);
         editor.putString(Const.spk_ip, jsonIp);
         editor.putString(Const.spk_number, jsonNum);
         editor.putString(Const.list_group_spk, jsonAddHomeNum);
         editor.putString(Const.list_IpSpk, jsonAddHomeIP);
+        editor.putString(Const.list_AllIp, jsonAddAllIp);
         editor.commit();
     }
 
@@ -98,6 +104,9 @@ public class fmSetspk extends Fragment {
         }
         if (arrayAddHomeIP == null) {
             arrayAddHomeIP = new ArrayList<>();
+        }
+        if (arrayAllIp == null) {
+            arrayAllIp = new ArrayList<>();
         }
     }
 
@@ -132,6 +141,7 @@ public class fmSetspk extends Fragment {
                         arraylistIN.add("IP : " + arrayIp.get(posIP) + " ==>> Number is set = SPK " + arrayNum.get(posNum));
                         arrayAddHomeNum.add("SPK " + arrayNum.get(posNum));
                         arrayAddHomeIP.add(arrayIp.get(posIP));
+                        arrayAllIp.add(arrayIp.get(posIP));
                         arrayIp.remove(posIP);
                         arrayNum.remove(posNum);
                         listSetspk.setAdapter(adapterlistIN);
@@ -154,6 +164,7 @@ public class fmSetspk extends Fragment {
                 arraylistIN.clear();
                 arrayIp.clear();
                 arrayNum.clear();
+                arrayAllIp.clear();
                 if (arrayNum.isEmpty()) {
                     for (int i = 1; i <= 99; i++) {
                         arrayNum.add("No." + i);
@@ -171,7 +182,8 @@ public class fmSetspk extends Fragment {
             @Override
             public void onClick(View v) {
                 arrayIp.clear();
-                findSubnetDevices();
+                arrayAllIp.clear();
+                new AsyncScan().execute();
                 spinIP.setAdapter(adapterIp);
                 adapterIp.notifyDataSetChanged();
             }
@@ -181,11 +193,11 @@ public class fmSetspk extends Fragment {
     private void findSubnetDevices() {
         InetAddress ipAddress = IPTools.getLocalIPv4Address();
         final String ipAdd = ipAddress.getHostAddress();
-        //final long startTimeMillis = System.currentTimeMillis();
+        final long startTimeMillis = System.currentTimeMillis();
         SubnetDevices.fromLocalAddress().findDevices(new SubnetDevices.OnSubnetDeviceFound() {
             @Override
             public void onDeviceFound(Device device) {
-                if (!ipAdd.equals(device.ip)/*&&ipAdd.equals("")*/) {
+                if (!ipAdd.equals(device.ip)/*&&(!ipAdd.equals("192.168.1.1"))*/) {
                     arrayIp.add(device.ip);
                     saveData();
                 }
@@ -193,10 +205,45 @@ public class fmSetspk extends Fragment {
 
             @Override
             public void onFinished(ArrayList<Device> devicesFound) {
-                //float timeTaken = (System.currentTimeMillis() - startTimeMillis) / 1000.0f;
-                Toast.makeText(getActivity(), "Devices Found: " + (devicesFound.size() - 1), Toast.LENGTH_SHORT).show();
-                //appendResultsText("Finished "+timeTaken+" s");
+                String timeTaken = String.valueOf(System.currentTimeMillis() - startTimeMillis);
+                int device = (devicesFound.size() - 1);
+                int time = Integer.parseInt(timeTaken);
+                editor.putInt(Const.time,time);
+                editor.putInt(Const.device,device);
+                editor.commit();
             }
         });
+    }
+    public class AsyncScan extends AsyncTask<Integer,Void,Void> {
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            try {
+                findSubnetDevices();
+                int time = sp.getInt(Const.time,20000);
+                Thread.sleep(time);
+            }catch (Exception e){}
+            return null;
+            //Log.d("26J","doInBackground");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //int device = sp.getInt(Const.device,0);
+            pb.setVisibility(View.INVISIBLE);
+            spinIP.setAdapter(adapterIp);
+            adapterIp.notifyDataSetChanged();
+            Toast.makeText(getActivity(), "Complete....", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Device "+arrayIp.size(), Toast.LENGTH_SHORT).show();
+            //Log.d("26J","onPostExecute ");
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pb.setVisibility(View.VISIBLE);
+            Toast.makeText(getActivity(), "Scanning....", Toast.LENGTH_SHORT).show();
+            //Log.d("26J","onPreExecute");
+        }
+
     }
 }

@@ -17,6 +17,11 @@ import android.widget.TextView;
 
 import com.akexorcist.simpletcp.SimpleTcpClient;
 import com.akexorcist.simpletcp.SimpleTcpServer;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 
 /**
@@ -28,6 +33,7 @@ public class fmDelay extends Fragment {
     public fmDelay() {
         // Required empty public constructor
     }
+    private ArrayList<String> arrayG1,arrayG2,arrayG3,arrayG4;
     private SeekBar delayBar1,delayBar2,delayBar3,delayBar4;
     private TextView msView1,msView2,msView3,msView4,mView1,mView2,mView3,mView4;
     private Switch swG1,swG2,swG3,swG4;
@@ -42,9 +48,37 @@ public class fmDelay extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fm_delay, container, false);
         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
         editor = sp.edit();
+        loadData();
         initDelayBar(view);
         initswLockdelayBar(view);
         return view;
+    }
+    private void loadData() {
+        Gson gson = new Gson();
+        String json1 = sp.getString(Const.list_IpG1, null);
+        String json2 = sp.getString(Const.list_IpG2, null);
+        String json3 = sp.getString(Const.list_IpG3, null);
+        String json4= sp.getString(Const.list_IpG4, null);
+
+        Type type = new TypeToken<ArrayList>(){}.getType();
+        arrayG1 = gson.fromJson(json1, type);
+        arrayG2 = gson.fromJson(json2, type);
+        arrayG3 = gson.fromJson(json3, type);
+        arrayG4 = gson.fromJson(json4, type);
+
+        if (arrayG1 == null) {
+            arrayG1 = new ArrayList<>();
+        }
+        if (arrayG2 == null) {
+            arrayG2 = new ArrayList<>();
+        }
+        if (arrayG3 == null) {
+            arrayG3 = new ArrayList<>();
+        }
+        if (arrayG4 == null) {
+            arrayG4 = new ArrayList<>();
+        }
+        Log.d("26J","Delay arrayG1"+arrayG1);
     }
     private void initDelayBar(View view){
         delayBar1 = (SeekBar) view.findViewById(R.id.delayBar1);
@@ -66,11 +100,16 @@ public class fmDelay extends Fragment {
             int value;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                msView1.setText(progress+" ms");
-                mView1.setText(String.format("%.2f",progress*0.343)+" m");
+                msView1.setText(progress + " ms");
+                mView1.setText(String.format("%.2f", progress * 0.343) + " m");
                 value = progress;
-                dataOutput = "delay1/"+progress;
-                SimpleTcpClient.send(dataOutput, Const.ip, Const.port);
+                dataOutput = "delay1/" + progress;
+                try {
+                    for (int i = 0; i < arrayG1.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayG1.get(i), Const.port);
+                        Log.d("26J", "Delay Bar 1 : " + arrayG1.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e){}
             }
 
             @Override
@@ -93,7 +132,12 @@ public class fmDelay extends Fragment {
                 mView2.setText(String.format("%.2f",progress*0.343)+" m");
                 value = progress;
                 dataOutput = "delay2/"+progress;
-                SimpleTcpClient.send(dataOutput, Const.ip, Const.port);
+                try {
+                    for(int i = 0;i<arrayG2.size();i++) {
+                        SimpleTcpClient.send(dataOutput, arrayG2.get(i), Const.port);
+                        Log.d("26J","Delay Bar 1 : "+arrayG2.get(i)+"/"+dataOutput);
+                    }
+                }catch (Exception e){}
             }
 
             @Override
@@ -116,7 +160,12 @@ public class fmDelay extends Fragment {
                 mView3.setText(String.format("%.2f",progress*0.343)+" m");
                 value = progress;
                 dataOutput = "delay3/"+progress;
-                SimpleTcpClient.send(dataOutput, Const.ip, Const.port);
+                try {
+                    for(int i = 0;i<arrayG3.size();i++) {
+                        SimpleTcpClient.send(dataOutput, arrayG3.get(i), Const.port);
+                        Log.d("26J","Delay Bar 1 : "+arrayG3.get(i)+"/"+dataOutput);
+                    }
+                }catch (Exception e){}
             }
 
             @Override
@@ -139,7 +188,12 @@ public class fmDelay extends Fragment {
                 mView4.setText(String.format("%.2f",progress*0.343)+" m");
                 value = progress;
                 dataOutput = "delay4/"+progress;
-                SimpleTcpClient.send(dataOutput, Const.ip, Const.port);
+                try {
+                    for(int i = 0;i<arrayG4.size();i++) {
+                        SimpleTcpClient.send(dataOutput, arrayG4.get(i), Const.port);
+                        Log.d("26J","Delay Bar 1 : "+arrayG4.get(i)+"/"+dataOutput);
+                    }
+                }catch (Exception e){}
             }
 
             @Override

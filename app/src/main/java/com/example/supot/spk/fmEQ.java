@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.akexorcist.simpletcp.SimpleTcpClient;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 
 /**
@@ -28,6 +34,7 @@ public class fmEQ extends Fragment {
     public fmEQ() {
         // Required empty public constructor
     }
+    private ArrayList<String> arrayAllIp;
     private boolean isOnEQ = true;
     private SeekBar eqBar_20,eqBar_40,eqBar_63,eqBar_100,eqBar_160,eqBar_300,eqBar_500,eqBar_800,eqBar_1k,eqBar_1_2k,eqBar_2_2k,eqBar_5k,eqBar_10k,eqBar_12k,eqBar_16k,eqBar_20k,eqBar_Master;
     private Button butStopEq,butReEq,butMtg;
@@ -44,11 +51,24 @@ public class fmEQ extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("EQUALIZER");
         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
         editor = sp.edit();
+        loadData();
         initEq(view);
         if(isOnEQ) {
             butStopEq.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         }
         return view;
+    }
+
+    private void loadData() {
+        Gson gson = new Gson();
+        String jsonAllIp = sp.getString(Const.list_AllIp, null);
+        Type type = new TypeToken<ArrayList>() {}.getType();
+        arrayAllIp = gson.fromJson(jsonAllIp, type);
+
+        if (arrayAllIp == null) {
+            arrayAllIp = new ArrayList<>();
+        }
+        Log.d("26J","arrayAllIp : "+arrayAllIp);
     }
 
     private void  initEq(View view){
@@ -88,7 +108,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("20Hz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq1/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -100,7 +125,6 @@ public class fmEQ extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 editor.putInt(Const.master_eq_slide_value_1,value);
                 editor.commit();
-                //Toast.makeText(getContext(), "20Hz : " + sp.getInt(Const.master_eq_value_1, 150),Toast.LENGTH_SHORT).show();
             }
         });
         eqBar_40.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -112,7 +136,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("40Hz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq2/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -136,7 +165,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("63Hz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq3/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -159,7 +193,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("100Hz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq4/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -182,7 +221,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("160Hz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq5/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -205,7 +249,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("300Hz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq6/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -228,7 +277,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("500Hz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq7/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -251,7 +305,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("800Hz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq8/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -274,7 +333,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("1KHz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq9/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -297,7 +361,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("1.2KHz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq10/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -320,7 +389,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("2.2KHz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq11/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -343,7 +417,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("5KHz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq12/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -366,7 +445,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("10KHz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq13/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -389,7 +473,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("12KHz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq14/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -412,7 +501,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("16KHz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq15/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -435,7 +529,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("20KHz : %.2f dB",progressChanged));
                 dataOutput = String.format("eq16/%.2f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -459,7 +558,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("MASTER : %.0f dB",progressChanged));
                 dataOutput = String.format("eqm/%.0f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
 
             }
 
@@ -472,10 +576,6 @@ public class fmEQ extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 editor.putInt(Const.master_eq_slide,value);
                 editor.commit();
-                /*Fragment fmmtg = new fm_Mtg();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.maincontent,fmmtg);
-                ft.commit();*/
             }
         });
         butStopEq.setOnClickListener(new View.OnClickListener() {

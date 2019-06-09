@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -15,9 +16,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.akexorcist.simpletcp.SimpleTcpClient;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class MTG extends AppCompatActivity {
-
+    private ArrayList<String> arrayG1,arrayG2,arrayG3,arrayG4;
     private Button butBack;
     private Switch swG1,swG2,swG3,swG4;
     private SeekBar BarG1,BarG2,BarG3,BarG4;
@@ -32,8 +38,35 @@ public class MTG extends AppCompatActivity {
         setContentView(R.layout.activity_mtg);
         sp = getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
         editor = sp.edit();
+        loadData();
         initbarGroup();
         initswLockMtg();
+    }
+    private void loadData() {
+        Gson gson = new Gson();
+        String json1 = sp.getString(Const.list_IpG1, null);
+        String json2 = sp.getString(Const.list_IpG2, null);
+        String json3 = sp.getString(Const.list_IpG3, null);
+        String json4= sp.getString(Const.list_IpG4, null);
+        Type type = new TypeToken<ArrayList>(){}.getType();
+        arrayG1 = gson.fromJson(json1, type);
+        arrayG2 = gson.fromJson(json2, type);
+        arrayG3 = gson.fromJson(json3, type);
+        arrayG4 = gson.fromJson(json4, type);
+
+        if (arrayG1 == null) {
+            arrayG1 = new ArrayList<>();
+        }
+        if (arrayG2 == null) {
+            arrayG2 = new ArrayList<>();
+        }
+        if (arrayG3 == null) {
+            arrayG3 = new ArrayList<>();
+        }
+        if (arrayG4 == null) {
+            arrayG4 = new ArrayList<>();
+        }
+        Log.d("26J","Delay arrayG1"+arrayG1);
     }
     private void initbarGroup(){
         BarG1 = (SeekBar) findViewById(R.id.BarG1);
@@ -57,7 +90,12 @@ public class MTG extends AppCompatActivity {
                 v = progress-80;
                 tvG1.setText(String.valueOf("G1 : "+v+" dB"));
                 dataOutput = String.valueOf("mg1/"+v);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for(int i = 0;i<arrayG1.size();i++) {
+                        SimpleTcpClient.send(dataOutput, arrayG1.get(i), Const.port);
+                        Log.d("26J","Delay Bar 1 : "+arrayG1.get(i)+"/"+dataOutput);
+                    }
+                }catch (Exception e){}
             }
 
             @Override
@@ -80,7 +118,12 @@ public class MTG extends AppCompatActivity {
                 v = progress-80;
                 tvG2.setText(String.valueOf("G2 : "+v+" dB"));
                 dataOutput = String.valueOf("mg2/"+v);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for(int i = 0;i<arrayG2.size();i++) {
+                        SimpleTcpClient.send(dataOutput, arrayG2.get(i), Const.port);
+                        Log.d("26J","Delay Bar 1 : "+arrayG2.get(i)+"/"+dataOutput);
+                    }
+                }catch (Exception e){}
             }
 
             @Override
@@ -103,7 +146,12 @@ public class MTG extends AppCompatActivity {
                 v = progress-80;
                 tvG3.setText(String.valueOf("G3 : "+v+" dB"));
                 dataOutput = String.valueOf("mg3/"+v);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for(int i = 0;i<arrayG3.size();i++) {
+                        SimpleTcpClient.send(dataOutput, arrayG3.get(i), Const.port);
+                        Log.d("26J","Delay Bar 1 : "+arrayG3.get(i)+"/"+dataOutput);
+                    }
+                }catch (Exception e){}
             }
 
             @Override
@@ -126,7 +174,12 @@ public class MTG extends AppCompatActivity {
                 v = progress-80;
                 tvG4.setText(String.valueOf("G4 : "+v+" dB"));
                 dataOutput = String.valueOf("mg4/"+v);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
+                try {
+                    for(int i = 0;i<arrayG4.size();i++) {
+                        SimpleTcpClient.send(dataOutput, arrayG4.get(i), Const.port);
+                        Log.d("26J","Delay Bar 1 : "+arrayG4.get(i)+"/"+dataOutput);
+                    }
+                }catch (Exception e){}
             }
 
             @Override

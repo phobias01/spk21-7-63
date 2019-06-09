@@ -50,6 +50,7 @@ public class Const {
     public static final String list_IpG2 = "list_IpG2";
     public static final String list_IpG3 = "list_IpG3";
     public static final String list_IpG4 = "list_IpG4";
+    public static final String list_AllIp = "list_AllIp";
 
     public static final String crossover_min1 = "crossover_min1";
     public static final String crossover_min2 = "crossover_min2";
@@ -71,6 +72,10 @@ public class Const {
     public static final String switch_crossover_2 = "switch_crossover_2";
     public static final String switch_crossover_3 = "switch_crossover_3";
     public static final String switch_crossover_4 = "switch_crossover_4";
+
+    public static final String time = "time";
+    public static final String device = "device";
+
 
 
     public static final String spk_number = "spk_number";

@@ -34,7 +34,7 @@
             android:id="@+id/textView28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="140dp"
+            android:layout_marginStart="130dp"
             android:layout_marginTop="70dp"
             android:text="SPK IP : "
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
 
         <Spinner
             android:id="@+id/spinIP"
-            android:layout_width="170dp"
+            android:layout_width="200dp"
             android:layout_height="24dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="68dp"
@@ -51,7 +51,7 @@
 
         <Spinner
             android:id="@+id/spinNum"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="68dp"
@@ -62,9 +62,9 @@
 
         <ListView
             android:id="@+id/listSetspk"
-            android:layout_width="465dp"
+            android:layout_width="460dp"
             android:layout_height="190dp"
-            android:layout_marginStart="120dp"
+            android:layout_marginStart="130dp"
             android:layout_marginTop="110dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -88,6 +88,17 @@
             android:text="SCAN"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/butClear" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="68dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="290dp"
+            android:layout_marginTop="170dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

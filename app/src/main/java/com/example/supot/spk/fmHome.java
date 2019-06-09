@@ -227,7 +227,7 @@ public class fmHome extends Fragment {
                         int itemCount = adapterSpk.getCount();
                         for(int i=itemCount-1; i >= 0; i--){
                             if(checkedItemPositions.get(i)){
-                                arrayG1.add(arraySpk.get(i)+"/"+arrayIpSpk.get(i));
+                                arrayG1.add(arraySpk.get(i));
                                 listG1.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
                                 listG1.setAdapter(adapterG1);
                                 arrayIpG1.add(arrayIpSpk.get(i));
@@ -249,7 +249,7 @@ public class fmHome extends Fragment {
 
                         for(int i=itemCount-1; i >= 0; i--){
                             if(checkedItemPositions.get(i)){
-                                arrayG2.add(arraySpk.get(i)+"/"+arrayIpSpk.get(i));
+                                arrayG2.add(arraySpk.get(i));
                                 listG2.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
                                 listG2.setAdapter(adapterG2);
                                 arrayIpG2.add(arrayIpSpk.get(i));
@@ -271,7 +271,7 @@ public class fmHome extends Fragment {
 
                         for(int i=itemCount-1; i >= 0; i--){
                             if(checkedItemPositions.get(i)){
-                                arrayG3.add(arraySpk.get(i)+"/"+arrayIpSpk.get(i));
+                                arrayG3.add(arraySpk.get(i));
                                 listG3.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
                                 listG3.setAdapter(adapterG3);
                                 arrayIpG3.add(arrayIpSpk.get(i));
@@ -293,7 +293,7 @@ public class fmHome extends Fragment {
 
                         for(int i=itemCount-1; i >= 0; i--){
                             if(checkedItemPositions.get(i)){
-                                arrayG4.add(arraySpk.get(i)+"/"+arrayIpSpk.get(i));
+                                arrayG4.add(arraySpk.get(i));
                                 listG4.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
                                 listG4.setAdapter(adapterG4);
                                 arrayIpG4.add(arrayIpSpk.get(i));

@@ -19,9 +19,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akexorcist.simpletcp.SimpleTcpClient;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jaygoo.widget.OnRangeChangedListener;
 import com.jaygoo.widget.RangeSeekBar;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 
@@ -34,7 +37,7 @@ public class fmCrossover extends Fragment {
     public fmCrossover() {
         // Required empty public constructor
     }
-
+    private ArrayList<String> arrayG1,arrayG2,arrayG3,arrayG4;
     private Context context;
     private EditText editMin,editMax;
     private TextView tvMin1,tvMin2,tvMin3,tvMin4;
@@ -57,6 +60,41 @@ public class fmCrossover extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fm_crossover, container, false);
         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
         editor = sp.edit();
+        loadData();
+        initCrossoverBar(view);
+        initswLockdelayBar(view);
+        setVolumeCrossover(view);
+        return view;
+
+    }
+    private void loadData() {
+        Gson gson = new Gson();
+        String json1 = sp.getString(Const.list_IpG1, null);
+        String json2 = sp.getString(Const.list_IpG2, null);
+        String json3 = sp.getString(Const.list_IpG3, null);
+        String json4= sp.getString(Const.list_IpG4, null);
+
+        Type type = new TypeToken<ArrayList>(){}.getType();
+        arrayG1 = gson.fromJson(json1, type);
+        arrayG2 = gson.fromJson(json2, type);
+        arrayG3 = gson.fromJson(json3, type);
+        arrayG4 = gson.fromJson(json4, type);
+
+        if (arrayG1 == null) {
+            arrayG1 = new ArrayList<>();
+        }
+        if (arrayG2 == null) {
+            arrayG2 = new ArrayList<>();
+        }
+        if (arrayG3 == null) {
+            arrayG3 = new ArrayList<>();
+        }
+        if (arrayG4 == null) {
+            arrayG4 = new ArrayList<>();
+        }
+        Log.d("26J","Cross Bar"+arrayG1);
+    }
+    private void initCrossoverBar(View view) {
         tvMin1 = (TextView) view.findViewById(R.id.tvMin1);
         tvMin2 = (TextView) view.findViewById(R.id.tvMin2);
         tvMin3 = (TextView) view.findViewById(R.id.tvMin3);
@@ -69,13 +107,6 @@ public class fmCrossover extends Fragment {
         crossoverBar2 = (RangeSeekBar)view.findViewById(R.id.crossoverBar2);
         crossoverBar3 = (RangeSeekBar)view.findViewById(R.id.crossoverBar3);
         crossoverBar4 = (RangeSeekBar)view.findViewById(R.id.crossoverBar4);
-        initCrossoverBar(view);
-        initswLockdelayBar(view);
-        setVolumeCrossover(view);
-        return view;
-
-    }
-    private void initCrossoverBar(View view) {
         initsetCrossBar();
         crossoverBar1.setOnRangeChangedListener(new OnRangeChangedListener() {
             int Lvalue1=0;
@@ -88,11 +119,21 @@ public class fmCrossover extends Fragment {
                 dataOutput2 = String.format("CrossoverMax1/%.0f",rightValue);
                 if(Lvalue1!=(int)leftValue) {
                     Lvalue1 = (int)leftValue;
-                    SimpleTcpClient.send(dataOutput1, Const.ip, Const.port);
+                    try {
+                        for (int i = 0; i < arrayG1.size(); i++) {
+                            SimpleTcpClient.send(dataOutput1, arrayG1.get(i), Const.port);
+                            Log.d("26J", "Cross Bar : " + arrayG1.get(i) + "/" + dataOutput1);
+                        }
+                    }catch (Exception e){}
                 }
                 if(Rvalue1!=(int)rightValue) {
                     Rvalue1 = (int)rightValue;
-                    SimpleTcpClient.send(dataOutput2, Const.ip, Const.port);
+                    try {
+                        for (int i = 0; i < arrayG1.size(); i++) {
+                            SimpleTcpClient.send(dataOutput2, arrayG1.get(i), Const.port);
+                            Log.d("26J", "Cross Bar : " + arrayG1.get(i) + "/" + dataOutput2);
+                        }
+                    }catch (Exception e){}
                 }
             }
 
@@ -116,15 +157,25 @@ public class fmCrossover extends Fragment {
             public void onRangeChanged(RangeSeekBar view, float leftValue, float rightValue, boolean isFromUser) {
                 tvMin2.setText(String.format("%.0f Hz",leftValue));
                 tvMax2.setText(String.format("%.0f Hz",rightValue));
-                dataOutput1 = String.format("CrossoverMi2/%.0f",leftValue);
-                dataOutput2 = String.format("CrossoverMa2/%.0f",rightValue);
+                dataOutput1 = String.format("CrossoverMin2/%.0f",leftValue);
+                dataOutput2 = String.format("CrossoverMax2/%.0f",rightValue);
                 if(Lvalue2!=(int)leftValue) {
                     Lvalue2 = (int)leftValue;
-                    SimpleTcpClient.send(dataOutput1, Const.ip, Const.port);
+                    try {
+                        for (int i = 0; i < arrayG2.size(); i++) {
+                            SimpleTcpClient.send(dataOutput1, arrayG2.get(i), Const.port);
+                            Log.d("26J", "DCross Bar : " + arrayG2.get(i) + "/" + dataOutput1);
+                        }
+                    }catch (Exception e){}
                 }
                 if(Rvalue2!=(int)rightValue) {
                     Rvalue2 = (int)rightValue;
-                    SimpleTcpClient.send(dataOutput2, Const.ip, Const.port);
+                    try {
+                        for (int i = 0; i < arrayG2.size(); i++) {
+                            SimpleTcpClient.send(dataOutput2, arrayG2.get(i), Const.port);
+                            Log.d("26J", "Cross Bar : " + arrayG2.get(i) + "/" + dataOutput2);
+                        }
+                    }catch (Exception e){}
                 }
             }
 
@@ -152,11 +203,21 @@ public class fmCrossover extends Fragment {
                 dataOutput2 = String.format("CrossoverMax3/%.0f",rightValue);
                 if(Lvalue3!=(int)leftValue) {
                     Lvalue3 = (int)leftValue;
-                    SimpleTcpClient.send(dataOutput1, Const.ip, Const.port);
+                    try {
+                        for (int i = 0; i < arrayG3.size(); i++) {
+                            SimpleTcpClient.send(dataOutput1, arrayG3.get(i), Const.port);
+                            Log.d("26J", "DCross Bar : " + arrayG3.get(i) + "/" + dataOutput1);
+                        }
+                    }catch (Exception e){}
                 }
                 if(Rvalue3!=(int)rightValue) {
                     Rvalue3 = (int)rightValue;
-                    SimpleTcpClient.send(dataOutput2, Const.ip, Const.port);
+                    try {
+                        for (int i = 0; i < arrayG3.size(); i++) {
+                            SimpleTcpClient.send(dataOutput2, arrayG3.get(i), Const.port);
+                            Log.d("26J", "DCross Bar : " + arrayG3.get(i) + "/" + dataOutput2);
+                        }
+                    }catch (Exception e){}
                 }
             }
 
@@ -184,11 +245,21 @@ public class fmCrossover extends Fragment {
                 dataOutput2 = String.format("CrossoverMax4/%.0f",rightValue);
                 if(Lvalue4!=(int)leftValue) {
                     Lvalue4 = (int)leftValue;
-                    SimpleTcpClient.send(dataOutput1, Const.ip, Const.port);
+                    try {
+                        for (int i = 0; i < arrayG4.size(); i++) {
+                            SimpleTcpClient.send(dataOutput1, arrayG4.get(i), Const.port);
+                            Log.d("26J", "DCross Bar : " + arrayG4.get(i) + "/" + dataOutput1);
+                        }
+                    }catch (Exception e){}
                 }
                 if(Rvalue4!=(int)rightValue) {
                     Rvalue4 = (int)rightValue;
-                    SimpleTcpClient.send(dataOutput2, Const.ip, Const.port);
+                    try {
+                        for (int i = 0; i < arrayG4.size(); i++) {
+                            SimpleTcpClient.send(dataOutput2, arrayG4.get(i), Const.port);
+                            Log.d("26J", "DCross Bar : " + arrayG4.get(i) + "/" + dataOutput2);
+                        }
+                    }catch (Exception e){}
                 }
             }
 
@@ -249,8 +320,13 @@ public class fmCrossover extends Fragment {
                             int cmin = sp.getInt(Const.crossover_min1, 50);
                             int cmax = sp.getInt(Const.crossover_max1, 500);
                             crossoverBar1.setValue(sp.getInt(Const.set_crossover_min1, cmin), sp.getInt(Const.set_crossover_max1, cmax));
-                            SimpleTcpClient.send("CrossoverMin1/" + String.valueOf(cmin), Const.ip, Const.port);
-                            SimpleTcpClient.send("CrossoverMax1/" + String.valueOf(cmax), Const.ip, Const.port);
+                            dataOutput1 = String.format("CrossoverMin1/%.0f",cmin);
+                            dataOutput2 = String.format("CrossoverMax1/%.0f",cmax);
+                            for (int i = 0; i < arrayG1.size(); i++) {
+                                SimpleTcpClient.send(dataOutput1, arrayG1.get(i), Const.port);
+                                SimpleTcpClient.send(dataOutput2, arrayG1.get(i), Const.port);
+                                Log.d("26J", "DCross Bar : " + arrayG1.get(i) + "/" + dataOutput2);
+                            }
                         } else {
                             Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
                         }
@@ -269,8 +345,13 @@ public class fmCrossover extends Fragment {
                             int cmin = sp.getInt(Const.crossover_min2, 50);
                             int cmax = sp.getInt(Const.crossover_max2, 500);
                             crossoverBar2.setValue(sp.getInt(Const.set_crossover_min2, cmin), sp.getInt(Const.set_crossover_max2, cmax));
-                            SimpleTcpClient.send("CrossoverMin2/" + String.valueOf(cmin), Const.ip, Const.port);
-                            SimpleTcpClient.send("CrossoverMax2/" + String.valueOf(cmax), Const.ip, Const.port);
+                            dataOutput1 = String.format("CrossoverMin2/%.0f",cmin);
+                            dataOutput2 = String.format("CrossoverMax2/%.0f",cmax);
+                            for (int i = 0; i < arrayG2.size(); i++) {
+                                SimpleTcpClient.send(dataOutput1, arrayG2.get(i), Const.port);
+                                SimpleTcpClient.send(dataOutput2, arrayG2.get(i), Const.port);
+                                Log.d("26J", "DCross Bar : " + arrayG4.get(i) + "/" + dataOutput2);
+                            }
                         } else {
                             Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
                         }
@@ -289,8 +370,13 @@ public class fmCrossover extends Fragment {
                             int cmin = sp.getInt(Const.crossover_min3, 50);
                             int cmax = sp.getInt(Const.crossover_max3, 500);
                             crossoverBar3.setValue(sp.getInt(Const.set_crossover_min3, cmin), sp.getInt(Const.set_crossover_max3, cmax));
-                            SimpleTcpClient.send("CrossoverMin3/" + String.valueOf(cmin), Const.ip, Const.port);
-                            SimpleTcpClient.send("CrossoverMax3/" + String.valueOf(cmax), Const.ip, Const.port);
+                            dataOutput1 = String.format("CrossoverMin2/%.0f",cmin);
+                            dataOutput2 = String.format("CrossoverMax2/%.0f",cmax);
+                            for (int i = 0; i < arrayG3.size(); i++) {
+                                SimpleTcpClient.send(dataOutput1, arrayG3.get(i), Const.port);
+                                SimpleTcpClient.send(dataOutput2, arrayG3.get(i), Const.port);
+                                Log.d("26J", "DCross Bar : " + arrayG3.get(i) + "/" + dataOutput2);
+                            }
                         } else {
                             Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
                         }
@@ -309,8 +395,13 @@ public class fmCrossover extends Fragment {
                             int cmin = sp.getInt(Const.crossover_min4, 50);
                             int cmax = sp.getInt(Const.crossover_max4, 500);
                             crossoverBar4.setValue(sp.getInt(Const.set_crossover_min4, cmin), sp.getInt(Const.set_crossover_max4, cmax));
-                            SimpleTcpClient.send("CrossoverMin4/" + String.valueOf(cmin), Const.ip, Const.port);
-                            SimpleTcpClient.send("CrossoverMax4/" + String.valueOf(cmax), Const.ip, Const.port);
+                            dataOutput1 = String.format("CrossoverMin2/%.0f",cmin);
+                            dataOutput2 = String.format("CrossoverMax2/%.0f",cmax);
+                            for (int i = 0; i < arrayG4.size(); i++) {
+                                SimpleTcpClient.send(dataOutput1, arrayG4.get(i), Const.port);
+                                SimpleTcpClient.send(dataOutput2, arrayG4.get(i), Const.port);
+                                Log.d("26J", "DCross Bar : " + arrayG4.get(i) + "/" + dataOutput2);
+                            }
                         } else {
                             Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
                         }

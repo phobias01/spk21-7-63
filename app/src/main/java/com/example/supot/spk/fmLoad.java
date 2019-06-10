@@ -52,19 +52,20 @@ public class fmLoad extends Fragment {
     }
 
     public void initloadList(View view){
-        File f = new File("/การ์ด SD ของ SanDisk/project");
-        File[] list = f.listFiles();
         loadList = (ListView) view.findViewById(R.id.loadList);
         butOpen = (Button) view.findViewById(R.id.butOpen);
         butDel = (Button) view.findViewById(R.id.butDel);
         TextView2 = (TextView) view.findViewById(R.id.textView2);
-        //int numlist = list.length;
         arrayList = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
             arrayList.add("ListView Items " + i);
 
         }
-        //TextView2.setText(numlist);
+        try {
+            File f = new File(Environment.getRootDirectory().getAbsolutePath());
+            File[] list = f.listFiles();
+        }catch (Exception e) {}
+        TextView2.setText(context.getFilesDir().getAbsolutePath());
         /*for (int i = 0; i < list.length; i++) {
             arrayList.add(list[i].getName());
         }*/

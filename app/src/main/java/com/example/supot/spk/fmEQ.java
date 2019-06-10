@@ -113,7 +113,7 @@ public class fmEQ extends Fragment {
                         try {
                             for (int i = 0; i < arrayAllIp.size(); i++) {
                                 SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                               // Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                                //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                             }
                         }catch (Exception e) {}
                     }

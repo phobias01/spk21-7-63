@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class fmSetspk extends Fragment {
     }
     private ProgressBar pb;
     private ArrayAdapter adapterIp, adapterNum, adapterlistIN;
-    private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4;
+    private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4,arrayList;
     private ListView listSetspk;
     private Button butSetnum, butConnect, butScan;
     private Spinner spinIP, spinNum;
@@ -72,16 +73,18 @@ public class fmSetspk extends Fragment {
         String json2 = gson.toJson(arrayG2);
         String json3 = gson.toJson(arrayG3);
         String json4 = gson.toJson(arrayG4);
+       // String json12 = gson.toJson(arrayList);
         editor.putString(Const.spk_setnumip, jsonlistIN);
         editor.putString(Const.spk_ip, jsonIp);
         editor.putString(Const.spk_number, jsonNum);
         editor.putString(Const.list_group_spk, jsonAddHomeNum);
         editor.putString(Const.list_IpSpk, jsonAddHomeIP);
         editor.putString(Const.list_AllIp, jsonAddAllIp);
-        editor.putString(Const.list_group_1, json1);
-        editor.putString(Const.list_group_2, json2);
-        editor.putString(Const.list_group_3, json3);
-        editor.putString(Const.list_group_4, json4);
+        editor.putString(Const.list_IpG1, json1);
+        editor.putString(Const.list_IpG2, json2);
+        editor.putString(Const.list_IpG3, json3);
+        editor.putString(Const.list_IpG4, json4);
+        //editor.putString(Const.list_group_1, json12);
         editor.commit();
     }
 
@@ -90,10 +93,11 @@ public class fmSetspk extends Fragment {
         String jsonlistIN = sp.getString(Const.spk_setnumip, null);
         String jsonIp = sp.getString(Const.spk_ip, null);
         String jsonNum = sp.getString(Const.spk_number, null);
-        String json1 = sp.getString(Const.list_group_1, null);
-        String json2 = sp.getString(Const.list_group_2, null);
-        String json3 = sp.getString(Const.list_group_3, null);
-        String json4 = sp.getString(Const.list_group_4, null);
+        String json1 = sp.getString(Const.list_IpG1, null);
+        String json2 = sp.getString(Const.list_IpG2, null);
+        String json3 = sp.getString(Const.list_IpG3, null);
+        String json4 = sp.getString(Const.list_IpG4, null);
+        String jsonAllIp = sp.getString(Const.list_AllIp, null);
 
         Type type = new TypeToken<ArrayList>() {
         }.getType();
@@ -105,6 +109,7 @@ public class fmSetspk extends Fragment {
         arrayG2 = gson.fromJson(json2, type);
         arrayG3 = gson.fromJson(json3, type);
         arrayG4 = gson.fromJson(json4, type);
+        arrayAllIp = gson.fromJson(jsonAllIp, type);
 
         if (arraylistIN == null) {
             arraylistIN = new ArrayList<>();
@@ -135,6 +140,9 @@ public class fmSetspk extends Fragment {
         }
         if (arrayG4 == null) {
             arrayG4 = new ArrayList<>();
+        }
+        if (arrayAllIp == null) {
+            arrayAllIp = new ArrayList<>();
         }
     }
 
@@ -188,13 +196,7 @@ public class fmSetspk extends Fragment {
         butConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String dataDelay1 = String.valueOf("delay1/"+sp.getInt(Const.delay_bar_1,0));
-                String dataDelay2 = String.valueOf("delay2/"+sp.getInt(Const.delay_bar_2,0));
-                String dataDelay3 = String.valueOf("delay3/"+sp.getInt(Const.delay_bar_3,0));
-                String dataDelay4 = String.valueOf("delay4/"+sp.getInt(Const.delay_bar_4,0));
-                for (int i = 0; i < arrayG1.size(); i++) {
-                    SimpleTcpClient.send(dataDelay1, arrayG1.get(i), Const.port);
-                }
+                Connect();
             }
         });
 
@@ -259,13 +261,11 @@ public class fmSetspk extends Fragment {
                 Thread.sleep(time);
             }catch (Exception e){}
             return null;
-            //Log.d("26J","doInBackground");
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            //int device = sp.getInt(Const.device,0);
             pb.setVisibility(View.INVISIBLE);
             spinIP.setAdapter(adapterIp);
             adapterIp.notifyDataSetChanged();
@@ -283,11 +283,11 @@ public class fmSetspk extends Fragment {
 
     }
     private void Connect() {
-        String dataDelay1 = String.valueOf("delay1/"+sp.getInt(Const.delay_bar_1,0));
-        String dataDelay2 = String.valueOf("delay2/"+sp.getInt(Const.delay_bar_2,0));
-        String dataDelay3 = String.valueOf("delay3/"+sp.getInt(Const.delay_bar_3,0));
-        String dataDelay4 = String.valueOf("delay4/"+sp.getInt(Const.delay_bar_4,0));
-/*
+        String dataDelay1 = String.valueOf("d1/"+sp.getInt(Const.delay_bar_1,0));
+        String dataDelay2 = String.valueOf("d2/"+sp.getInt(Const.delay_bar_2,0));
+        String dataDelay3 = String.valueOf("d3/"+sp.getInt(Const.delay_bar_3,0));
+        String dataDelay4 = String.valueOf("d4/"+sp.getInt(Const.delay_bar_4,0));
+        try {
             for (int i = 0; i < arrayG1.size(); i++) {
                 SimpleTcpClient.send(dataDelay1, arrayG1.get(i), Const.port);
             }
@@ -299,7 +299,106 @@ public class fmSetspk extends Fragment {
             }
             for (int i = 0; i < arrayG4.size(); i++) {
                 SimpleTcpClient.send(dataDelay4, arrayG4.get(i), Const.port);
-            }*/
+            }
+        }catch (Exception e) {}
 
+        String dataMtg1 = String.valueOf("mg1/"+sp.getInt(Const.group_value_1,0));
+        String dataMtg2 = String.valueOf("mg2/"+sp.getInt(Const.group_value_2,0));
+        String dataMtg3 = String.valueOf("mg3/"+sp.getInt(Const.group_value_3,0));
+        String dataMtg4 = String.valueOf("mg4/"+sp.getInt(Const.group_value_4,0));
+        try {
+            for (int i = 0; i < arrayG1.size(); i++) {
+                SimpleTcpClient.send(dataMtg1, arrayG1.get(i), Const.port);
+            }
+            for (int i = 0; i < arrayG2.size(); i++) {
+                SimpleTcpClient.send(dataMtg2, arrayG2.get(i), Const.port);
+            }
+            for (int i = 0; i < arrayG3.size(); i++) {
+                SimpleTcpClient.send(dataMtg3, arrayG3.get(i), Const.port);
+            }
+            for (int i = 0; i < arrayG4.size(); i++) {
+                SimpleTcpClient.send(dataMtg4, arrayG4.get(i), Const.port);
+            }
+        }catch (Exception e) {}
+
+        String dataCrossMax1 = String.valueOf("cmax1/"+sp.getInt(Const.crossover_max1,0));
+        String dataCrossMax2 = String.valueOf("cmax2/"+sp.getInt(Const.crossover_max2,0));
+        String dataCrossMax3 = String.valueOf("cmax3/"+sp.getInt(Const.crossover_max3,0));
+        String dataCrossMax4 = String.valueOf("cmax4/"+sp.getInt(Const.crossover_max4,0));
+        String dataCrossMin1 = String.valueOf("cmin1/"+sp.getInt(Const.crossover_min1,0));
+        String dataCrossMin2 = String.valueOf("cmin2/"+sp.getInt(Const.crossover_min2,0));
+        String dataCrossMin3 = String.valueOf("cmin3/"+sp.getInt(Const.crossover_min3,0));
+        String dataCrossMin4 = String.valueOf("cmin4/"+sp.getInt(Const.crossover_min4,0));
+        try {
+            for (int i = 0; i < arrayG1.size(); i++) {
+                SimpleTcpClient.send(dataCrossMin1, arrayG1.get(i), Const.port);
+                SimpleTcpClient.send(dataCrossMax1, arrayG1.get(i), Const.port);
+            }
+            for (int i = 0; i < arrayG2.size(); i++) {
+                SimpleTcpClient.send(dataCrossMin2, arrayG2.get(i), Const.port);
+                SimpleTcpClient.send(dataCrossMax2, arrayG2.get(i), Const.port);
+            }
+            for (int i = 0; i < arrayG3.size(); i++) {
+                SimpleTcpClient.send(dataCrossMin3, arrayG3.get(i), Const.port);
+                SimpleTcpClient.send(dataCrossMax3, arrayG3.get(i), Const.port);
+            }
+            for (int i = 0; i < arrayG4.size(); i++) {
+                SimpleTcpClient.send(dataCrossMin4, arrayG4.get(i), Const.port);
+                SimpleTcpClient.send(dataCrossMax4, arrayG4.get(i), Const.port);
+            }
+        }catch (Exception e) {}
+        float eq1 = sp.getInt(Const.master_eq_slide_value_1,0);
+        float eq2 = sp.getInt(Const.master_eq_slide_value_2,0);
+        float eq3 = sp.getInt(Const.master_eq_slide_value_3,0);
+        float eq4 = sp.getInt(Const.master_eq_slide_value_4,0);
+        float eq5 = sp.getInt(Const.master_eq_slide_value_5,0);
+        float eq6 = sp.getInt(Const.master_eq_slide_value_6,0);
+        float eq7 = sp.getInt(Const.master_eq_slide_value_7,0);
+        float eq8 = sp.getInt(Const.master_eq_slide_value_8,0);
+        float eq9 = sp.getInt(Const.master_eq_slide_value_9,0);
+        float eq10 = sp.getInt(Const.master_eq_slide_value_10,0);
+        float eq11 = sp.getInt(Const.master_eq_slide_value_11,0);
+        float eq12 = sp.getInt(Const.master_eq_slide_value_12,0);
+        float eq13 = sp.getInt(Const.master_eq_slide_value_13,0);
+        float eq14 = sp.getInt(Const.master_eq_slide_value_14,0);
+        float eq15 = sp.getInt(Const.master_eq_slide_value_15,0);
+        float eq16 = sp.getInt(Const.master_eq_slide_value_16,0);
+
+        String dataEq1 = String.format("eq1/%.2f",(eq1-150)*0.1f);
+        String dataEq2 = String.format("eq2/%.2f",(eq2-150)*0.1f);
+        String dataEq3 = String.format("eq3/%.2f",(eq3-150)*0.1f);
+        String dataEq4 = String.format("eq4/%.2f",(eq4-150)*0.1f);
+        String dataEq5 = String.format("eq5/%.2f",(eq5-150)*0.1f);
+        String dataEq6 = String.format("eq6/%.2f",(eq6-150)*0.1f);
+        String dataEq7 = String.format("eq7/%.2f",(eq7-150)*0.1f);
+        String dataEq8 = String.format("eq8/%.2f",(eq8-150)*0.1f);
+        String dataEq9 = String.format("eq9/%.2f",(eq9-150)*0.1f);
+        String dataEq10 = String.format("eq10/%.2f",(eq10-150)*0.1f);
+        String dataEq11 = String.format("eq11/%.2f",(eq11-150)*0.1f);
+        String dataEq12 = String.format("eq12/%.2f",(eq12-150)*0.1f);
+        String dataEq13 = String.format("eq13/%.2f",(eq13-150)*0.1f);
+        String dataEq14 = String.format("eq14/%.2f",(eq14-150)*0.1f);
+        String dataEq15 = String.format("eq15/%.2f",(eq15-150)*0.1f);
+        String dataEq16 = String.format("eq16/%.2f",(eq16-150)*0.1f);
+        try {
+            for(int i = 0; i < arrayAllIp.size(); i++) {
+                SimpleTcpClient.send(dataEq1, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq2, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq3, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq4, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq5, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq6, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq7, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq8, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq9, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq10, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq11, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq12, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq13, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq14, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq15, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(dataEq16, arrayAllIp.get(i), Const.port);
+            }
+        }catch (Exception e) {}
     }
 }

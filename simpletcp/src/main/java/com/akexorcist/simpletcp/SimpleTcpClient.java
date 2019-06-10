@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -19,10 +20,12 @@ import java.net.Socket;
 public class SimpleTcpClient {
     public static void send(String message, String ip, int port) {
         send(message, ip, port, null, null);
+        //Log.d("26J", "SendTCP : " +ip+"/"+ message);
     }
 
     public static void send(String message, String ip, int port, SendCallback callback, String tag) {
         new TCPSend(message, ip, port, callback, tag).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, (Void[]) null);
+        //Log.d("26J", "SendTCP 1: " +ip+"/"+ message);
     }
 
     private static class TCPSend extends AsyncTask<Void, Void, Void> {
@@ -46,7 +49,7 @@ public class SimpleTcpClient {
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
                 String outgoingMessage = message + System.getProperty("line.separator");
                 bufferedWriter.write(outgoingMessage);
-                Log.d("26J", "SendTCP : " +ip+"/"+ message);
+                Log.d("26J", "SendTCP 2: " +ip+"/"+ message);
                 bufferedWriter.flush();
                 if (callback != null) {
                     socket.setSoTimeout(5000);

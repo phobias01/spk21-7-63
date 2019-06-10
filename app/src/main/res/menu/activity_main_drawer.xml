@@ -9,7 +9,7 @@
             android:title="SET NUMBER SPK"/>
         <item
             android:id="@+id/nav_home"
-            android:title="HOME" />
+            android:title="GROUP MANAGE" />
         <item
             android:id="@+id/nav_eq"
             android:title="EQ" />

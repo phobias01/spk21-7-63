@@ -51,7 +51,7 @@
 
         <Spinner
             android:id="@+id/spinNum"
-            android:layout_width="100dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="68dp"
@@ -70,12 +70,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/butClear"
+            android:id="@+id/butConnect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:text="Clear"
+            android:text="Connect"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/butSetnum" />
 
@@ -87,7 +87,7 @@
             android:layout_marginTop="5dp"
             android:text="SCAN"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/butClear" />
+            app:layout_constraintTop_toBottomOf="@+id/butConnect" />
 
         <ProgressBar
             android:id="@+id/progressBar"

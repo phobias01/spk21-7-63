@@ -3,6 +3,7 @@ package com.akexorcist.simpletcp;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -45,6 +46,7 @@ public class SimpleTcpClient {
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
                 String outgoingMessage = message + System.getProperty("line.separator");
                 bufferedWriter.write(outgoingMessage);
+                Log.d("26J", "SendTCP : " +ip+"/"+ message);
                 bufferedWriter.flush();
                 if (callback != null) {
                     socket.setSoTimeout(5000);

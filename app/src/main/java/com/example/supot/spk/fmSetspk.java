@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.akexorcist.simpletcp.SimpleTcpClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.stealthcopter.networktools.IPTools;
@@ -39,9 +39,9 @@ public class fmSetspk extends Fragment {
     }
     private ProgressBar pb;
     private ArrayAdapter adapterIp, adapterNum, adapterlistIN;
-    private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP,arrayAllIp;
+    private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4;
     private ListView listSetspk;
-    private Button butSetnum, butClear, butScan;
+    private Button butSetnum, butConnect, butScan;
     private Spinner spinIP, spinNum;
     private Context context;
     SharedPreferences sp;
@@ -68,12 +68,20 @@ public class fmSetspk extends Fragment {
         String jsonAddHomeNum = gson.toJson(arrayAddHomeNum);
         String jsonAddHomeIP = gson.toJson(arrayAddHomeIP);
         String jsonAddAllIp = gson.toJson(arrayAllIp);
+        String json1 = gson.toJson(arrayG1);
+        String json2 = gson.toJson(arrayG2);
+        String json3 = gson.toJson(arrayG3);
+        String json4 = gson.toJson(arrayG4);
         editor.putString(Const.spk_setnumip, jsonlistIN);
         editor.putString(Const.spk_ip, jsonIp);
         editor.putString(Const.spk_number, jsonNum);
         editor.putString(Const.list_group_spk, jsonAddHomeNum);
         editor.putString(Const.list_IpSpk, jsonAddHomeIP);
         editor.putString(Const.list_AllIp, jsonAddAllIp);
+        editor.putString(Const.list_group_1, json1);
+        editor.putString(Const.list_group_2, json2);
+        editor.putString(Const.list_group_3, json3);
+        editor.putString(Const.list_group_4, json4);
         editor.commit();
     }
 
@@ -82,6 +90,10 @@ public class fmSetspk extends Fragment {
         String jsonlistIN = sp.getString(Const.spk_setnumip, null);
         String jsonIp = sp.getString(Const.spk_ip, null);
         String jsonNum = sp.getString(Const.spk_number, null);
+        String json1 = sp.getString(Const.list_group_1, null);
+        String json2 = sp.getString(Const.list_group_2, null);
+        String json3 = sp.getString(Const.list_group_3, null);
+        String json4 = sp.getString(Const.list_group_4, null);
 
         Type type = new TypeToken<ArrayList>() {
         }.getType();
@@ -89,6 +101,10 @@ public class fmSetspk extends Fragment {
         arraylistIN = gson.fromJson(jsonlistIN, type);
         arrayIp = gson.fromJson(jsonIp, type);
         arrayNum = gson.fromJson(jsonNum, type);
+        arrayG1 = gson.fromJson(json1, type);
+        arrayG2 = gson.fromJson(json2, type);
+        arrayG3 = gson.fromJson(json3, type);
+        arrayG4 = gson.fromJson(json4, type);
 
         if (arraylistIN == null) {
             arraylistIN = new ArrayList<>();
@@ -108,6 +124,18 @@ public class fmSetspk extends Fragment {
         if (arrayAllIp == null) {
             arrayAllIp = new ArrayList<>();
         }
+        if (arrayG1 == null) {
+            arrayG1 = new ArrayList<>();
+        }
+        if (arrayG2 == null) {
+            arrayG2 = new ArrayList<>();
+        }
+        if (arrayG3 == null) {
+            arrayG3 = new ArrayList<>();
+        }
+        if (arrayG4 == null) {
+            arrayG4 = new ArrayList<>();
+        }
     }
 
     public void onAttach(Context context) {
@@ -118,7 +146,7 @@ public class fmSetspk extends Fragment {
     public void initsetNumIP(View view) {
         listSetspk = (ListView) view.findViewById(R.id.listSetspk);
         butSetnum = (Button) view.findViewById(R.id.butSetnum);
-        butClear = (Button) view.findViewById(R.id.butClear);
+        butConnect = (Button) view.findViewById(R.id.butConnect);
         butScan = (Button) view.findViewById(R.id.butScan);
         spinIP = (Spinner) view.findViewById(R.id.spinIP);
         spinNum = (Spinner) view.findViewById(R.id.spinNum);
@@ -156,11 +184,27 @@ public class fmSetspk extends Fragment {
                     }
                 }
             });
-        } catch (Exception e) {
-        }
-        butClear.setOnClickListener(new View.OnClickListener() {
+        } catch (Exception e) {}
+        butConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String dataDelay1 = String.valueOf("delay1/"+sp.getInt(Const.delay_bar_1,0));
+                String dataDelay2 = String.valueOf("delay2/"+sp.getInt(Const.delay_bar_2,0));
+                String dataDelay3 = String.valueOf("delay3/"+sp.getInt(Const.delay_bar_3,0));
+                String dataDelay4 = String.valueOf("delay4/"+sp.getInt(Const.delay_bar_4,0));
+                for (int i = 0; i < arrayG1.size(); i++) {
+                    SimpleTcpClient.send(dataDelay1, arrayG1.get(i), Const.port);
+                }
+            }
+        });
+
+        butScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                arrayG1.clear();
+                arrayG2.clear();
+                arrayG3.clear();
+                arrayG4.clear();
                 arraylistIN.clear();
                 arrayIp.clear();
                 arrayNum.clear();
@@ -171,21 +215,13 @@ public class fmSetspk extends Fragment {
                     }
                 }
                 listSetspk.setAdapter(adapterlistIN);
+                spinIP.setAdapter(adapterIp);
                 spinNum.setAdapter(adapterNum);
                 saveData();
+                new AsyncScan().execute();
                 adapterlistIN.notifyDataSetChanged();
                 adapterIp.notifyDataSetChanged();
                 adapterNum.notifyDataSetChanged();
-            }
-        });
-        butScan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                arrayIp.clear();
-                arrayAllIp.clear();
-                new AsyncScan().execute();
-                spinIP.setAdapter(adapterIp);
-                adapterIp.notifyDataSetChanged();
             }
         });
     }
@@ -244,6 +280,26 @@ public class fmSetspk extends Fragment {
             Toast.makeText(getActivity(), "Scanning....", Toast.LENGTH_SHORT).show();
             //Log.d("26J","onPreExecute");
         }
+
+    }
+    private void Connect() {
+        String dataDelay1 = String.valueOf("delay1/"+sp.getInt(Const.delay_bar_1,0));
+        String dataDelay2 = String.valueOf("delay2/"+sp.getInt(Const.delay_bar_2,0));
+        String dataDelay3 = String.valueOf("delay3/"+sp.getInt(Const.delay_bar_3,0));
+        String dataDelay4 = String.valueOf("delay4/"+sp.getInt(Const.delay_bar_4,0));
+/*
+            for (int i = 0; i < arrayG1.size(); i++) {
+                SimpleTcpClient.send(dataDelay1, arrayG1.get(i), Const.port);
+            }
+            for (int i = 0; i < arrayG2.size(); i++) {
+                SimpleTcpClient.send(dataDelay2, arrayG2.get(i), Const.port);
+            }
+            for (int i = 0; i < arrayG3.size(); i++) {
+                SimpleTcpClient.send(dataDelay3, arrayG3.get(i), Const.port);
+            }
+            for (int i = 0; i < arrayG4.size(); i++) {
+                SimpleTcpClient.send(dataDelay4, arrayG4.get(i), Const.port);
+            }*/
 
     }
 }

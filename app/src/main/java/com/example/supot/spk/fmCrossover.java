@@ -114,14 +114,14 @@ public class fmCrossover extends Fragment {
             public void onRangeChanged(RangeSeekBar view, float leftValue, float rightValue, boolean isFromUser) {
                 tvMin1.setText(String.format("%.0f Hz",leftValue));
                 tvMax1.setText(String.format("%.0f Hz",rightValue));
-                dataOutput1 = String.format("cmin1/%.0f",leftValue);
-                dataOutput2 = String.format("cmax1/%.0f",rightValue);
+                dataOutput1 = String.format("LF/F/%.0f",leftValue);
+                dataOutput2 = String.format("HF/F/%.0f",rightValue);
                 if(Lvalue1!=(int)leftValue) {
                     Lvalue1 = (int)leftValue;
                     try {
                         for (int i = 0; i < arrayG1.size(); i++) {
                             SimpleTcpClient.send(dataOutput1, arrayG1.get(i), Const.port);
-                            Log.d("26J", "Cross Bar : " + arrayG1.get(i) + "/" + dataOutput1);
+                            Log.d("26J", "Cross Bar 1 : " + arrayG1.get(i) + "/" + dataOutput1);
                         }
                     }catch (Exception e){}
                 }
@@ -130,7 +130,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG1.size(); i++) {
                             SimpleTcpClient.send(dataOutput2, arrayG1.get(i), Const.port);
-                            //Log.d("26J", "Cross Bar : " + arrayG1.get(i) + "/" + dataOutput2);
+                            Log.d("26J", "Cross Bar 1 : " + arrayG1.get(i) + "/" + dataOutput2);
                         }
                     }catch (Exception e){}
                 }
@@ -156,14 +156,14 @@ public class fmCrossover extends Fragment {
             public void onRangeChanged(RangeSeekBar view, float leftValue, float rightValue, boolean isFromUser) {
                 tvMin2.setText(String.format("%.0f Hz",leftValue));
                 tvMax2.setText(String.format("%.0f Hz",rightValue));
-                dataOutput1 = String.format("cmin2/%.0f",leftValue);
-                dataOutput2 = String.format("cmax2/%.0f",rightValue);
+                dataOutput1 = String.format("LF/F/%.0f",leftValue);
+                dataOutput2 = String.format("HF/F/%.0f",rightValue);
                 if(Lvalue2!=(int)leftValue) {
                     Lvalue2 = (int)leftValue;
                     try {
                         for (int i = 0; i < arrayG2.size(); i++) {
                             SimpleTcpClient.send(dataOutput1, arrayG2.get(i), Const.port);
-                            //Log.d("26J", "DCross Bar : " + arrayG2.get(i) + "/" + dataOutput1);
+                            Log.d("26J", "Cross Bar 2 : " + arrayG2.get(i) + "/" + dataOutput1);
                         }
                     }catch (Exception e){}
                 }
@@ -172,7 +172,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG2.size(); i++) {
                             SimpleTcpClient.send(dataOutput2, arrayG2.get(i), Const.port);
-                            Log.d("26J", "Cross Bar : " + arrayG2.get(i) + "/" + dataOutput2);
+                            Log.d("26J", "Cross Bar 2 : " + arrayG2.get(i) + "/" + dataOutput2);
                         }
                     }catch (Exception e){}
                 }
@@ -198,14 +198,14 @@ public class fmCrossover extends Fragment {
             public void onRangeChanged(RangeSeekBar view, float leftValue, float rightValue, boolean isFromUser) {
                 tvMin3.setText(String.format("%.0f Hz",leftValue));
                 tvMax3.setText(String.format("%.0f Hz",rightValue));
-                dataOutput1 = String.format("cmin3/%.0f",leftValue);
-                dataOutput2 = String.format("cmax3/%.0f",rightValue);
+                dataOutput1 = String.format("LF/F/%.0f",leftValue);
+                dataOutput2 = String.format("HF/F/%.0f",rightValue);
                 if(Lvalue3!=(int)leftValue) {
                     Lvalue3 = (int)leftValue;
                     try {
                         for (int i = 0; i < arrayG3.size(); i++) {
                             SimpleTcpClient.send(dataOutput1, arrayG3.get(i), Const.port);
-                            //Log.d("26J", "DCross Bar : " + arrayG3.get(i) + "/" + dataOutput1);
+                            Log.d("26J", "Cross Bar 3 : " + arrayG3.get(i) + "/" + dataOutput1);
                         }
                     }catch (Exception e){}
                 }
@@ -214,7 +214,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG3.size(); i++) {
                             SimpleTcpClient.send(dataOutput2, arrayG3.get(i), Const.port);
-                            //Log.d("26J", "DCross Bar : " + arrayG3.get(i) + "/" + dataOutput2);
+                            Log.d("26J", "Cross Bar 3 : " + arrayG3.get(i) + "/" + dataOutput2);
                         }
                     }catch (Exception e){}
                 }
@@ -240,14 +240,14 @@ public class fmCrossover extends Fragment {
             public void onRangeChanged(RangeSeekBar view, float leftValue, float rightValue, boolean isFromUser) {
                 tvMin4.setText(String.format("%.0f Hz",leftValue));
                 tvMax4.setText(String.format("%.0f Hz",rightValue));
-                dataOutput1 = String.format("cmin4/%.0f",leftValue);
-                dataOutput2 = String.format("cmax4/%.0f",rightValue);
+                dataOutput1 = String.format("LF/F/%.0f",leftValue);
+                dataOutput2 = String.format("HF/F/%.0f",rightValue);
                 if(Lvalue4!=(int)leftValue) {
                     Lvalue4 = (int)leftValue;
                     try {
                         for (int i = 0; i < arrayG4.size(); i++) {
                             SimpleTcpClient.send(dataOutput1, arrayG4.get(i), Const.port);
-                            //Log.d("26J", "DCross Bar : " + arrayG4.get(i) + "/" + dataOutput1);
+                            Log.d("26J", "Cross Bar : 4 " + arrayG4.get(i) + "/" + dataOutput1);
                         }
                     }catch (Exception e){}
                 }
@@ -256,7 +256,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG4.size(); i++) {
                             SimpleTcpClient.send(dataOutput2, arrayG4.get(i), Const.port);
-                            //Log.d("26J", "DCross Bar : " + arrayG4.get(i) + "/" + dataOutput2);
+                            Log.d("26J", "Cross Bar 4 : " + arrayG4.get(i) + "/" + dataOutput2);
                         }
                     }catch (Exception e){}
                 }
@@ -304,109 +304,97 @@ public class fmCrossover extends Fragment {
                     String max = editMax.getText().toString();
                     int valueMin = Integer.valueOf(min);
                     int valueMax = Integer.valueOf(max);
-                    if(posGroup==0) {
-                        if (valueMin < valueMax) {
-                            if (!min.equals(null)) {
+                    switch (posGroup) {
+                        case 0:
+                            if (valueMin < valueMax) {
                                 tvMin1.setText(min + " Hz");
-                                editor.putInt(Const.set_crossover_min1, valueMin);
-                                editor.commit();
-                            }
-                            if (!max.equals(null)) {
                                 tvMax1.setText(max + " Hz");
+                                editor.putInt(Const.set_crossover_min1, valueMin);
                                 editor.putInt(Const.set_crossover_max1, valueMax);
                                 editor.commit();
+                                crossoverBar1.setValue(valueMin,valueMax);
+                                if(arrayG1.size()!=0) {
+                                    dataOutput1 = String.format("LF/F/%.0f", valueMin);
+                                    dataOutput2 = String.format("HF/F/%.0f", valueMax);
+                                    for (int i = 0; i < arrayG1.size(); i++) {
+                                        SimpleTcpClient.send(dataOutput1, arrayG1.get(i), Const.port);
+                                        SimpleTcpClient.send(dataOutput2, arrayG1.get(i), Const.port);
+                                        Log.d("26J", "Cross Bar 1: " + arrayG1.get(i) + "/" + dataOutput1);
+                                        Log.d("26J", "Cross Bar 1: " + arrayG1.get(i) + "/" + dataOutput2);
+                                    }
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
                             }
-                            int cmin = sp.getInt(Const.crossover_min1, 50);
-                            int cmax = sp.getInt(Const.crossover_max1, 500);
-                            crossoverBar1.setValue(sp.getInt(Const.set_crossover_min1, cmin), sp.getInt(Const.set_crossover_max1, cmax));
-                            dataOutput1 = String.format("cmin1/%.0f",cmin);
-                            dataOutput2 = String.format("cmax1/%.0f",cmax);
-                            for (int i = 0; i < arrayG1.size(); i++) {
-                                SimpleTcpClient.send(dataOutput1, arrayG1.get(i), Const.port);
-                                SimpleTcpClient.send(dataOutput2, arrayG1.get(i), Const.port);
-                                //Log.d("26J", "DCross Bar : " + arrayG1.get(i) + "/" + dataOutput2);
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
-                        }
-                    }else if(posGroup==1) {
-                        if (valueMin < valueMax) {
-                            if (!min.equals(null)) {
+                            break;
+                        case 1:
+                            if (valueMin < valueMax) {
                                 tvMin2.setText(min + " Hz");
-                                editor.putInt(Const.set_crossover_min2, valueMin);
-                                editor.commit();
-                            }
-                            if (!max.equals(null)) {
                                 tvMax2.setText(max + " Hz");
+                                editor.putInt(Const.set_crossover_min2, valueMin);
                                 editor.putInt(Const.set_crossover_max2, valueMax);
                                 editor.commit();
+                                crossoverBar2.setValue(valueMin,valueMax);
+                                if(arrayG2.size()!=0) {
+                                    dataOutput1 = String.format("LF/F/%.0f", valueMin);
+                                    dataOutput2 = String.format("HF/F/%.0f", valueMax);
+                                    for (int i = 0; i < arrayG2.size(); i++) {
+                                        SimpleTcpClient.send(dataOutput1, arrayG2.get(i), Const.port);
+                                        SimpleTcpClient.send(dataOutput2, arrayG2.get(i), Const.port);
+                                        Log.d("26J", "Cross Bar 2: " + arrayG2.get(i) + "/" + dataOutput1);
+                                        Log.d("26J", "Cross Bar 2: " + arrayG2.get(i) + "/" + dataOutput2);
+                                    }
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
                             }
-                            int cmin = sp.getInt(Const.crossover_min2, 50);
-                            int cmax = sp.getInt(Const.crossover_max2, 500);
-                            crossoverBar2.setValue(sp.getInt(Const.set_crossover_min2, cmin), sp.getInt(Const.set_crossover_max2, cmax));
-                            dataOutput1 = String.format("cmin2/%.0f",cmin);
-                            dataOutput2 = String.format("cmax2/%.0f",cmax);
-                            for (int i = 0; i < arrayG2.size(); i++) {
-                                SimpleTcpClient.send(dataOutput1, arrayG2.get(i), Const.port);
-                                SimpleTcpClient.send(dataOutput2, arrayG2.get(i), Const.port);
-                                //Log.d("26J", "DCross Bar : " + arrayG4.get(i) + "/" + dataOutput2);
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
-                        }
-                    }else if(posGroup==2) {
-                        if (valueMin < valueMax) {
-                            if (!min.equals(null)) {
+                            break;
+                        case 2:
+                            if (valueMin < valueMax) {
                                 tvMin3.setText(min + " Hz");
-                                editor.putInt(Const.set_crossover_min3, valueMin);
-                                editor.commit();
-                            }
-                            if (!max.equals(null)) {
                                 tvMax3.setText(max + " Hz");
+                                editor.putInt(Const.set_crossover_min3, valueMin);
                                 editor.putInt(Const.set_crossover_max3, valueMax);
                                 editor.commit();
+                                crossoverBar3.setValue(valueMin,valueMax);
+                                if(arrayG3.size()!=0) {
+                                    dataOutput1 = String.format("LF/F/%.0f", valueMin);
+                                    dataOutput2 = String.format("HF/F/%.0f", valueMax);
+                                    for (int i = 0; i < arrayG3.size(); i++) {
+                                        SimpleTcpClient.send(dataOutput1, arrayG3.get(i), Const.port);
+                                        SimpleTcpClient.send(dataOutput2, arrayG3.get(i), Const.port);
+                                        Log.d("26J", "Cross Bar 3: " + arrayG3.get(i) + "/" + dataOutput1);
+                                        Log.d("26J", "Cross Bar 3: " + arrayG3.get(i) + "/" + dataOutput2);
+                                    }
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
                             }
-                            int cmin = sp.getInt(Const.crossover_min3, 50);
-                            int cmax = sp.getInt(Const.crossover_max3, 500);
-                            crossoverBar3.setValue(sp.getInt(Const.set_crossover_min3, cmin), sp.getInt(Const.set_crossover_max3, cmax));
-                            dataOutput1 = String.format("cmin3/%.0f",cmin);
-                            dataOutput2 = String.format("cmax3/%.0f",cmax);
-                            for (int i = 0; i < arrayG3.size(); i++) {
-                                SimpleTcpClient.send(dataOutput1, arrayG3.get(i), Const.port);
-                                SimpleTcpClient.send(dataOutput2, arrayG3.get(i), Const.port);
-                                //Log.d("26J", "DCross Bar : " + arrayG3.get(i) + "/" + dataOutput2);
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
-                        }
-                    }else if(posGroup==3) {
-                        if (valueMin < valueMax) {
-                            if (!min.equals(null)) {
+                            break;
+                        case 3:
+                            if (valueMin < valueMax) {
                                 tvMin4.setText(min + " Hz");
-                                editor.putInt(Const.set_crossover_min4, valueMin);
-                                editor.commit();
-                            }
-                            if (!max.equals(null)) {
                                 tvMax4.setText(max + " Hz");
+                                editor.putInt(Const.set_crossover_min4, valueMin);
                                 editor.putInt(Const.set_crossover_max4, valueMax);
                                 editor.commit();
+                                crossoverBar4.setValue(valueMin,valueMax);
+                                if(arrayG4.size()!=0) {
+                                    dataOutput1 = String.format("LF/F/%.0f", valueMin);
+                                    dataOutput2 = String.format("HF/F/%.0f", valueMax);
+                                    for (int i = 0; i < arrayG4.size(); i++) {
+                                        SimpleTcpClient.send(dataOutput1, arrayG4.get(i), Const.port);
+                                        SimpleTcpClient.send(dataOutput2, arrayG4.get(i), Const.port);
+                                        Log.d("26J", "Cross Bar 4: " + arrayG4.get(i) + "/" + dataOutput1);
+                                        Log.d("26J", "Cross Bar 4: " + arrayG4.get(i) + "/" + dataOutput2);
+                                    }
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
                             }
-                            int cmin = sp.getInt(Const.crossover_min4, 50);
-                            int cmax = sp.getInt(Const.crossover_max4, 500);
-                            crossoverBar4.setValue(sp.getInt(Const.set_crossover_min4, cmin), sp.getInt(Const.set_crossover_max4, cmax));
-                            dataOutput1 = String.format("cmin4/%.0f",cmin);
-                            dataOutput2 = String.format("cmax4/%.0f",cmax);
-                            for (int i = 0; i < arrayG4.size(); i++) {
-                                SimpleTcpClient.send(dataOutput1, arrayG4.get(i), Const.port);
-                                SimpleTcpClient.send(dataOutput2, arrayG4.get(i), Const.port);
-                                //Log.d("26J", "DCross Bar : " + arrayG4.get(i) + "/" + dataOutput2);
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
+                            break;
                         }
-                    }
-                }catch (Exception e) {Toast.makeText(getActivity(),"Please enter a value.", Toast.LENGTH_SHORT).show();}
-
+                }catch (Exception e) {Toast.makeText(getActivity(),"Please enter value.", Toast.LENGTH_SHORT).show();}
             }
         });
 

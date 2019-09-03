@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,7 @@ public class fmHome extends Fragment {
     private SeekBar masterBar;
     private Context context;
     private ListView listSpk,listG1,listG2,listG3,listG4;
-    private ArrayList<String> arraySpk,arrayG1,arrayG2,arrayG3,arrayG4,arrayIpSpk,arrayIpG1,arrayIpG2,arrayIpG3,arrayIpG4;
+    private ArrayList<String> arraySpk,arrayG1,arrayG2,arrayG3,arrayG4,arrayIpSpk,arrayIpG1,arrayIpG2,arrayIpG3,arrayIpG4,arrayAllIp;
     private ArrayAdapter adapterSpk,adapterG1,adapterG2,adapterG3,adapterG4;
     private Button butExport,butG1,butG2,butG3,butG4;
     SharedPreferences sp;
@@ -63,6 +64,7 @@ public class fmHome extends Fragment {
         return view;
     }
 
+
     public void initmasterBar(View view){
         masterBar = (SeekBar) view.findViewById(R.id.masterBar);
         tvMaster = (TextView) view.findViewById(R.id.tvMaster);
@@ -79,9 +81,13 @@ public class fmHome extends Fragment {
                 progressChanged = progress-80;
                 value = progress;
                 tvMaster.setText(String.format("MASTER : %.0f dB",progressChanged));
-                dataOutput = String.format("eqm/%.0f",progressChanged);
-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
-
+                dataOutput = String.format("MASTERVOL/%.0f",progressChanged);
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                    }
+                }catch (Exception e) {}
             }
 
             @Override
@@ -136,8 +142,11 @@ public class fmHome extends Fragment {
         String jsonIpG2 = sp.getString(Const.list_IpG2, null);
         String jsonIpG3 = sp.getString(Const.list_IpG3, null);
         String jsonIpG4 = sp.getString(Const.list_IpG4, null);
+        String jsonAllIp = sp.getString(Const.list_AllIp, null);
 
         Type type = new TypeToken<ArrayList>(){}.getType();
+
+        arrayAllIp = gson.fromJson(jsonAllIp, type);
         arraySpk = gson.fromJson(jsonSpk, type);
         arrayG1 = gson.fromJson(json1, type);
         arrayG2 = gson.fromJson(json2, type);
@@ -149,6 +158,9 @@ public class fmHome extends Fragment {
         arrayIpG3 = gson.fromJson(jsonIpG3, type);
         arrayIpG4 = gson.fromJson(jsonIpG4, type);
 
+        if (arrayAllIp == null) {
+            arrayAllIp = new ArrayList<>();
+        }
         if (arraySpk == null) {
             arraySpk = new ArrayList<>();
         }

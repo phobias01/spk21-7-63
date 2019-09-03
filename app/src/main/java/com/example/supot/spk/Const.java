@@ -25,6 +25,24 @@ public class Const {
     public static final String master_eq_slide_value_15 = "master_eq_slide_value_15";
     public static final String master_eq_slide_value_16 = "master_eq_slide_value_16";
 
+    public static final String master_eq_slide_string = "master_eq_slide_string";
+    public static final String master_eq_slide_value_1_string = "master_eq_slide_value_1_string";
+    public static final String master_eq_slide_value_2_string = "master_eq_slide_value_2_string";
+    public static final String master_eq_slide_value_3_string = "master_eq_slide_value_3_string";
+    public static final String master_eq_slide_value_4_string = "master_eq_slide_value_4_string";
+    public static final String master_eq_slide_value_5_string = "master_eq_slide_value_5_string";
+    public static final String master_eq_slide_value_6_string = "master_eq_slide_value_6_string";
+    public static final String master_eq_slide_value_7_string = "master_eq_slide_value_7_string";
+    public static final String master_eq_slide_value_8_string = "master_eq_slide_value_8_string";
+    public static final String master_eq_slide_value_9_string = "master_eq_slide_value_9_string";
+    public static final String master_eq_slide_value_10_string = "master_eq_slide_value_10_string";
+    public static final String master_eq_slide_value_11_string = "master_eq_slide_value_11_string";
+    public static final String master_eq_slide_value_12_string = "master_eq_slide_value_12_string";
+    public static final String master_eq_slide_value_13_string = "master_eq_slide_value_13_string";
+    public static final String master_eq_slide_value_14_string = "master_eq_slide_value_14_string";
+    public static final String master_eq_slide_value_15_string = "master_eq_slide_value_15_string";
+    public static final String master_eq_slide_value_16_string = "master_eq_slide_value_16_string";
+
     public static final String delay_bar_1 = "delay_bar_1";
     public static final String delay_bar_2 = "delay_bar_2";
     public static final String delay_bar_3 = "delay_bar_3";

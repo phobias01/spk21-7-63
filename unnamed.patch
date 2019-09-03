@@ -1,0 +1,890 @@
+Index: app/src/main/java/com/example/supot/spk/fmHome.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/supot/spk/fmHome.java	(revision 4f9a42f05c21298ca125d3655d9982010415ac06)
++++ app/src/main/java/com/example/supot/spk/fmHome.java	(date 1560082269843)
+@@ -227,7 +227,7 @@
+                         int itemCount = adapterSpk.getCount();
+                         for(int i=itemCount-1; i >= 0; i--){
+                             if(checkedItemPositions.get(i)){
+-                                arrayG1.add(arraySpk.get(i)+"/"+arrayIpSpk.get(i));
++                                arrayG1.add(arraySpk.get(i));
+                                 listG1.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+                                 listG1.setAdapter(adapterG1);
+                                 arrayIpG1.add(arrayIpSpk.get(i));
+@@ -249,7 +249,7 @@
+ 
+                         for(int i=itemCount-1; i >= 0; i--){
+                             if(checkedItemPositions.get(i)){
+-                                arrayG2.add(arraySpk.get(i)+"/"+arrayIpSpk.get(i));
++                                arrayG2.add(arraySpk.get(i));
+                                 listG2.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+                                 listG2.setAdapter(adapterG2);
+                                 arrayIpG2.add(arrayIpSpk.get(i));
+@@ -271,7 +271,7 @@
+ 
+                         for(int i=itemCount-1; i >= 0; i--){
+                             if(checkedItemPositions.get(i)){
+-                                arrayG3.add(arraySpk.get(i)+"/"+arrayIpSpk.get(i));
++                                arrayG3.add(arraySpk.get(i));
+                                 listG3.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+                                 listG3.setAdapter(adapterG3);
+                                 arrayIpG3.add(arrayIpSpk.get(i));
+@@ -293,7 +293,7 @@
+ 
+                         for(int i=itemCount-1; i >= 0; i--){
+                             if(checkedItemPositions.get(i)){
+-                                arrayG4.add(arraySpk.get(i)+"/"+arrayIpSpk.get(i));
++                                arrayG4.add(arraySpk.get(i));
+                                 listG4.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+                                 listG4.setAdapter(adapterG4);
+                                 arrayIpG4.add(arrayIpSpk.get(i));
+Index: app/src/main/java/com/example/supot/spk/fmDelay.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/supot/spk/fmDelay.java	(revision 4f9a42f05c21298ca125d3655d9982010415ac06)
++++ app/src/main/java/com/example/supot/spk/fmDelay.java	(date 1560087228113)
+@@ -17,6 +17,11 @@
+ 
+ import com.akexorcist.simpletcp.SimpleTcpClient;
+ import com.akexorcist.simpletcp.SimpleTcpServer;
++import com.google.gson.Gson;
++import com.google.gson.reflect.TypeToken;
++
++import java.lang.reflect.Type;
++import java.util.ArrayList;
+ 
+ 
+ /**
+@@ -28,6 +33,7 @@
+     public fmDelay() {
+         // Required empty public constructor
+     }
++    private ArrayList<String> arrayG1,arrayG2,arrayG3,arrayG4;
+     private SeekBar delayBar1,delayBar2,delayBar3,delayBar4;
+     private TextView msView1,msView2,msView3,msView4,mView1,mView2,mView3,mView4;
+     private Switch swG1,swG2,swG3,swG4;
+@@ -42,10 +48,38 @@
+         View view = inflater.inflate(R.layout.fragment_fm_delay, container, false);
+         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
+         editor = sp.edit();
++        loadData();
+         initDelayBar(view);
+         initswLockdelayBar(view);
+         return view;
+     }
++    private void loadData() {
++        Gson gson = new Gson();
++        String json1 = sp.getString(Const.list_IpG1, null);
++        String json2 = sp.getString(Const.list_IpG2, null);
++        String json3 = sp.getString(Const.list_IpG3, null);
++        String json4= sp.getString(Const.list_IpG4, null);
++
++        Type type = new TypeToken<ArrayList>(){}.getType();
++        arrayG1 = gson.fromJson(json1, type);
++        arrayG2 = gson.fromJson(json2, type);
++        arrayG3 = gson.fromJson(json3, type);
++        arrayG4 = gson.fromJson(json4, type);
++
++        if (arrayG1 == null) {
++            arrayG1 = new ArrayList<>();
++        }
++        if (arrayG2 == null) {
++            arrayG2 = new ArrayList<>();
++        }
++        if (arrayG3 == null) {
++            arrayG3 = new ArrayList<>();
++        }
++        if (arrayG4 == null) {
++            arrayG4 = new ArrayList<>();
++        }
++        Log.d("26J","Delay arrayG1"+arrayG1);
++    }
+     private void initDelayBar(View view){
+         delayBar1 = (SeekBar) view.findViewById(R.id.delayBar1);
+         delayBar2 = (SeekBar) view.findViewById(R.id.delayBar2);
+@@ -66,11 +100,16 @@
+             int value;
+             @Override
+             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+-                msView1.setText(progress+" ms");
+-                mView1.setText(String.format("%.2f",progress*0.343)+" m");
++                msView1.setText(progress + " ms");
++                mView1.setText(String.format("%.2f", progress * 0.343) + " m");
+                 value = progress;
+-                dataOutput = "delay1/"+progress;
+-                SimpleTcpClient.send(dataOutput, Const.ip, Const.port);
++                dataOutput = "delay1/" + progress;
++                try {
++                    for (int i = 0; i < arrayG1.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayG1.get(i), Const.port);
++                        Log.d("26J", "Delay Bar 1 : " + arrayG1.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e){}
+             }
+ 
+             @Override
+@@ -93,7 +132,12 @@
+                 mView2.setText(String.format("%.2f",progress*0.343)+" m");
+                 value = progress;
+                 dataOutput = "delay2/"+progress;
+-                SimpleTcpClient.send(dataOutput, Const.ip, Const.port);
++                try {
++                    for(int i = 0;i<arrayG2.size();i++) {
++                        SimpleTcpClient.send(dataOutput, arrayG2.get(i), Const.port);
++                        Log.d("26J","Delay Bar 1 : "+arrayG2.get(i)+"/"+dataOutput);
++                    }
++                }catch (Exception e){}
+             }
+ 
+             @Override
+@@ -116,7 +160,12 @@
+                 mView3.setText(String.format("%.2f",progress*0.343)+" m");
+                 value = progress;
+                 dataOutput = "delay3/"+progress;
+-                SimpleTcpClient.send(dataOutput, Const.ip, Const.port);
++                try {
++                    for(int i = 0;i<arrayG3.size();i++) {
++                        SimpleTcpClient.send(dataOutput, arrayG3.get(i), Const.port);
++                        Log.d("26J","Delay Bar 1 : "+arrayG3.get(i)+"/"+dataOutput);
++                    }
++                }catch (Exception e){}
+             }
+ 
+             @Override
+@@ -139,7 +188,12 @@
+                 mView4.setText(String.format("%.2f",progress*0.343)+" m");
+                 value = progress;
+                 dataOutput = "delay4/"+progress;
+-                SimpleTcpClient.send(dataOutput, Const.ip, Const.port);
++                try {
++                    for(int i = 0;i<arrayG4.size();i++) {
++                        SimpleTcpClient.send(dataOutput, arrayG4.get(i), Const.port);
++                        Log.d("26J","Delay Bar 1 : "+arrayG4.get(i)+"/"+dataOutput);
++                    }
++                }catch (Exception e){}
+             }
+ 
+             @Override
+Index: app/src/main/java/com/example/supot/spk/fmSetspk.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/supot/spk/fmSetspk.java	(revision 4f9a42f05c21298ca125d3655d9982010415ac06)
++++ app/src/main/java/com/example/supot/spk/fmSetspk.java	(date 1560086170114)
+@@ -3,14 +3,17 @@
+ 
+ import android.content.Context;
+ import android.content.SharedPreferences;
++import android.os.AsyncTask;
+ import android.os.Bundle;
+ import android.support.v4.app.Fragment;
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+ import android.widget.ArrayAdapter;
+ import android.widget.Button;
+ import android.widget.ListView;
++import android.widget.ProgressBar;
+ import android.widget.Spinner;
+ import android.widget.Toast;
+ 
+@@ -34,9 +37,9 @@
+     public fmSetspk() {
+         // Required empty public constructor
+     }
+-
++    private ProgressBar pb;
+     private ArrayAdapter adapterIp, adapterNum, adapterlistIN;
+-    private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP;
++    private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP,arrayAllIp;
+     private ListView listSetspk;
+     private Button butSetnum, butClear, butScan;
+     private Spinner spinIP, spinNum;
+@@ -51,6 +54,7 @@
+         View view = inflater.inflate(R.layout.fragment_fm_setspk, container, false);
+         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
+         editor = sp.edit();
++        pb = (ProgressBar) view.findViewById(R.id.progressBar);
+         loadData();
+         initsetNumIP(view);
+         return view;
+@@ -63,11 +67,13 @@
+         String jsonNum = gson.toJson(arrayNum);
+         String jsonAddHomeNum = gson.toJson(arrayAddHomeNum);
+         String jsonAddHomeIP = gson.toJson(arrayAddHomeIP);
++        String jsonAddAllIp = gson.toJson(arrayAllIp);
+         editor.putString(Const.spk_setnumip, jsonlistIN);
+         editor.putString(Const.spk_ip, jsonIp);
+         editor.putString(Const.spk_number, jsonNum);
+         editor.putString(Const.list_group_spk, jsonAddHomeNum);
+         editor.putString(Const.list_IpSpk, jsonAddHomeIP);
++        editor.putString(Const.list_AllIp, jsonAddAllIp);
+         editor.commit();
+     }
+ 
+@@ -99,6 +105,9 @@
+         if (arrayAddHomeIP == null) {
+             arrayAddHomeIP = new ArrayList<>();
+         }
++        if (arrayAllIp == null) {
++            arrayAllIp = new ArrayList<>();
++        }
+     }
+ 
+     public void onAttach(Context context) {
+@@ -132,6 +141,7 @@
+                         arraylistIN.add("IP : " + arrayIp.get(posIP) + " ==>> Number is set = SPK " + arrayNum.get(posNum));
+                         arrayAddHomeNum.add("SPK " + arrayNum.get(posNum));
+                         arrayAddHomeIP.add(arrayIp.get(posIP));
++                        arrayAllIp.add(arrayIp.get(posIP));
+                         arrayIp.remove(posIP);
+                         arrayNum.remove(posNum);
+                         listSetspk.setAdapter(adapterlistIN);
+@@ -154,6 +164,7 @@
+                 arraylistIN.clear();
+                 arrayIp.clear();
+                 arrayNum.clear();
++                arrayAllIp.clear();
+                 if (arrayNum.isEmpty()) {
+                     for (int i = 1; i <= 99; i++) {
+                         arrayNum.add("No." + i);
+@@ -171,7 +182,8 @@
+             @Override
+             public void onClick(View v) {
+                 arrayIp.clear();
+-                findSubnetDevices();
++                arrayAllIp.clear();
++                new AsyncScan().execute();
+                 spinIP.setAdapter(adapterIp);
+                 adapterIp.notifyDataSetChanged();
+             }
+@@ -181,11 +193,11 @@
+     private void findSubnetDevices() {
+         InetAddress ipAddress = IPTools.getLocalIPv4Address();
+         final String ipAdd = ipAddress.getHostAddress();
+-        //final long startTimeMillis = System.currentTimeMillis();
++        final long startTimeMillis = System.currentTimeMillis();
+         SubnetDevices.fromLocalAddress().findDevices(new SubnetDevices.OnSubnetDeviceFound() {
+             @Override
+             public void onDeviceFound(Device device) {
+-                if (!ipAdd.equals(device.ip)/*&&ipAdd.equals("")*/) {
++                if (!ipAdd.equals(device.ip)/*&&(!ipAdd.equals("192.168.1.1"))*/) {
+                     arrayIp.add(device.ip);
+                     saveData();
+                 }
+@@ -193,10 +205,45 @@
+ 
+             @Override
+             public void onFinished(ArrayList<Device> devicesFound) {
+-                //float timeTaken = (System.currentTimeMillis() - startTimeMillis) / 1000.0f;
+-                Toast.makeText(getActivity(), "Devices Found: " + (devicesFound.size() - 1), Toast.LENGTH_SHORT).show();
+-                //appendResultsText("Finished "+timeTaken+" s");
++                String timeTaken = String.valueOf(System.currentTimeMillis() - startTimeMillis);
++                int device = (devicesFound.size() - 1);
++                int time = Integer.parseInt(timeTaken);
++                editor.putInt(Const.time,time);
++                editor.putInt(Const.device,device);
++                editor.commit();
+             }
+         });
++    }
++    public class AsyncScan extends AsyncTask<Integer,Void,Void> {
++        @Override
++        protected Void doInBackground(Integer... integers) {
++            try {
++                findSubnetDevices();
++                int time = sp.getInt(Const.time,20000);
++                Thread.sleep(time);
++            }catch (Exception e){}
++            return null;
++            //Log.d("26J","doInBackground");
++        }
++
++        @Override
++        protected void onPostExecute(Void aVoid) {
++            super.onPostExecute(aVoid);
++            //int device = sp.getInt(Const.device,0);
++            pb.setVisibility(View.INVISIBLE);
++            spinIP.setAdapter(adapterIp);
++            adapterIp.notifyDataSetChanged();
++            Toast.makeText(getActivity(), "Complete....", Toast.LENGTH_SHORT).show();
++            Toast.makeText(getActivity(), "Device "+arrayIp.size(), Toast.LENGTH_SHORT).show();
++            //Log.d("26J","onPostExecute ");
++        }
++        @Override
++        protected void onPreExecute() {
++            super.onPreExecute();
++            pb.setVisibility(View.VISIBLE);
++            Toast.makeText(getActivity(), "Scanning....", Toast.LENGTH_SHORT).show();
++            //Log.d("26J","onPreExecute");
++        }
++
+     }
+ }
+Index: app/src/main/java/com/example/supot/spk/MTG.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/supot/spk/MTG.java	(revision 4f9a42f05c21298ca125d3655d9982010415ac06)
++++ app/src/main/java/com/example/supot/spk/MTG.java	(date 1560088670313)
+@@ -7,6 +7,7 @@
+ import android.support.v7.app.AppCompatActivity;
+ import android.os.Bundle;
+ import android.support.v7.widget.Toolbar;
++import android.util.Log;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.CompoundButton;
+@@ -15,9 +16,14 @@
+ import android.widget.TextView;
+ 
+ import com.akexorcist.simpletcp.SimpleTcpClient;
++import com.google.gson.Gson;
++import com.google.gson.reflect.TypeToken;
++
++import java.lang.reflect.Type;
++import java.util.ArrayList;
+ 
+ public class MTG extends AppCompatActivity {
+-
++    private ArrayList<String> arrayG1,arrayG2,arrayG3,arrayG4;
+     private Button butBack;
+     private Switch swG1,swG2,swG3,swG4;
+     private SeekBar BarG1,BarG2,BarG3,BarG4;
+@@ -32,9 +38,36 @@
+         setContentView(R.layout.activity_mtg);
+         sp = getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
+         editor = sp.edit();
++        loadData();
+         initbarGroup();
+         initswLockMtg();
+     }
++    private void loadData() {
++        Gson gson = new Gson();
++        String json1 = sp.getString(Const.list_IpG1, null);
++        String json2 = sp.getString(Const.list_IpG2, null);
++        String json3 = sp.getString(Const.list_IpG3, null);
++        String json4= sp.getString(Const.list_IpG4, null);
++        Type type = new TypeToken<ArrayList>(){}.getType();
++        arrayG1 = gson.fromJson(json1, type);
++        arrayG2 = gson.fromJson(json2, type);
++        arrayG3 = gson.fromJson(json3, type);
++        arrayG4 = gson.fromJson(json4, type);
++
++        if (arrayG1 == null) {
++            arrayG1 = new ArrayList<>();
++        }
++        if (arrayG2 == null) {
++            arrayG2 = new ArrayList<>();
++        }
++        if (arrayG3 == null) {
++            arrayG3 = new ArrayList<>();
++        }
++        if (arrayG4 == null) {
++            arrayG4 = new ArrayList<>();
++        }
++        Log.d("26J","Delay arrayG1"+arrayG1);
++    }
+     private void initbarGroup(){
+         BarG1 = (SeekBar) findViewById(R.id.BarG1);
+         BarG2 = (SeekBar) findViewById(R.id.BarG2);
+@@ -57,7 +90,12 @@
+                 v = progress-80;
+                 tvG1.setText(String.valueOf("G1 : "+v+" dB"));
+                 dataOutput = String.valueOf("mg1/"+v);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for(int i = 0;i<arrayG1.size();i++) {
++                        SimpleTcpClient.send(dataOutput, arrayG1.get(i), Const.port);
++                        Log.d("26J","Delay Bar 1 : "+arrayG1.get(i)+"/"+dataOutput);
++                    }
++                }catch (Exception e){}
+             }
+ 
+             @Override
+@@ -80,7 +118,12 @@
+                 v = progress-80;
+                 tvG2.setText(String.valueOf("G2 : "+v+" dB"));
+                 dataOutput = String.valueOf("mg2/"+v);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for(int i = 0;i<arrayG2.size();i++) {
++                        SimpleTcpClient.send(dataOutput, arrayG2.get(i), Const.port);
++                        Log.d("26J","Delay Bar 1 : "+arrayG2.get(i)+"/"+dataOutput);
++                    }
++                }catch (Exception e){}
+             }
+ 
+             @Override
+@@ -103,7 +146,12 @@
+                 v = progress-80;
+                 tvG3.setText(String.valueOf("G3 : "+v+" dB"));
+                 dataOutput = String.valueOf("mg3/"+v);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for(int i = 0;i<arrayG3.size();i++) {
++                        SimpleTcpClient.send(dataOutput, arrayG3.get(i), Const.port);
++                        Log.d("26J","Delay Bar 1 : "+arrayG3.get(i)+"/"+dataOutput);
++                    }
++                }catch (Exception e){}
+             }
+ 
+             @Override
+@@ -126,7 +174,12 @@
+                 v = progress-80;
+                 tvG4.setText(String.valueOf("G4 : "+v+" dB"));
+                 dataOutput = String.valueOf("mg4/"+v);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for(int i = 0;i<arrayG4.size();i++) {
++                        SimpleTcpClient.send(dataOutput, arrayG4.get(i), Const.port);
++                        Log.d("26J","Delay Bar 1 : "+arrayG4.get(i)+"/"+dataOutput);
++                    }
++                }catch (Exception e){}
+             }
+ 
+             @Override
+Index: app/src/main/java/com/example/supot/spk/fmEQ.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/supot/spk/fmEQ.java	(revision 4f9a42f05c21298ca125d3655d9982010415ac06)
++++ app/src/main/java/com/example/supot/spk/fmEQ.java	(date 1560092738276)
+@@ -9,6 +9,7 @@
+ import android.support.v4.app.FragmentTransaction;
+ import android.support.v7.app.AppCompatActivity;
+ import android.support.v7.widget.Toolbar;
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -17,6 +18,11 @@
+ import android.widget.TextView;
+ 
+ import com.akexorcist.simpletcp.SimpleTcpClient;
++import com.google.gson.Gson;
++import com.google.gson.reflect.TypeToken;
++
++import java.lang.reflect.Type;
++import java.util.ArrayList;
+ 
+ 
+ /**
+@@ -28,6 +34,7 @@
+     public fmEQ() {
+         // Required empty public constructor
+     }
++    private ArrayList<String> arrayAllIp;
+     private boolean isOnEQ = true;
+     private SeekBar eqBar_20,eqBar_40,eqBar_63,eqBar_100,eqBar_160,eqBar_300,eqBar_500,eqBar_800,eqBar_1k,eqBar_1_2k,eqBar_2_2k,eqBar_5k,eqBar_10k,eqBar_12k,eqBar_16k,eqBar_20k,eqBar_Master;
+     private Button butStopEq,butReEq,butMtg;
+@@ -44,6 +51,7 @@
+         ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("EQUALIZER");
+         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
+         editor = sp.edit();
++        loadData();
+         initEq(view);
+         if(isOnEQ) {
+             butStopEq.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+@@ -51,6 +59,18 @@
+         return view;
+     }
+ 
++    private void loadData() {
++        Gson gson = new Gson();
++        String jsonAllIp = sp.getString(Const.list_AllIp, null);
++        Type type = new TypeToken<ArrayList>() {}.getType();
++        arrayAllIp = gson.fromJson(jsonAllIp, type);
++
++        if (arrayAllIp == null) {
++            arrayAllIp = new ArrayList<>();
++        }
++        Log.d("26J","arrayAllIp : "+arrayAllIp);
++    }
++
+     private void  initEq(View view){
+         eqBar_20 = (SeekBar) view.findViewById(R.id.eqBar_20);
+         eqBar_40 = (SeekBar) view.findViewById(R.id.eqBar_40);
+@@ -88,7 +108,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("20Hz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq1/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -100,7 +125,6 @@
+             public void onStopTrackingTouch(SeekBar seekBar) {
+                 editor.putInt(Const.master_eq_slide_value_1,value);
+                 editor.commit();
+-                //Toast.makeText(getContext(), "20Hz : " + sp.getInt(Const.master_eq_value_1, 150),Toast.LENGTH_SHORT).show();
+             }
+         });
+         eqBar_40.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+@@ -112,7 +136,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("40Hz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq2/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -136,7 +165,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("63Hz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq3/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -159,7 +193,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("100Hz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq4/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -182,7 +221,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("160Hz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq5/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -205,7 +249,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("300Hz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq6/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -228,7 +277,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("500Hz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq7/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -251,7 +305,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("800Hz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq8/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -274,7 +333,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("1KHz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq9/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -297,7 +361,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("1.2KHz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq10/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -320,7 +389,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("2.2KHz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq11/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -343,7 +417,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("5KHz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq12/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -366,7 +445,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("10KHz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq13/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -389,7 +473,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("12KHz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq14/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -412,7 +501,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("16KHz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq15/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -435,7 +529,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("20KHz : %.2f dB",progressChanged));
+                 dataOutput = String.format("eq16/%.2f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+             }
+ 
+             @Override
+@@ -459,7 +558,12 @@
+                 value = progress;
+                 tvEq.setText(String.format("MASTER : %.0f dB",progressChanged));
+                 dataOutput = String.format("eqm/%.0f",progressChanged);
+-                SimpleTcpClient.send(dataOutput,Const.ip,Const.port);
++                try {
++                    for (int i = 0; i < arrayAllIp.size(); i++) {
++                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
++                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
++                    }
++                }catch (Exception e) {}
+ 
+             }
+ 
+@@ -472,10 +576,6 @@
+             public void onStopTrackingTouch(SeekBar seekBar) {
+                 editor.putInt(Const.master_eq_slide,value);
+                 editor.commit();
+-                /*Fragment fmmtg = new fm_Mtg();
+-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+-                ft.replace(R.id.maincontent,fmmtg);
+-                ft.commit();*/
+             }
+         });
+         butStopEq.setOnClickListener(new View.OnClickListener() {
+Index: app/src/main/res/layout/fragment_fm_setspk.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_fm_setspk.xml	(revision 4f9a42f05c21298ca125d3655d9982010415ac06)
++++ app/src/main/res/layout/fragment_fm_setspk.xml	(date 1560069731536)
+@@ -34,7 +34,7 @@
+             android:id="@+id/textView28"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+-            android:layout_marginStart="140dp"
++            android:layout_marginStart="130dp"
+             android:layout_marginTop="70dp"
+             android:text="SPK IP : "
+             app:layout_constraintStart_toStartOf="parent"
+@@ -42,7 +42,7 @@
+ 
+         <Spinner
+             android:id="@+id/spinIP"
+-            android:layout_width="170dp"
++            android:layout_width="200dp"
+             android:layout_height="24dp"
+             android:layout_marginStart="5dp"
+             android:layout_marginTop="68dp"
+@@ -51,7 +51,7 @@
+ 
+         <Spinner
+             android:id="@+id/spinNum"
+-            android:layout_width="120dp"
++            android:layout_width="100dp"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="5dp"
+             android:layout_marginTop="68dp"
+@@ -62,9 +62,9 @@
+ 
+         <ListView
+             android:id="@+id/listSetspk"
+-            android:layout_width="465dp"
++            android:layout_width="460dp"
+             android:layout_height="190dp"
+-            android:layout_marginStart="120dp"
++            android:layout_marginStart="130dp"
+             android:layout_marginTop="110dp"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent" />
+@@ -89,5 +89,16 @@
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/butClear" />
+ 
++        <ProgressBar
++            android:id="@+id/progressBar"
++            style="?android:attr/progressBarStyle"
++            android:layout_width="68dp"
++            android:layout_height="66dp"
++            android:layout_marginStart="290dp"
++            android:layout_marginTop="170dp"
++            android:visibility="invisible"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
+     </android.support.constraint.ConstraintLayout>
+ </FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/supot/spk/Const.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/supot/spk/Const.java	(revision 4f9a42f05c21298ca125d3655d9982010415ac06)
++++ app/src/main/java/com/example/supot/spk/Const.java	(date 1560084929230)
+@@ -50,6 +50,7 @@
+     public static final String list_IpG2 = "list_IpG2";
+     public static final String list_IpG3 = "list_IpG3";
+     public static final String list_IpG4 = "list_IpG4";
++    public static final String list_AllIp = "list_AllIp";
+ 
+     public static final String crossover_min1 = "crossover_min1";
+     public static final String crossover_min2 = "crossover_min2";
+@@ -72,6 +73,10 @@
+     public static final String switch_crossover_3 = "switch_crossover_3";
+     public static final String switch_crossover_4 = "switch_crossover_4";
+ 
++    public static final String time = "time";
++    public static final String device = "device";
++
++
+ 
+     public static final String spk_number = "spk_number";
+     public static final String spk_ip = "spk_ip";
+Index: app/src/main/res/menu/activity_main_drawer.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/menu/activity_main_drawer.xml	(revision 4f9a42f05c21298ca125d3655d9982010415ac06)
++++ app/src/main/res/menu/activity_main_drawer.xml	(date 1560068748873)
+@@ -5,6 +5,9 @@
+ 
+     <group android:checkableBehavior="single">
+         <item
++            android:id="@+id/nav_set"
++            android:title="SET NUMBER SPK"/>
++        <item
+             android:id="@+id/nav_home"
+             android:title="HOME" />
+         <item
+@@ -23,9 +26,6 @@
+             <item
+                 android:id="@+id/nav_new"
+                 android:title="NEW" />
+-            <item
+-                android:id="@+id/nav_set"
+-                android:title="SET SPK NO."/>
+             <item
+                 android:id="@+id/nav_load"
+                 android:title="LOAD" />

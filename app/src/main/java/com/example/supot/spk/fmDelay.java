@@ -106,13 +106,14 @@ public class fmDelay extends Fragment {
                 msView1.setText(progress + " ms");
                 mView1.setText(String.format("%.2f", progress * 0.343) + " m");
                 value = progress;
-                dataOutput = "d1/" + progress;
+                dataOutput = "D/" + progress;
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             for (int i = 0; i < arrayG1.size(); i++) {
                                 SimpleTcpClient.send(dataOutput, arrayG1.get(i), Const.port);
+                                Log.d("26J", "Delay Bar 1: " + arrayG1.get(i) + "/" + dataOutput);
                             }
                         }catch (Exception e){}
                     }
@@ -138,10 +139,11 @@ public class fmDelay extends Fragment {
                 msView2.setText(progress+" ms");
                 mView2.setText(String.format("%.2f",progress*0.343)+" m");
                 value = progress;
-                dataOutput = "d2/"+progress;
+                dataOutput = "D/"+progress;
                 try {
                     for(int i = 0;i<arrayG2.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG2.get(i), Const.port);
+                        Log.d("26J", "Delay Bar 2: " + arrayG2.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e){}
             }
@@ -165,10 +167,11 @@ public class fmDelay extends Fragment {
                 msView3.setText(progress+" ms");
                 mView3.setText(String.format("%.2f",progress*0.343)+" m");
                 value = progress;
-                dataOutput = "d3/"+progress;
+                dataOutput = "D/"+progress;
                 try {
                     for(int i = 0;i<arrayG3.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG3.get(i), Const.port);
+                        Log.d("26J", "Delay Bar 3: " + arrayG3.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e){}
             }
@@ -192,10 +195,11 @@ public class fmDelay extends Fragment {
                 msView4.setText(progress+" ms");
                 mView4.setText(String.format("%.2f",progress*0.343)+" m");
                 value = progress;
-                dataOutput = "d4/"+progress;
+                dataOutput = "D/"+progress;
                 try {
                     for(int i = 0;i<arrayG4.size();i++) {
-                        SimpleTcpClient.send(dataOutput, arrayG4.get(i), Const.port);;
+                        SimpleTcpClient.send(dataOutput, arrayG4.get(i), Const.port);
+                        Log.d("26J", "Delay Bar 4: " + arrayG4.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e){}
             }

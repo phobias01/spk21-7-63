@@ -88,11 +88,11 @@ public class MTG extends AppCompatActivity {
                 value = progress;
                 v = progress-80;
                 tvG1.setText(String.valueOf("G1 : "+v+" dB"));
-                dataOutput = String.valueOf("mg1/"+v);
+                dataOutput = String.valueOf("MASTERVOL/"+v);
                 try {
                     for(int i = 0;i<arrayG1.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG1.get(i), Const.port);
-                        //Log.d("26J","Delay Bar 1 : "+arrayG1.get(i)+"/"+dataOutput);
+                        Log.d("26J","MAS Bar 1 : "+arrayG1.get(i)+"/"+dataOutput);
                     }
                 }catch (Exception e){}
             }
@@ -116,11 +116,11 @@ public class MTG extends AppCompatActivity {
                 value = progress;
                 v = progress-80;
                 tvG2.setText(String.valueOf("G2 : "+v+" dB"));
-                dataOutput = String.valueOf("mg2/"+v);
+                dataOutput = String.valueOf("MASTERVOL/"+v);
                 try {
                     for(int i = 0;i<arrayG2.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG2.get(i), Const.port);
-                        //Log.d("26J","Delay Bar 1 : "+arrayG2.get(i)+"/"+dataOutput);
+                        Log.d("26J","MAS Bar 2 : "+arrayG2.get(i)+"/"+dataOutput);
                     }
                 }catch (Exception e){}
             }
@@ -144,11 +144,11 @@ public class MTG extends AppCompatActivity {
                 value = progress;
                 v = progress-80;
                 tvG3.setText(String.valueOf("G3 : "+v+" dB"));
-                dataOutput = String.valueOf("mg3/"+v);
+                dataOutput = String.valueOf("MASTERVOL/"+v);
                 try {
                     for(int i = 0;i<arrayG3.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG3.get(i), Const.port);
-                        //Log.d("26J","Delay Bar 1 : "+arrayG3.get(i)+"/"+dataOutput);
+                        Log.d("26J","MAS Bar 3 : "+arrayG3.get(i)+"/"+dataOutput);
                     }
                 }catch (Exception e){}
             }
@@ -172,11 +172,11 @@ public class MTG extends AppCompatActivity {
                 value = progress;
                 v = progress-80;
                 tvG4.setText(String.valueOf("G4 : "+v+" dB"));
-                dataOutput = String.valueOf("mg4/"+v);
+                dataOutput = String.valueOf("MASTERVOL/"+v);
                 try {
                     for(int i = 0;i<arrayG4.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG4.get(i), Const.port);
-                        //Log.d("26J","Delay Bar 1 : "+arrayG4.get(i)+"/"+dataOutput);
+                        Log.d("26J","MAS Bar 4 : "+arrayG4.get(i)+"/"+dataOutput);
                     }
                 }catch (Exception e){}
             }

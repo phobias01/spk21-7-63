@@ -598,6 +598,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/butReEq" />
 
+        <Spinner
+            android:id="@+id/spEQ"
+            android:layout_width="93dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/butMtg" />
+
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

@@ -34,13 +34,12 @@ import java.util.ArrayList;
  */
 public class fmSetspk extends Fragment {
 
-
     public fmSetspk() {
         // Required empty public constructor
     }
     private ProgressBar pb;
     private ArrayAdapter adapterIp, adapterNum, adapterlistIN;
-    private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4,arrayList;
+    private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4,arrayIpG1,arrayIpG2,arrayIpG3,arrayIpG4;
     private ListView listSetspk;
     private Button butSetnum, butConnect, butScan;
     private Spinner spinIP, spinNum;
@@ -73,6 +72,10 @@ public class fmSetspk extends Fragment {
         String json2 = gson.toJson(arrayG2);
         String json3 = gson.toJson(arrayG3);
         String json4 = gson.toJson(arrayG4);
+        String jsonIpG1 = gson.toJson(arrayIpG1);
+        String jsonIpG2 = gson.toJson(arrayIpG2);
+        String jsonIpG3 = gson.toJson(arrayIpG3);
+        String jsonIpG4 = gson.toJson(arrayIpG4);
        // String json12 = gson.toJson(arrayList);
         editor.putString(Const.spk_setnumip, jsonlistIN);
         editor.putString(Const.spk_ip, jsonIp);
@@ -80,10 +83,14 @@ public class fmSetspk extends Fragment {
         editor.putString(Const.list_group_spk, jsonAddHomeNum);
         editor.putString(Const.list_IpSpk, jsonAddHomeIP);
         editor.putString(Const.list_AllIp, jsonAddAllIp);
-        editor.putString(Const.list_IpG1, json1);
-        editor.putString(Const.list_IpG2, json2);
-        editor.putString(Const.list_IpG3, json3);
-        editor.putString(Const.list_IpG4, json4);
+        editor.putString(Const.list_group_1, json1);
+        editor.putString(Const.list_group_2, json2);
+        editor.putString(Const.list_group_3, json3);
+        editor.putString(Const.list_group_4, json4);
+        editor.putString(Const.list_IpG1, jsonIpG1);
+        editor.putString(Const.list_IpG2, jsonIpG2);
+        editor.putString(Const.list_IpG3, jsonIpG3);
+        editor.putString(Const.list_IpG4, jsonIpG4);
         //editor.putString(Const.list_group_1, json12);
         editor.commit();
     }
@@ -93,14 +100,17 @@ public class fmSetspk extends Fragment {
         String jsonlistIN = sp.getString(Const.spk_setnumip, null);
         String jsonIp = sp.getString(Const.spk_ip, null);
         String jsonNum = sp.getString(Const.spk_number, null);
-        String json1 = sp.getString(Const.list_IpG1, null);
-        String json2 = sp.getString(Const.list_IpG2, null);
-        String json3 = sp.getString(Const.list_IpG3, null);
-        String json4 = sp.getString(Const.list_IpG4, null);
+        String jsonIpG1 = sp.getString(Const.list_IpG1, null);
+        String jsonIpG2 = sp.getString(Const.list_IpG2, null);
+        String jsonIpG3 = sp.getString(Const.list_IpG3, null);
+        String jsonIpG4 = sp.getString(Const.list_IpG4, null);
+        String json1 = sp.getString(Const.list_group_1, null);
+        String json2 = sp.getString(Const.list_group_2, null);
+        String json3 = sp.getString(Const.list_group_3, null);
+        String json4 = sp.getString(Const.list_group_4, null);
         String jsonAllIp = sp.getString(Const.list_AllIp, null);
 
-        Type type = new TypeToken<ArrayList>() {
-        }.getType();
+        Type type = new TypeToken<ArrayList>() {}.getType();
 
         arraylistIN = gson.fromJson(jsonlistIN, type);
         arrayIp = gson.fromJson(jsonIp, type);
@@ -110,6 +120,10 @@ public class fmSetspk extends Fragment {
         arrayG3 = gson.fromJson(json3, type);
         arrayG4 = gson.fromJson(json4, type);
         arrayAllIp = gson.fromJson(jsonAllIp, type);
+        arrayIpG1 = gson.fromJson(jsonIpG1, type);
+        arrayIpG2 = gson.fromJson(jsonIpG2, type);
+        arrayIpG3 = gson.fromJson(jsonIpG3, type);
+        arrayIpG4 = gson.fromJson(jsonIpG4, type);
 
         if (arraylistIN == null) {
             arraylistIN = new ArrayList<>();
@@ -143,6 +157,18 @@ public class fmSetspk extends Fragment {
         }
         if (arrayAllIp == null) {
             arrayAllIp = new ArrayList<>();
+        }
+        if (arrayIpG1 == null) {
+            arrayIpG1 = new ArrayList<>();
+        }
+        if (arrayIpG2 == null) {
+            arrayIpG2 = new ArrayList<>();
+        }
+        if (arrayIpG3 == null) {
+            arrayIpG3 = new ArrayList<>();
+        }
+        if (arrayIpG4 == null) {
+            arrayIpG4 = new ArrayList<>();
         }
     }
 
@@ -207,6 +233,10 @@ public class fmSetspk extends Fragment {
                 arrayG2.clear();
                 arrayG3.clear();
                 arrayG4.clear();
+                arrayIpG1.clear();
+                arrayIpG2.clear();
+                arrayIpG3.clear();
+                arrayIpG4.clear();
                 arraylistIN.clear();
                 arrayIp.clear();
                 arrayNum.clear();
@@ -235,8 +265,8 @@ public class fmSetspk extends Fragment {
         SubnetDevices.fromLocalAddress().findDevices(new SubnetDevices.OnSubnetDeviceFound() {
             @Override
             public void onDeviceFound(Device device) {
-                if (!ipAdd.equals(device.ip)/*&&(!ipAdd.equals("192.168.1.1"))*/) {
-                    arrayIp.add(device.ip);
+                if (!ipAdd.equals(device.ip)&&(!"192.168.1.1".equals(device.ip))) {
+                    arrayIp.add(device.hostname+"/"+device.ip);
                     saveData();
                 }
             }
@@ -283,10 +313,10 @@ public class fmSetspk extends Fragment {
 
     }
     private void Connect() {
-        String dataDelay1 = String.valueOf("d1/"+sp.getInt(Const.delay_bar_1,0));
-        String dataDelay2 = String.valueOf("d2/"+sp.getInt(Const.delay_bar_2,0));
-        String dataDelay3 = String.valueOf("d3/"+sp.getInt(Const.delay_bar_3,0));
-        String dataDelay4 = String.valueOf("d4/"+sp.getInt(Const.delay_bar_4,0));
+        String dataDelay1 = String.valueOf("D/"+sp.getInt(Const.delay_bar_1,0));
+        String dataDelay2 = String.valueOf("D/"+sp.getInt(Const.delay_bar_2,0));
+        String dataDelay3 = String.valueOf("D/"+sp.getInt(Const.delay_bar_3,0));
+        String dataDelay4 = String.valueOf("D/"+sp.getInt(Const.delay_bar_4,0));
         try {
             for (int i = 0; i < arrayG1.size(); i++) {
                 SimpleTcpClient.send(dataDelay1, arrayG1.get(i), Const.port);
@@ -302,10 +332,10 @@ public class fmSetspk extends Fragment {
             }
         }catch (Exception e) {}
 
-        String dataMtg1 = String.valueOf("mg1/"+sp.getInt(Const.group_value_1,0));
-        String dataMtg2 = String.valueOf("mg2/"+sp.getInt(Const.group_value_2,0));
-        String dataMtg3 = String.valueOf("mg3/"+sp.getInt(Const.group_value_3,0));
-        String dataMtg4 = String.valueOf("mg4/"+sp.getInt(Const.group_value_4,0));
+        String dataMtg1 = String.valueOf("MASTERVOL/"+sp.getInt(Const.group_value_1,0));
+        String dataMtg2 = String.valueOf("MASTERVOL/"+sp.getInt(Const.group_value_2,0));
+        String dataMtg3 = String.valueOf("MASTERVOL/"+sp.getInt(Const.group_value_3,0));
+        String dataMtg4 = String.valueOf("MASTERVOL/"+sp.getInt(Const.group_value_4,0));
         try {
             for (int i = 0; i < arrayG1.size(); i++) {
                 SimpleTcpClient.send(dataMtg1, arrayG1.get(i), Const.port);
@@ -321,14 +351,14 @@ public class fmSetspk extends Fragment {
             }
         }catch (Exception e) {}
 
-        String dataCrossMax1 = String.valueOf("cmax1/"+sp.getInt(Const.crossover_max1,0));
-        String dataCrossMax2 = String.valueOf("cmax2/"+sp.getInt(Const.crossover_max2,0));
-        String dataCrossMax3 = String.valueOf("cmax3/"+sp.getInt(Const.crossover_max3,0));
-        String dataCrossMax4 = String.valueOf("cmax4/"+sp.getInt(Const.crossover_max4,0));
-        String dataCrossMin1 = String.valueOf("cmin1/"+sp.getInt(Const.crossover_min1,0));
-        String dataCrossMin2 = String.valueOf("cmin2/"+sp.getInt(Const.crossover_min2,0));
-        String dataCrossMin3 = String.valueOf("cmin3/"+sp.getInt(Const.crossover_min3,0));
-        String dataCrossMin4 = String.valueOf("cmin4/"+sp.getInt(Const.crossover_min4,0));
+        String dataCrossMax1 = String.valueOf("HF/F//"+sp.getInt(Const.crossover_max1,0));
+        String dataCrossMax2 = String.valueOf("HF/F/"+sp.getInt(Const.crossover_max2,0));
+        String dataCrossMax3 = String.valueOf("HF/F/"+sp.getInt(Const.crossover_max3,0));
+        String dataCrossMax4 = String.valueOf("HF/F/"+sp.getInt(Const.crossover_max4,0));
+        String dataCrossMin1 = String.valueOf("LF/F/"+sp.getInt(Const.crossover_min1,0));
+        String dataCrossMin2 = String.valueOf("LF/F/"+sp.getInt(Const.crossover_min2,0));
+        String dataCrossMin3 = String.valueOf("LF/F/"+sp.getInt(Const.crossover_min3,0));
+        String dataCrossMin4 = String.valueOf("LF/F/"+sp.getInt(Const.crossover_min4,0));
         try {
             for (int i = 0; i < arrayG1.size(); i++) {
                 SimpleTcpClient.send(dataCrossMin1, arrayG1.get(i), Const.port);
@@ -347,39 +377,24 @@ public class fmSetspk extends Fragment {
                 SimpleTcpClient.send(dataCrossMax4, arrayG4.get(i), Const.port);
             }
         }catch (Exception e) {}
-        float eq1 = sp.getInt(Const.master_eq_slide_value_1,0);
-        float eq2 = sp.getInt(Const.master_eq_slide_value_2,0);
-        float eq3 = sp.getInt(Const.master_eq_slide_value_3,0);
-        float eq4 = sp.getInt(Const.master_eq_slide_value_4,0);
-        float eq5 = sp.getInt(Const.master_eq_slide_value_5,0);
-        float eq6 = sp.getInt(Const.master_eq_slide_value_6,0);
-        float eq7 = sp.getInt(Const.master_eq_slide_value_7,0);
-        float eq8 = sp.getInt(Const.master_eq_slide_value_8,0);
-        float eq9 = sp.getInt(Const.master_eq_slide_value_9,0);
-        float eq10 = sp.getInt(Const.master_eq_slide_value_10,0);
-        float eq11 = sp.getInt(Const.master_eq_slide_value_11,0);
-        float eq12 = sp.getInt(Const.master_eq_slide_value_12,0);
-        float eq13 = sp.getInt(Const.master_eq_slide_value_13,0);
-        float eq14 = sp.getInt(Const.master_eq_slide_value_14,0);
-        float eq15 = sp.getInt(Const.master_eq_slide_value_15,0);
-        float eq16 = sp.getInt(Const.master_eq_slide_value_16,0);
+        String dataEqMaster = sp.getString(Const.master_eq_slide_string,"0");
+        String dataEq1 = sp.getString(Const.master_eq_slide_value_1_string,"0");
+        String dataEq2 = sp.getString(Const.master_eq_slide_value_2_string,"0");
+        String dataEq3 = sp.getString(Const.master_eq_slide_value_3_string,"0");
+        String dataEq4 = sp.getString(Const.master_eq_slide_value_4_string,"0");
+        String dataEq5 = sp.getString(Const.master_eq_slide_value_5_string,"0");
+        String dataEq6 = sp.getString(Const.master_eq_slide_value_6_string,"0");
+        String dataEq7 = sp.getString(Const.master_eq_slide_value_7_string,"0");
+        String dataEq8 = sp.getString(Const.master_eq_slide_value_8_string,"0");
+        String dataEq9 = sp.getString(Const.master_eq_slide_value_9_string,"0");
+        String dataEq10 = sp.getString(Const.master_eq_slide_value_10_string,"0");
+        String dataEq11 = sp.getString(Const.master_eq_slide_value_11_string,"0");
+        String dataEq12 = sp.getString(Const.master_eq_slide_value_12_string,"0");
+        String dataEq13 = sp.getString(Const.master_eq_slide_value_13_string,"0");
+        String dataEq14 = sp.getString(Const.master_eq_slide_value_14_string,"0");
+        String dataEq15 = sp.getString(Const.master_eq_slide_value_15_string,"0");
+        String dataEq16 = sp.getString(Const.master_eq_slide_value_16_string,"0");
 
-        String dataEq1 = String.format("eq1/%.2f",(eq1-150)*0.1f);
-        String dataEq2 = String.format("eq2/%.2f",(eq2-150)*0.1f);
-        String dataEq3 = String.format("eq3/%.2f",(eq3-150)*0.1f);
-        String dataEq4 = String.format("eq4/%.2f",(eq4-150)*0.1f);
-        String dataEq5 = String.format("eq5/%.2f",(eq5-150)*0.1f);
-        String dataEq6 = String.format("eq6/%.2f",(eq6-150)*0.1f);
-        String dataEq7 = String.format("eq7/%.2f",(eq7-150)*0.1f);
-        String dataEq8 = String.format("eq8/%.2f",(eq8-150)*0.1f);
-        String dataEq9 = String.format("eq9/%.2f",(eq9-150)*0.1f);
-        String dataEq10 = String.format("eq10/%.2f",(eq10-150)*0.1f);
-        String dataEq11 = String.format("eq11/%.2f",(eq11-150)*0.1f);
-        String dataEq12 = String.format("eq12/%.2f",(eq12-150)*0.1f);
-        String dataEq13 = String.format("eq13/%.2f",(eq13-150)*0.1f);
-        String dataEq14 = String.format("eq14/%.2f",(eq14-150)*0.1f);
-        String dataEq15 = String.format("eq15/%.2f",(eq15-150)*0.1f);
-        String dataEq16 = String.format("eq16/%.2f",(eq16-150)*0.1f);
         try {
             for(int i = 0; i < arrayAllIp.size(); i++) {
                 SimpleTcpClient.send(dataEq1, arrayAllIp.get(i), Const.port);

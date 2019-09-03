@@ -222,7 +222,9 @@
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/crossoverBar1"
             app:layout_constraintStart_toEndOf="@+id/editMax"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -59,8 +59,10 @@ public class fmEQ extends Fragment {
         editor = sp.edit();
         loadData();
         initEq(view);
+        //butReEq.setBackgroundColor(getResources().getColor(R.color.color6));
+       // butMtg.setBackgroundColor(getResources().getColor(R.color.color6));
         if(isOnEQ) {
-            butStopEq.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            butStopEq.setBackgroundColor(getResources().getColor(R.color.color3));
         }
         return view;
     }
@@ -131,7 +133,7 @@ public class fmEQ extends Fragment {
                         try {
                             for (int i = 0; i < arrayAllIp.size(); i++) {
                                 SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                                Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                                //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                             }
                         }catch (Exception e) {}
                     }
@@ -163,7 +165,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -194,7 +196,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -224,7 +226,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -254,7 +256,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -284,7 +286,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -314,7 +316,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -344,7 +346,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -374,7 +376,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -404,7 +406,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -434,7 +436,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -464,7 +466,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -494,7 +496,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -524,7 +526,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -554,7 +556,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -584,7 +586,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
             }
@@ -614,7 +616,7 @@ public class fmEQ extends Fragment {
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        Log.d("26J", "MAS EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                        //Log.d("26J", "MAS EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
                 }catch (Exception e) {}
 
@@ -637,11 +639,11 @@ public class fmEQ extends Fragment {
             public void onClick(View v) {
                 if (isOnEQ==true) {
                     offSeekBar();
-                    butStopEq.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    butStopEq.setBackgroundColor(getResources().getColor(R.color.color5));
                     isOnEQ = false;
                 } else {
                     onSeekBar();
-                    butStopEq.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    butStopEq.setBackgroundColor(getResources().getColor(R.color.color3));
                     isOnEQ = true;
                 }
             }

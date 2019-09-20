@@ -27,6 +27,7 @@
                 android:layout_width="119dp"
                 android:layout_height="72dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -44,6 +45,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -61,6 +63,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -78,6 +81,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -95,6 +99,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -112,6 +117,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -129,6 +135,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -146,6 +153,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -163,6 +171,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -180,6 +189,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -197,6 +207,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -214,6 +225,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -231,6 +243,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -248,6 +261,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -265,6 +279,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -282,6 +297,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -298,6 +314,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="232dp"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
@@ -308,7 +325,7 @@
             android:layout_marginStart="6dp"
             android:layout_marginTop="69dp"
             android:text="EQ"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -317,8 +334,9 @@
             android:layout_width="70dp"
             android:layout_height="40dp"
             android:layout_marginStart="6dp"
+            android:layout_marginTop="2dp"
             android:text="Reset"
-            android:textSize="11sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/butStopEq" />
 
@@ -593,8 +611,9 @@
             android:layout_width="70dp"
             android:layout_height="40dp"
             android:layout_marginStart="6dp"
+            android:layout_marginTop="2dp"
             android:text="MTG"
-            android:textSize="11sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/butReEq" />
 

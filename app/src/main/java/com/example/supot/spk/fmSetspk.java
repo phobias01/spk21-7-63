@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,13 +38,14 @@ public class fmSetspk extends Fragment {
     public fmSetspk() {
         // Required empty public constructor
     }
-    private ProgressBar pb;
+    private ProgressBar PBload;
     private ArrayAdapter adapterIp, adapterNum, adapterlistIN;
     private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4,arrayIpG1,arrayIpG2,arrayIpG3,arrayIpG4;
     private ListView listSetspk;
     private Button butSetnum, butConnect, butScan;
     private Spinner spinIP, spinNum;
     private Context context;
+    private ConstraintLayout FrameSet;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
 
@@ -54,9 +56,11 @@ public class fmSetspk extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fm_setspk, container, false);
         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
         editor = sp.edit();
-        pb = (ProgressBar) view.findViewById(R.id.progressBar);
+        PBload = (ProgressBar) view.findViewById(R.id.progressBar);
         loadData();
         initsetNumIP(view);
+        //FrameSet = (ConstraintLayout) view.findViewById(R.id.FrameSet);
+        //FrameSet.isEnabled();
         return view;
     }
 
@@ -265,10 +269,27 @@ public class fmSetspk extends Fragment {
         SubnetDevices.fromLocalAddress().findDevices(new SubnetDevices.OnSubnetDeviceFound() {
             @Override
             public void onDeviceFound(Device device) {
-                if (!ipAdd.equals(device.ip)&&(!"192.168.1.1".equals(device.ip))) {
-                    arrayIp.add(device.hostname+"/"+device.ip);
-                    saveData();
+                final String subIp;
+                if (ipAdd.substring(9,10).equals(".")){
+                    subIp = ipAdd.substring(0,9)+".1";
+                    if (!ipAdd.equals(device.ip)&&(!subIp.equals(device.ip))) {
+                        arrayIp.add(device.ip);
+                        saveData();
+                    }
+                }else if (ipAdd.substring(10,11).equals(".")){
+                    subIp = ipAdd.substring(0,10)+".1";
+                    if (!ipAdd.equals(device.ip)&&(!subIp.equals(device.ip))) {
+                        arrayIp.add(device.ip);
+                        saveData();
+                    }
+                }else if(ipAdd.substring(11,12).equals(".")){
+                    subIp = ipAdd.substring(0,11)+".1";
+                    if (!ipAdd.equals(device.ip)&&(!subIp.equals(device.ip))) {
+                        arrayIp.add(device.ip);
+                        saveData();
+                    }
                 }
+
             }
 
             @Override
@@ -296,7 +317,10 @@ public class fmSetspk extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            pb.setVisibility(View.INVISIBLE);
+            PBload.setVisibility(View.INVISIBLE);
+            butConnect.setEnabled(true);
+            butScan.setEnabled(true);
+            butSetnum.setEnabled(true);
             spinIP.setAdapter(adapterIp);
             adapterIp.notifyDataSetChanged();
             Toast.makeText(getActivity(), "Complete....", Toast.LENGTH_SHORT).show();
@@ -306,7 +330,10 @@ public class fmSetspk extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pb.setVisibility(View.VISIBLE);
+            PBload.setVisibility(View.VISIBLE);
+            butConnect.setEnabled(false);
+            butScan.setEnabled(false);
+            butSetnum.setEnabled(false);
             Toast.makeText(getActivity(), "Scanning....", Toast.LENGTH_SHORT).show();
             //Log.d("26J","onPreExecute");
         }

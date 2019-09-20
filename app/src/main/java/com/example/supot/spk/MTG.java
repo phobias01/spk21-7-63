@@ -92,7 +92,7 @@ public class MTG extends AppCompatActivity {
                 try {
                     for(int i = 0;i<arrayG1.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG1.get(i), Const.port);
-                        Log.d("26J","MAS Bar 1 : "+arrayG1.get(i)+"/"+dataOutput);
+                        //Log.d("26J","MAS Bar 1 : "+arrayG1.get(i)+"/"+dataOutput);
                     }
                 }catch (Exception e){}
             }
@@ -120,7 +120,7 @@ public class MTG extends AppCompatActivity {
                 try {
                     for(int i = 0;i<arrayG2.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG2.get(i), Const.port);
-                        Log.d("26J","MAS Bar 2 : "+arrayG2.get(i)+"/"+dataOutput);
+                        //Log.d("26J","MAS Bar 2 : "+arrayG2.get(i)+"/"+dataOutput);
                     }
                 }catch (Exception e){}
             }
@@ -148,7 +148,7 @@ public class MTG extends AppCompatActivity {
                 try {
                     for(int i = 0;i<arrayG3.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG3.get(i), Const.port);
-                        Log.d("26J","MAS Bar 3 : "+arrayG3.get(i)+"/"+dataOutput);
+                        //Log.d("26J","MAS Bar 3 : "+arrayG3.get(i)+"/"+dataOutput);
                     }
                 }catch (Exception e){}
             }
@@ -176,7 +176,7 @@ public class MTG extends AppCompatActivity {
                 try {
                     for(int i = 0;i<arrayG4.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG4.get(i), Const.port);
-                        Log.d("26J","MAS Bar 4 : "+arrayG4.get(i)+"/"+dataOutput);
+                        //Log.d("26J","MAS Bar 4 : "+arrayG4.get(i)+"/"+dataOutput);
                     }
                 }catch (Exception e){}
             }

@@ -45,6 +45,7 @@
                 android:max="100"
                 android:progress="0"
                 android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 

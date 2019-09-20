@@ -141,9 +141,11 @@
             android:layout_height="36dp"
             android:layout_marginStart="173dp"
             android:layout_marginTop="115dp"
+            android:scrollbarThumbHorizontal="@drawable/button_slide_blue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:rsb_mode="range" />
+            app:rsb_mode="range"
+            app:rsb_progress_color="@color/colorAccent" />
 
         <com.jaygoo.widget.RangeSeekBar
             android:id="@+id/crossoverBar2"
@@ -153,7 +155,8 @@
             android:layout_marginTop="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/crossoverBar1"
-            app:rsb_mode="range" />
+            app:rsb_mode="range"
+            app:rsb_progress_color="@color/colorAccent" />
 
         <com.jaygoo.widget.RangeSeekBar
             android:id="@+id/crossoverBar3"
@@ -163,7 +166,8 @@
             android:layout_marginTop="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/crossoverBar2"
-            app:rsb_mode="range" />
+            app:rsb_mode="range"
+            app:rsb_progress_color="@color/colorAccent" />
 
         <com.jaygoo.widget.RangeSeekBar
             android:id="@+id/crossoverBar4"
@@ -173,7 +177,8 @@
             android:layout_marginTop="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/crossoverBar3"
-            app:rsb_mode="range" />
+            app:rsb_mode="range"
+            app:rsb_progress_color="@color/colorAccent" />
 
         <EditText
             android:id="@+id/editMin"

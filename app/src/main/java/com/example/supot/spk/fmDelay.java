@@ -3,20 +3,19 @@ package com.example.supot.spk;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.akexorcist.simpletcp.SimpleTcpClient;
-import com.akexorcist.simpletcp.SimpleTcpServer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -35,23 +34,54 @@ public class fmDelay extends Fragment {
     }
     private ArrayList<String> arrayG1,arrayG2,arrayG3,arrayG4;
     private SeekBar delayBar1,delayBar2,delayBar3,delayBar4;
-    private TextView msView1,msView2,msView3,msView4,mView1,mView2,mView3,mView4;
+    private TextView msView1,msView2,msView3,msView4,mView1,mView2,mView3,mView4,tv1;
     private Switch swG1,swG2,swG3,swG4;
+    private Button b1,b2,b3;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
     private String dataOutput = null;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fm_delay, container, false);
+        swtest(view);
         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
         editor = sp.edit();
         loadData();
         initDelayBar(view);
         initswLockdelayBar(view);
         return view;
+    }
+    private void swtest(View view) {
+        b1 = (Button) view.findViewById(R.id.button1);
+        b2 = (Button) view.findViewById(R.id.button2);
+        b3 = (Button) view.findViewById(R.id.button3);
+        tv1 = (TextView) view.findViewById(R.id.textView26);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.putString(Const.name,Const.sp_channel);
+                editor.commit();
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.putString(Const.name,"b1");
+                editor.commit();
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.putString(Const.name,"b2");
+                editor.commit();
+            }
+        });
+        //tv1.setText(sp.getString(Const.name, null));
     }
     private void loadData() {
         Gson gson = new Gson();

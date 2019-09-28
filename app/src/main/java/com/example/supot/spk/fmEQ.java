@@ -61,8 +61,15 @@ public class fmEQ extends Fragment {
         initEq(view);
         //butReEq.setBackgroundColor(getResources().getColor(R.color.color6));
        // butMtg.setBackgroundColor(getResources().getColor(R.color.color6));
-        if(isOnEQ) {
+
+        if(isOnEQ == sp.getBoolean(Const.stuEQ,true)) {
+            onSeekBar();
             butStopEq.setBackgroundColor(getResources().getColor(R.color.color3));
+            isOnEQ = true;
+        }else {
+            offSeekBar();
+            butStopEq.setBackgroundColor(getResources().getColor(R.color.color5));
+            isOnEQ = false;
         }
         return view;
     }
@@ -641,10 +648,14 @@ public class fmEQ extends Fragment {
                     offSeekBar();
                     butStopEq.setBackgroundColor(getResources().getColor(R.color.color5));
                     isOnEQ = false;
-                } else {
+                    editor.putBoolean(Const.stuEQ,isOnEQ);
+                    editor.commit();
+                }else{
                     onSeekBar();
                     butStopEq.setBackgroundColor(getResources().getColor(R.color.color3));
                     isOnEQ = true;
+                    editor.putBoolean(Const.stuEQ,isOnEQ);
+                    editor.commit();
                 }
             }
         });

@@ -305,14 +305,14 @@
             android:layout_width="21dp"
             android:layout_height="235dp"
             android:layout_marginStart="57dp"
-            android:layout_marginTop="87dp"
+            android:layout_marginTop="85dp"
             app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper18"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
                 android:id="@+id/BarG2"
                 android:layout_width="wrap_content"
-                android:layout_height="232dp"
+                android:layout_height="240dp"
                 android:splitTrack="false"
                 android:thumb="@drawable/button_slide_blue"
                 app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
@@ -601,7 +601,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="64dp"
             android:text="MASTER"
             app:layout_constraintStart_toEndOf="@+id/divider3"
             app:layout_constraintTop_toTopOf="parent" />

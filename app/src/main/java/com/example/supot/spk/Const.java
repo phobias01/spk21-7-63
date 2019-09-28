@@ -5,6 +5,7 @@ public class Const {
     public static String ip;
 
     public static final String sp_channel = "SP_CHANNEL";
+    public static final String name = "name";
 
     //public static final String button_stop_eq_slide = "button_stop_eq_slide";
     public static final String master_eq_slide = "master_eq_slide";
@@ -94,13 +95,15 @@ public class Const {
     public static final String time = "time";
     public static final String device = "device";
 
-
-
     public static final String spk_number = "spk_number";
     public static final String spk_ip = "spk_ip";
     public static final String spk_setnumip = "spk_setnumip";
 
-    public static final String numberCe = "numberCe";
+    public static final String stuEQ = "stuEQ";
+    public static final String stuMute1 = "stuMute1";
+    public static final String stuMute2 = "stuMute2";
+    public static final String stuMute3 = "stuMute3";
+    public static final String stuMute4 = "stuMute4";
+    public static final String stuMuteAll = "stuMuteAll";
 
-    public static final String test = "test";
 }

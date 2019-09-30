@@ -113,6 +113,12 @@ public class fmEQ extends Fragment {
         spFrequencyEq4.setAdapter(adapterEq4);
         adapterEq5 = new ArrayAdapter<String>(this.context, android.R.layout.simple_spinner_dropdown_item, arrayFrequency);
         spFrequencyEq5.setAdapter(adapterEq5);
+
+        spFrequencyEq1.setSelection(sp.getInt(Const.position_EQ1, 1));
+        spFrequencyEq2.setSelection(sp.getInt(Const.position_EQ2, 1));
+        spFrequencyEq3.setSelection(sp.getInt(Const.position_EQ3, 1));
+        spFrequencyEq4.setSelection(sp.getInt(Const.position_EQ4, 1));
+        spFrequencyEq5.setSelection(sp.getInt(Const.position_EQ5, 1));
     }
     private void loadData() {
         Gson gson = new Gson();
@@ -168,7 +174,6 @@ public class fmEQ extends Fragment {
         int saveProgress = sp.getInt(Const.master_eq_slide,40)-80;
         tvEq.setText(String.valueOf("MASTER : "+saveProgress+" dB"));
         initEqBar();
-
         eqBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             float progressChanged;
             int value;
@@ -179,13 +184,12 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format(arrayFrequency.get(posFq)+"Hz : %.2f dB",progressChanged));
                 tvFq1.setText(arrayFrequency.get(sp.getInt(Const.position_EQ1, 1))+"Hz");
-                /*if(sp.getInt(Const.position_EQ1,1)>4){
+                if(sp.getInt(Const.position_EQ1,1)>4){
                     int Fq = Integer.valueOf(arrayFrequency2.get(sp.getInt(Const.position_EQ1, 1)));
                     dataOutput = String.format("EQ1/F/" + Fq*1000 + "/V/%.2f", progressChanged);
-                }else {*/
+                }else {
                     dataOutput = String.format("EQ1/F/" + arrayFrequency.get(sp.getInt(Const.position_EQ1, 1)) + "/V/%.2f", progressChanged);
-                //}
-
+                }
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -201,13 +205,12 @@ public class fmEQ extends Fragment {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                editor.putInt(Const.position_EQ1,spFrequencyEq1.getSelectedItemPosition());
-                editor.commit();
+               editor.putInt(Const.position_EQ1,spFrequencyEq1.getSelectedItemPosition());
+               editor.commit();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                editor.putInt(Const.position_EQ1,spFrequencyEq1.getSelectedItemPosition());
                 editor.putInt(Const.master_eq_slide_value_1,value);
                 editor.putString(Const.master_eq_slide_value_1_string,dataOutput);
                 editor.commit();
@@ -609,5 +612,6 @@ public class fmEQ extends Fragment {
         BarG2.setProgress(sp.getInt(Const.group_value_2,80));
         BarG3.setProgress(sp.getInt(Const.group_value_3,80));
         BarG4.setProgress(sp.getInt(Const.group_value_4,80));
+
     }
 }

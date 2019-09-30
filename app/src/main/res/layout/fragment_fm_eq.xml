@@ -13,17 +13,234 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tvFq1"
+            android:layout_width="45dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="93dp"
+            android:layout_marginTop="314dp"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFq2"
+            android:layout_width="45dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="314dp"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/tvFq1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFq3"
+            android:layout_width="45dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="314dp"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/tvFq2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFq4"
+            android:layout_width="45dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="314dp"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/tvFq3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFq5"
+            android:layout_width="45dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="314dp"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/tvFq4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="56dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="83dp"
+            android:layout_marginTop="80dp"
+            android:spinnerMode="dropdown"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="56dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintStart_toEndOf="@+id/spinner1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner3"
+            android:layout_width="56dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintStart_toEndOf="@+id/spinner2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner4"
+            android:layout_width="56dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintStart_toEndOf="@+id/spinner3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner5"
+            android:layout_width="56dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintStart_toEndOf="@+id/spinner4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider17"
+            android:layout_width="15dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="599dp"
+            android:layout_marginTop="311dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider16"
+            android:layout_width="15dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="599dp"
+            android:layout_marginTop="112dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider15"
+            android:layout_width="1dp"
+            android:layout_height="199dp"
+            android:layout_marginStart="233dp"
+            android:layout_marginTop="113dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toEndOf="@+id/divider3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+            android:id="@+id/verticalSeekBarWrapper5"
+            android:layout_width="21dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="96dp"
+            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper4"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Rotation: CW90 or CW270 -->
+            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+                android:id="@+id/eqBar_Master"
+                android:layout_width="wrap_content"
+                android:layout_height="240dp"
+                android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
+                app:seekBarRotation="CW270" />
+        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+            android:id="@+id/verticalSeekBarWrapper2"
+            android:layout_width="21dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="96dp"
+            app:layout_constraintStart_toEndOf="@+id/divider3"
+            app:layout_constraintTop_toTopOf="parent">>
+
+            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+                android:id="@+id/BarG1"
+                android:layout_width="wrap_content"
+                android:layout_height="240dp"
+                android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
+                app:seekBarRotation="CW270" />
+        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+            android:id="@+id/verticalSeekBarWrapper"
+            android:layout_width="21dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="96dp"
+            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper2"
+            app:layout_constraintTop_toTopOf="parent">>
+
+            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+                android:id="@+id/BarG2"
+                android:layout_width="wrap_content"
+                android:layout_height="240dp"
+                android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
+                app:seekBarRotation="CW270" />
+        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+            android:id="@+id/verticalSeekBarWrapper3"
+            android:layout_width="21dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="96dp"
+            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper"
+            app:layout_constraintTop_toTopOf="parent"><![CDATA[>
+
+            ]]>
+
+            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+                android:id="@+id/BarG3"
+                android:layout_width="wrap_content"
+                android:layout_height="240dp"
+                android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
+                app:seekBarRotation="CW270" />
+        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+            android:id="@+id/verticalSeekBarWrapper4"
+            android:layout_width="21dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="96dp"
+            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper3"
+            app:layout_constraintTop_toTopOf="parent"><![CDATA[>
+
+            ]]>
+
+            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+                android:id="@+id/BarG4"
+                android:layout_width="wrap_content"
+                android:layout_height="240dp"
+                android:splitTrack="false"
+                android:thumb="@drawable/button_slide_blue"
+                app:seekBarRotation="CW270" />
+        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
         <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
             android:id="@+id/verticalSeekBarWrapper33"
             android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="113dp"
-            android:layout_marginTop="77dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="102dp"
+            android:layout_marginTop="96dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_20"
+                android:id="@+id/eqBar1"
                 android:layout_width="119dp"
                 android:layout_height="72dp"
                 android:splitTrack="false"
@@ -34,14 +251,14 @@
         <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
             android:id="@+id/verticalSeekBarWrapper32"
             android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="96dp"
             app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper33"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_40"
+                android:id="@+id/eqBar2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
@@ -52,14 +269,14 @@
         <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
             android:id="@+id/verticalSeekBarWrapper30"
             android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="96dp"
             app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper32"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_63"
+                android:id="@+id/eqBar3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
@@ -70,14 +287,14 @@
         <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
             android:id="@+id/verticalSeekBarWrapper31"
             android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="96dp"
             app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper30"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_100"
+                android:id="@+id/eqBar4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
@@ -88,241 +305,28 @@
         <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
             android:id="@+id/verticalSeekBarWrapper28"
             android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="96dp"
             app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper31"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_160"
+                android:id="@+id/eqBar5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:splitTrack="false"
                 android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+                app:seekBarRotation="CW270" />
 
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:id="@+id/verticalSeekBarWrapper29"
-            android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper28"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_300"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
-
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:id="@+id/verticalSeekBarWrapper27"
-            android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper29"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_500"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
-
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:id="@+id/verticalSeekBarWrapper26"
-            android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper27"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_800"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
-
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:id="@+id/verticalSeekBarWrapper25"
-            android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper26"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_1k"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
-
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:id="@+id/verticalSeekBarWrapper24"
-            android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper25"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_1_2k"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
-
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:id="@+id/verticalSeekBarWrapper23"
-            android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper24"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_2_2k"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
-
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:id="@+id/verticalSeekBarWrapper22"
-            android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper23"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_5k"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
-
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:id="@+id/verticalSeekBarWrapper21"
-            android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper22"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_10k"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
-
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:id="@+id/verticalSeekBarWrapper20"
-            android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper21"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_12k"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
-
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:id="@+id/verticalSeekBarWrapper19"
-            android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper20"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_16k"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
-
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:id="@+id/verticalSeekBarWrapper18"
-            android:layout_width="20dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="77dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper19"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/eqBar_20k"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
-        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
-
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
-            android:layout_width="21dp"
-            android:layout_height="235dp"
-            android:layout_marginStart="57dp"
-            android:layout_marginTop="85dp"
-            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper18"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-                android:id="@+id/BarG2"
-                android:layout_width="wrap_content"
-                android:layout_height="240dp"
-                android:splitTrack="false"
-                android:thumb="@drawable/button_slide_blue"
-                app:seekBarRotation="CW270" /> <!-- Rotation: CW90 or CW270 -->
+            <!-- Rotation: CW90 or CW270 -->
         </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
 
         <Button
             android:id="@+id/butStopEq"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="6dp"
+            android:layout_width="62dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="69dp"
             android:text="EQ"
             android:textSize="14sp"
@@ -332,8 +336,8 @@
         <Button
             android:id="@+id/butReEq"
             android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="6dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="2dp"
             android:text="Reset"
             android:textSize="14sp"
@@ -342,44 +346,43 @@
 
         <View
             android:id="@+id/divider"
-            android:layout_width="444dp"
-            android:layout_height="222dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="91dp"
+            android:layout_width="255dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="111dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintStart_toEndOf="@+id/butStopEq"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
+            android:id="@+id/divider13"
+            android:layout_width="260dp"
+            android:layout_height="263dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="69dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toEndOf="@+id/divider3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
             android:id="@+id/divider3"
-            android:layout_width="488dp"
-            android:layout_height="265dp"
-            android:layout_marginStart="6dp"
+            android:layout_width="300dp"
+            android:layout_height="263dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="69dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintStart_toEndOf="@+id/butStopEq"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="444dp"
+            android:id="@+id/textView"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="115dp"
-            android:layout_marginTop="314dp"
-            android:text="20     40    63   100   160   300  500  800    1k    1.2k  2.2k  5k   10k   12k   16k   20k "
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="88dp"
+            android:text=" G1         G2        G3         G4       ALL"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="444dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="115dp"
-            android:layout_marginTop="71dp"
-            android:text="20     40    63   100   160   300  500  800    1k    1.2k  2.2k  5k   10k   12k   16k   20k "
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/divider3"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -387,7 +390,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="275dp"
-            android:layout_marginTop="49dp"
+            android:layout_marginTop="48dp"
             android:text="20Hz : 0.00 dB"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -396,8 +399,8 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="96dp"
-            android:layout_marginTop="193dp"
+            android:layout_marginStart="87dp"
+            android:layout_marginTop="202dp"
             android:text="0"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -407,8 +410,8 @@
             android:id="@+id/textView21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="550dp"
-            android:layout_marginTop="193dp"
+            android:layout_marginStart="351dp"
+            android:layout_marginTop="202dp"
             android:text="0"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -418,8 +421,8 @@
             android:id="@+id/textView12"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="96dp"
-            android:layout_marginTop="157dp"
+            android:layout_marginStart="87dp"
+            android:layout_marginTop="169dp"
             android:text="5"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -429,8 +432,8 @@
             android:id="@+id/textView20"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="550dp"
-            android:layout_marginTop="157dp"
+            android:layout_marginStart="351dp"
+            android:layout_marginTop="169dp"
             android:text="5"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -440,8 +443,8 @@
             android:id="@+id/textView13"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="121dp"
+            android:layout_marginStart="79dp"
+            android:layout_marginTop="135dp"
             android:text="10"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -451,8 +454,8 @@
             android:id="@+id/textView19"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="550dp"
-            android:layout_marginTop="121dp"
+            android:layout_marginStart="351dp"
+            android:layout_marginTop="135dp"
             android:text="10"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -462,8 +465,8 @@
             android:id="@+id/textView14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="83dp"
+            android:layout_marginStart="79dp"
+            android:layout_marginTop="101dp"
             android:text="15"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -473,8 +476,8 @@
             android:id="@+id/textView18"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="550dp"
-            android:layout_marginTop="83dp"
+            android:layout_marginStart="351dp"
+            android:layout_marginTop="101dp"
             android:text="15"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -484,8 +487,8 @@
             android:id="@+id/textView15"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="303dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="301dp"
             android:text="-15"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -495,8 +498,8 @@
             android:id="@+id/textView24"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="550dp"
-            android:layout_marginTop="303dp"
+            android:layout_marginStart="351dp"
+            android:layout_marginTop="301dp"
             android:text="-15"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -506,8 +509,8 @@
             android:id="@+id/textView16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="266dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="267dp"
             android:text="-10"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -517,8 +520,8 @@
             android:id="@+id/textView23"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="550dp"
-            android:layout_marginTop="266dp"
+            android:layout_marginStart="351dp"
+            android:layout_marginTop="267dp"
             android:text="-10"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -528,8 +531,8 @@
             android:id="@+id/textView17"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="230dp"
+            android:layout_marginStart="83dp"
+            android:layout_marginTop="234dp"
             android:text="-5"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -539,8 +542,8 @@
             android:id="@+id/textView22"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="550dp"
-            android:layout_marginTop="230dp"
+            android:layout_marginStart="351dp"
+            android:layout_marginTop="234dp"
             android:text="-5"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -548,50 +551,50 @@
 
         <View
             android:id="@+id/divider4"
-            android:layout_width="444dp"
+            android:layout_width="253dp"
             android:layout_height="1dp"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="201dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="211dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/divider5"
-            android:layout_width="444dp"
+            android:layout_width="253dp"
             android:layout_height="1dp"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="165dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="178dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/divider10"
-            android:layout_width="444dp"
+            android:layout_width="253dp"
             android:layout_height="1dp"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="129dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="145dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/divider11"
-            android:layout_width="444dp"
+            android:layout_width="253dp"
             android:layout_height="1dp"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="238dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="244dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/divider12"
-            android:layout_width="444dp"
+            android:layout_width="253dp"
             android:layout_height="1dp"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="274dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="277dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -600,31 +603,43 @@
             android:id="@+id/textView25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="67dp"
             android:text="MASTER"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/divider3"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/butMtg"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="2dp"
-            android:text="MTG"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/butReEq" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="93dp"
+            android:text="0"
+            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper5"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/spEQ"
-            android:layout_width="93dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/butMtg" />
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="200dp"
+            android:text="-80"
+            app:layout_constraintStart_toEndOf="@+id/verticalSeekBarWrapper5"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="67dp"
+            android:text="EQ"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/butStopEq"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -44,6 +44,12 @@ public class Const {
     public static final String master_eq_slide_value_15_string = "master_eq_slide_value_15_string";
     public static final String master_eq_slide_value_16_string = "master_eq_slide_value_16_string";
 
+    public static final String position_EQ1 = "position_EQ1";
+    public static final String position_EQ2 = "position_EQ2";
+    public static final String position_EQ3 = "position_EQ3";
+    public static final String position_EQ4 = "position_EQ4";
+    public static final String position_EQ5 = "position_EQ5";
+
     public static final String delay_bar_1 = "delay_bar_1";
     public static final String delay_bar_2 = "delay_bar_2";
     public static final String delay_bar_3 = "delay_bar_3";

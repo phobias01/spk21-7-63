@@ -17,10 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MTG"
-            android:label="MASTER GROUP"
-            android:screenOrientation="userLandscape" />
-        <activity
             android:name=".MainActivity"
             android:label="SPK CONNECT"
             android:screenOrientation="userLandscape"

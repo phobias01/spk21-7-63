@@ -185,7 +185,7 @@ public class fmEQ extends Fragment {
                 }else {*/
                     dataOutput = String.format("EQ1/F/" + arrayFrequency.get(sp.getInt(Const.position_EQ1, 1)) + "/V/%.2f", progressChanged);
                 //}
-                
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

@@ -405,7 +405,7 @@ public class fmEQ extends Fragment {
                 progressChanged = progress-80;
                 value = progress;
                 tvEq.setText(String.format("G1 : %.0f dB",progressChanged));
-                dataOutput = String.format("MASTERVOLG1/%.0f",progressChanged);
+                dataOutput = String.format("MASTERVOL/%.0f",progressChanged);
                 try {
                     for(int i = 0;i<arrayG1.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG1.get(i), Const.port);
@@ -433,7 +433,7 @@ public class fmEQ extends Fragment {
                 progressChanged = progress-80;
                 value = progress;
                 tvEq.setText(String.format("G2: %.0f dB",progressChanged));
-                dataOutput = String.format("MASTERVOLG2/%.0f",progressChanged);
+                dataOutput = String.format("MASTERVOL/%.0f",progressChanged);
                 try {
                     for(int i = 0;i<arrayG2.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG2.get(i), Const.port);
@@ -461,7 +461,7 @@ public class fmEQ extends Fragment {
                 progressChanged = progress-80;
                 value = progress;
                 tvEq.setText(String.format("G3 : %.0f dB",progressChanged));
-                dataOutput = String.format("MASTERVOLG3/%.0f",progressChanged);
+                dataOutput = String.format("MASTERVOL/%.0f",progressChanged);
                 try {
                     for(int i = 0;i<arrayG3.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG3.get(i), Const.port);
@@ -489,7 +489,7 @@ public class fmEQ extends Fragment {
                 progressChanged = progress-80;
                 value = progress;
                 tvEq.setText(String.format("G4 : %.0f dB",progressChanged));
-                dataOutput = String.format("MASTERVOLG4/%.0f",progressChanged);
+                dataOutput = String.format("MASTERVOL/%.0f",progressChanged);
                 try {
                     for(int i = 0;i<arrayG4.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG4.get(i), Const.port);
@@ -557,13 +557,6 @@ public class fmEQ extends Fragment {
                 }
             }
         });
-        /*butMtg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),MTG.class);
-                startActivity(intent);
-            }
-        });*/
     }
     private void offSeekBar() {
         eqBar1.setEnabled(false);

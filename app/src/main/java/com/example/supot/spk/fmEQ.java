@@ -35,7 +35,7 @@ public class fmEQ extends Fragment {
     private Spinner spFrequencyEq1,spFrequencyEq2,spFrequencyEq3,spFrequencyEq4,spFrequencyEq5;
     private ArrayAdapter adapterEq1,adapterEq2,adapterEq3,adapterEq4,adapterEq5;
     private Context context;
-    private ArrayList<String> arrayG1,arrayG2,arrayG3,arrayG4,arrayAllIp,arrayFrequency,arrayFrequency2;
+    private ArrayList<String> arrayG1,arrayG2,arrayG3,arrayG4,arrayAllIp,arrayFrequency,arrayFrequency2,arrayFrequency3,arrayFrequency4,arrayFrequency5,arrayFrequency6,arrayFrequency7,arrayFrequency8,arrayFrequency9,arrayFrequency10;
     private boolean isOnEQ = true;
     private SeekBar eqBar1,eqBar2,eqBar3,eqBar4,eqBar5,eqBar_Master,BarG1,BarG2,BarG3,BarG4;
     private Button butStopEq,butReEq;
@@ -56,10 +56,10 @@ public class fmEQ extends Fragment {
         initEq(view);
         createFrequency(view);
         tvFq1.setText(arrayFrequency.get(sp.getInt(Const.position_EQ1, 1))+"Hz");
-        tvFq2.setText(arrayFrequency.get(sp.getInt(Const.position_EQ2, 1))+"Hz");
-        tvFq3.setText(arrayFrequency.get(sp.getInt(Const.position_EQ3, 1))+"Hz");
-        tvFq4.setText(arrayFrequency.get(sp.getInt(Const.position_EQ4, 1))+"Hz");
-        tvFq5.setText(arrayFrequency.get(sp.getInt(Const.position_EQ5, 1))+"Hz");
+        tvFq2.setText(arrayFrequency2.get(sp.getInt(Const.position_EQ2, 1))+"Hz");
+        tvFq3.setText(arrayFrequency3.get(sp.getInt(Const.position_EQ3, 1))+"Hz");
+        tvFq4.setText(arrayFrequency4.get(sp.getInt(Const.position_EQ4, 1))+"Hz");
+        tvFq5.setText(arrayFrequency5.get(sp.getInt(Const.position_EQ5, 1))+"Hz");
         if(isOnEQ == sp.getBoolean(Const.stuEQ,true)) {
             onSeekBar();
             butStopEq.setBackgroundColor(getResources().getColor(R.color.color3));
@@ -84,34 +84,34 @@ public class fmEQ extends Fragment {
         arrayFrequency = new ArrayList<>();
             arrayFrequency.add("32");
             arrayFrequency.add("64");
-            arrayFrequency.add("125");
-            arrayFrequency.add("250");
-            arrayFrequency.add("500");
-            arrayFrequency.add("1k");
-            arrayFrequency.add("2k");
-            arrayFrequency.add("4k");
-            arrayFrequency.add("8k");
-            arrayFrequency.add("16k");
+
+
         arrayFrequency2 = new ArrayList<>();
-            arrayFrequency2.add("32");
-            arrayFrequency2.add("64");
-            arrayFrequency2.add("125");
-            arrayFrequency2.add("250");
-            arrayFrequency2.add("500");
-            arrayFrequency2.add("1");
-            arrayFrequency2.add("2");
-            arrayFrequency2.add("4");
-            arrayFrequency2.add("8");
-            arrayFrequency2.add("16");
+        arrayFrequency2.add("125");
+        arrayFrequency2.add("250");
+
+        arrayFrequency3 = new ArrayList<>();
+        arrayFrequency3.add("500");
+        arrayFrequency3.add("1k");
+
+        arrayFrequency4 = new ArrayList<>();
+        arrayFrequency4.add("2k");
+        arrayFrequency4.add("4k");
+
+        arrayFrequency5 = new ArrayList<>();
+        arrayFrequency5.add("8k");
+        arrayFrequency5.add("16k");
+
+
         adapterEq1 = new ArrayAdapter<String>(this.context, android.R.layout.simple_spinner_dropdown_item, arrayFrequency);
         spFrequencyEq1.setAdapter(adapterEq1);
-        adapterEq2 = new ArrayAdapter<String>(this.context, android.R.layout.simple_spinner_dropdown_item, arrayFrequency);
+        adapterEq2 = new ArrayAdapter<String>(this.context, android.R.layout.simple_spinner_dropdown_item, arrayFrequency2);
         spFrequencyEq2.setAdapter(adapterEq2);
-        adapterEq3 = new ArrayAdapter<String>(this.context, android.R.layout.simple_spinner_dropdown_item, arrayFrequency);
+        adapterEq3 = new ArrayAdapter<String>(this.context, android.R.layout.simple_spinner_dropdown_item, arrayFrequency3);
         spFrequencyEq3.setAdapter(adapterEq3);
-        adapterEq4 = new ArrayAdapter<String>(this.context, android.R.layout.simple_spinner_dropdown_item, arrayFrequency);
+        adapterEq4 = new ArrayAdapter<String>(this.context, android.R.layout.simple_spinner_dropdown_item, arrayFrequency4);
         spFrequencyEq4.setAdapter(adapterEq4);
-        adapterEq5 = new ArrayAdapter<String>(this.context, android.R.layout.simple_spinner_dropdown_item, arrayFrequency);
+        adapterEq5 = new ArrayAdapter<String>(this.context, android.R.layout.simple_spinner_dropdown_item, arrayFrequency5);
         spFrequencyEq5.setAdapter(adapterEq5);
 
         spFrequencyEq1.setSelection(sp.getInt(Const.position_EQ1, 1));
@@ -184,12 +184,7 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format(arrayFrequency.get(posFq)+"Hz : %.2f dB",progressChanged));
                 tvFq1.setText(arrayFrequency.get(sp.getInt(Const.position_EQ1, 1))+"Hz");
-                if(sp.getInt(Const.position_EQ1,1)>4){
-                    int Fq = Integer.valueOf(arrayFrequency2.get(sp.getInt(Const.position_EQ1, 1)));
-                    dataOutput = String.format("EQ1/F/" + Fq*1000 + "/V/%.2f", progressChanged);
-                }else {
-                    dataOutput = String.format("EQ1/F/" + arrayFrequency.get(sp.getInt(Const.position_EQ1, 1)) + "/V/%.2f", progressChanged);
-                }
+                dataOutput = String.format("EQ1/F/" + arrayFrequency.get(sp.getInt(Const.position_EQ1, 1)) + "/V/%.2f", progressChanged);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -224,20 +219,20 @@ public class fmEQ extends Fragment {
                 int posFq = spFrequencyEq2.getSelectedItemPosition();
                 progressChanged = (progress-150)*0.1f;
                 value = progress;
-                tvEq.setText(String.format(arrayFrequency.get(posFq)+"Hz : %.2f dB",progressChanged));
-                tvFq2.setText(arrayFrequency.get(sp.getInt(Const.position_EQ2, 1))+"Hz");
-                if(sp.getInt(Const.position_EQ2,1)>4){
-                    int Fq = Integer.valueOf(arrayFrequency2.get(sp.getInt(Const.position_EQ2, 1)));
-                    dataOutput = String.format("EQ2/F/" + Fq*1000 + "/V/%.2f", progressChanged);
-                }else {
-                    dataOutput = String.format("EQ2/F/" + arrayFrequency.get(sp.getInt(Const.position_EQ2, 1)) + "/V/%.2f", progressChanged);
-                }
-                try {
-                    for (int i = 0; i < arrayAllIp.size(); i++) {
-                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                tvEq.setText(String.format(arrayFrequency2.get(posFq)+"Hz : %.2f dB",progressChanged));
+                tvFq2.setText(arrayFrequency2.get(sp.getInt(Const.position_EQ2, 1))+"Hz");
+                dataOutput = String.format("EQ2/F/" + arrayFrequency2.get(sp.getInt(Const.position_EQ2, 1)) + "/V/%.2f", progressChanged);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            for (int i = 0; i < arrayAllIp.size(); i++) {
+                                SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                                //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                            }
+                        }catch (Exception e) {}
                     }
-                }catch (Exception e) {}
+                }).start();
             }
 
             @Override
@@ -263,20 +258,24 @@ public class fmEQ extends Fragment {
                 int posFq = spFrequencyEq3.getSelectedItemPosition();
                 progressChanged = (progress-150)*0.1f;
                 value = progress;
-                tvEq.setText(String.format(arrayFrequency.get(posFq)+"Hz : %.2f dB",progressChanged));
-                tvFq3.setText(arrayFrequency.get(sp.getInt(Const.position_EQ3, 1))+"Hz");
-                if(sp.getInt(Const.position_EQ3,1)>4){
-                    int Fq = Integer.valueOf(arrayFrequency2.get(sp.getInt(Const.position_EQ3, 1)));
-                    dataOutput = String.format("EQ3/F/" + Fq*1000 + "/V/%.2f", progressChanged);
+                tvEq.setText(String.format(arrayFrequency3.get(posFq)+"Hz : %.2f dB",progressChanged));
+                tvFq3.setText(arrayFrequency3.get(sp.getInt(Const.position_EQ3, 1))+"Hz");
+                if(sp.getInt(Const.position_EQ3,1)!=0){
+                    dataOutput = String.format("EQ3/F/1000/V/%.2f", progressChanged);
                 }else {
-                    dataOutput = String.format("EQ3/F/" + arrayFrequency.get(sp.getInt(Const.position_EQ3, 1)) + "/V/%.2f", progressChanged);
+                    dataOutput = String.format("EQ3/F/" + arrayFrequency3.get(sp.getInt(Const.position_EQ3, 1)) + "/V/%.2f", progressChanged);
                 }
-                try {
-                    for (int i = 0; i < arrayAllIp.size(); i++) {
-                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            for (int i = 0; i < arrayAllIp.size(); i++) {
+                                SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                                //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                            }
+                        }catch (Exception e) {}
                     }
-                }catch (Exception e) {}
+                }).start();
             }
 
             @Override
@@ -300,20 +299,24 @@ public class fmEQ extends Fragment {
                 int posFq = spFrequencyEq4.getSelectedItemPosition();
                 progressChanged = (progress-150)*0.1f;
                 value = progress;
-                tvEq.setText(String.format(arrayFrequency.get(posFq)+"Hz : %.2f dB",progressChanged));
-                tvFq4.setText(arrayFrequency.get(sp.getInt(Const.position_EQ4, 1))+"Hz");
-                if(sp.getInt(Const.position_EQ4,1)>4){
-                    int Fq = Integer.valueOf(arrayFrequency2.get(sp.getInt(Const.position_EQ4, 1)));
-                    dataOutput = String.format("EQ4/F/" + Fq*1000 + "/V/%.2f", progressChanged);
+                tvEq.setText(String.format(arrayFrequency4.get(posFq)+"Hz : %.2f dB",progressChanged));
+                tvFq4.setText(arrayFrequency4.get(sp.getInt(Const.position_EQ4, 1))+"Hz");
+                if(sp.getInt(Const.position_EQ4,1)!=0){
+                    dataOutput = String.format("EQ4/F/4000/V/%.2f", progressChanged);
                 }else {
-                    dataOutput = String.format("EQ4/F/" + arrayFrequency.get(sp.getInt(Const.position_EQ4, 1)) + "/V/%.2f", progressChanged);
+                    dataOutput = String.format("EQ4/F/2000/V/%.2f", progressChanged);
                 }
-                try {
-                    for (int i = 0; i < arrayAllIp.size(); i++) {
-                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            for (int i = 0; i < arrayAllIp.size(); i++) {
+                                SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                                //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                            }
+                        }catch (Exception e) {}
                     }
-                }catch (Exception e) {}
+                }).start();
             }
 
             @Override
@@ -337,20 +340,24 @@ public class fmEQ extends Fragment {
                 int posFq = spFrequencyEq5.getSelectedItemPosition();
                 progressChanged = (progress-150)*0.1f;
                 value = progress;
-                tvEq.setText(String.format(arrayFrequency.get(posFq)+"Hz : %.2f dB",progressChanged));
-                tvFq5.setText(arrayFrequency.get(sp.getInt(Const.position_EQ5, 1))+"Hz");
-                if(sp.getInt(Const.position_EQ5,1)>4){
-                    int Fq = Integer.valueOf(arrayFrequency2.get(sp.getInt(Const.position_EQ5, 1)));
-                    dataOutput = String.format("EQ5/F/" + Fq*1000 + "/V/%.2f", progressChanged);
+                tvEq.setText(String.format(arrayFrequency5.get(posFq)+"Hz : %.2f dB",progressChanged));
+                tvFq5.setText(arrayFrequency5.get(sp.getInt(Const.position_EQ5, 1))+"Hz");
+                if(sp.getInt(Const.position_EQ5,1)!=0){
+                    dataOutput = String.format("EQ5/F/16000/V/%.2f", progressChanged);
                 }else {
-                    dataOutput = String.format("EQ5/F/" + arrayFrequency.get(sp.getInt(Const.position_EQ5, 1)) + "/V/%.2f", progressChanged);
+                    dataOutput = String.format("EQ5/F/8000/V/%.2f", progressChanged);
                 }
-                try {
-                    for (int i = 0; i < arrayAllIp.size(); i++) {
-                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            for (int i = 0; i < arrayAllIp.size(); i++) {
+                                SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                                //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
+                            }
+                        }catch (Exception e) {}
                     }
-                }catch (Exception e) {}
+                }).start();
             }
 
             @Override
@@ -556,7 +563,7 @@ public class fmEQ extends Fragment {
                     editor.commit();
                 }
             }
-        });
+        }); 
     }
     private void offSeekBar() {
         eqBar1.setEnabled(false);

@@ -39,15 +39,15 @@ public class fmSetspk extends Fragment {
         // Required empty public constructor
     }
     private ProgressBar PBload;
-    private ArrayAdapter adapterIp, adapterNum, adapterlistIN;
-    private ArrayList<String> arrayIp, arrayNum, arraylistIN, arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4,arrayIpG1,arrayIpG2,arrayIpG3,arrayIpG4;
+    private ArrayAdapter adapterIp,adapterNum,adapterlistIN;
+    private ArrayList<String> arrayIp,arrayNum,arraylistIN,arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4,arrayIpG1,arrayIpG2,arrayIpG3,arrayIpG4;
     private ListView listSetspk;
     private Button butSetnum,butScan;
     private Spinner spinIP, spinNum;
     private Context context;
-    private ConstraintLayout FrameSet;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
+    private int check = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,9 +109,11 @@ public class fmSetspk extends Fragment {
         String json3 = sp.getString(Const.list_group_3, null);
         String json4 = sp.getString(Const.list_group_4, null);
         String jsonAllIp = sp.getString(Const.list_AllIp, null);
+        String jsonAddHomeNum = sp.getString(Const.list_group_spk, null);
 
         Type type = new TypeToken<ArrayList>() {}.getType();
 
+        arrayAddHomeNum = gson.fromJson(jsonAddHomeNum, type);
         arraylistIN = gson.fromJson(jsonlistIN, type);
         arrayIp = gson.fromJson(jsonIp, type);
         arrayNum = gson.fromJson(jsonNum, type);
@@ -235,15 +237,17 @@ public class fmSetspk extends Fragment {
                 arrayIp.clear();
                 arrayNum.clear();
                 arrayAllIp.clear();
+                arrayAddHomeIP.clear();
+                arrayAddHomeNum.clear();
                 if (arrayNum.isEmpty()) {
                     for (int i = 1; i <= 99; i++) {
                         arrayNum.add("No." + i);
                     }
                 }
-                listSetspk.setAdapter(adapterlistIN);
-                spinIP.setAdapter(adapterIp);
-                spinNum.setAdapter(adapterNum);
                 saveData();
+                check = 1;
+                editor.putInt(Const.check, check);
+                editor.commit();
                 new AsyncScan().execute();
                 adapterlistIN.notifyDataSetChanged();
                 adapterIp.notifyDataSetChanged();
@@ -279,7 +283,6 @@ public class fmSetspk extends Fragment {
                         saveData();
                     }
                 }
-
             }
 
             @Override

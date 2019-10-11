@@ -111,6 +111,10 @@ public class MainActivity extends AppCompatActivity
                 fm = new fmSetspk();
                 strTitle = "SET SPK NO.";
                 break;
+            case R.id.nav_new:
+                fm = new fmNew();
+                strTitle = "NEW";
+                break;
         }
 
         if (fm != null){

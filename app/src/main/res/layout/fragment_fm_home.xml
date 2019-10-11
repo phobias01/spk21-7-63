@@ -285,14 +285,14 @@
 
         <TextView
             android:id="@+id/tvMaster"
-            android:layout_width="100dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="548dp"
             android:layout_marginTop="56dp"
+            android:layout_marginEnd="1dp"
             android:text="MASTER : 0 dB"
             android:textAlignment="viewStart"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 

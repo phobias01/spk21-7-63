@@ -58,6 +58,7 @@ public class fmHome extends Fragment {
         initmasterBar(view);
         initmanegeGroup(view);
         initbuttonMute(view);
+        adapterSpk.notifyDataSetChanged();
         return view;
     }
     public void initbuttonMute(View view){
@@ -281,94 +282,6 @@ public class fmHome extends Fragment {
 
             }
         });
-    }
-
-    private void saveData() {
-        Gson gson = new Gson();
-        String jsonSpk = gson.toJson(arraySpk);
-        String json1 = gson.toJson(arrayG1);
-        String json2 = gson.toJson(arrayG2);
-        String json3 = gson.toJson(arrayG3);
-        String json4 = gson.toJson(arrayG4);
-        String jsonIpSpk = gson.toJson(arrayIpSpk);
-        String jsonIpG1 = gson.toJson(arrayIpG1);
-        String jsonIpG2 = gson.toJson(arrayIpG2);
-        String jsonIpG3 = gson.toJson(arrayIpG3);
-        String jsonIpG4 = gson.toJson(arrayIpG4);
-        editor.putString(Const.list_group_spk, jsonSpk);
-        editor.putString(Const.list_group_1, json1);
-        editor.putString(Const.list_group_2, json2);
-        editor.putString(Const.list_group_3, json3);
-        editor.putString(Const.list_group_4, json4);
-        editor.putString(Const.list_IpSpk, jsonIpSpk);
-        editor.putString(Const.list_IpG1, jsonIpG1);
-        editor.putString(Const.list_IpG2, jsonIpG2);
-        editor.putString(Const.list_IpG3, jsonIpG3);
-        editor.putString(Const.list_IpG4, jsonIpG4);
-        editor.commit();
-    }
-
-    private void loadData() {
-        Gson gson = new Gson();
-        String jsonSpk = sp.getString(Const.list_group_spk, null);
-        String json1 = sp.getString(Const.list_group_1, null);
-        String json2 = sp.getString(Const.list_group_2, null);
-        String json3 = sp.getString(Const.list_group_3, null);
-        String json4 = sp.getString(Const.list_group_4, null);
-        String jsonIpSpk = sp.getString(Const.list_IpSpk, null);
-        String jsonIpG1 = sp.getString(Const.list_IpG1, null);
-        String jsonIpG2 = sp.getString(Const.list_IpG2, null);
-        String jsonIpG3 = sp.getString(Const.list_IpG3, null);
-        String jsonIpG4 = sp.getString(Const.list_IpG4, null);
-        String jsonAllIp = sp.getString(Const.list_AllIp, null);
-
-        Type type = new TypeToken<ArrayList>(){}.getType();
-
-        arrayAllIp = gson.fromJson(jsonAllIp, type);
-        arraySpk = gson.fromJson(jsonSpk, type);
-        arrayG1 = gson.fromJson(json1, type);
-        arrayG2 = gson.fromJson(json2, type);
-        arrayG3 = gson.fromJson(json3, type);
-        arrayG4 = gson.fromJson(json4, type);
-        arrayIpSpk = gson.fromJson(jsonIpSpk, type);
-        arrayIpG1 = gson.fromJson(jsonIpG1, type);
-        arrayIpG2 = gson.fromJson(jsonIpG2, type);
-        arrayIpG3 = gson.fromJson(jsonIpG3, type);
-        arrayIpG4 = gson.fromJson(jsonIpG4, type);
-
-        if (arrayAllIp == null) {
-            arrayAllIp = new ArrayList<>();
-        }
-        if (arraySpk == null) {
-            arraySpk = new ArrayList<>();
-        }
-        if (arrayG1 == null) {
-            arrayG1 = new ArrayList<>();
-        }
-        if (arrayG2 == null) {
-            arrayG2 = new ArrayList<>();
-        }
-        if (arrayG3 == null) {
-            arrayG3 = new ArrayList<>();
-        }
-        if (arrayG4 == null) {
-            arrayG4 = new ArrayList<>();
-        }
-        if (arrayIpSpk == null) {
-            arrayIpSpk = new ArrayList<>();
-        }
-        if (arrayIpG1 == null) {
-             arrayIpG1 = new ArrayList<>();
-        }
-        if (arrayIpG2 == null) {
-            arrayIpG2 = new ArrayList<>();
-        }
-        if (arrayIpG3 == null) {
-            arrayIpG3 = new ArrayList<>();
-        }
-        if (arrayIpG4 == null) {
-            arrayIpG4 = new ArrayList<>();
-        }
     }
 
     public void onAttach(Context context) {
@@ -607,5 +520,91 @@ public class fmHome extends Fragment {
                 });
             }
         });
+    }
+    private void saveData() {
+        Gson gson = new Gson();
+        String jsonSpk = gson.toJson(arraySpk);
+        String json1 = gson.toJson(arrayG1);
+        String json2 = gson.toJson(arrayG2);
+        String json3 = gson.toJson(arrayG3);
+        String json4 = gson.toJson(arrayG4);
+        String jsonIpSpk = gson.toJson(arrayIpSpk);
+        String jsonIpG1 = gson.toJson(arrayIpG1);
+        String jsonIpG2 = gson.toJson(arrayIpG2);
+        String jsonIpG3 = gson.toJson(arrayIpG3);
+        String jsonIpG4 = gson.toJson(arrayIpG4);
+        editor.putString(Const.list_group_spk, jsonSpk);
+        editor.putString(Const.list_group_1, json1);
+        editor.putString(Const.list_group_2, json2);
+        editor.putString(Const.list_group_3, json3);
+        editor.putString(Const.list_group_4, json4);
+        editor.putString(Const.list_IpSpk, jsonIpSpk);
+        editor.putString(Const.list_IpG1, jsonIpG1);
+        editor.putString(Const.list_IpG2, jsonIpG2);
+        editor.putString(Const.list_IpG3, jsonIpG3);
+        editor.putString(Const.list_IpG4, jsonIpG4);
+        editor.commit();
+    }
+
+    private void loadData() {
+        Gson gson = new Gson();
+        String jsonSpk = sp.getString(Const.list_group_spk, null);
+        String json1 = sp.getString(Const.list_group_1, null);
+        String json2 = sp.getString(Const.list_group_2, null);
+        String json3 = sp.getString(Const.list_group_3, null);
+        String json4 = sp.getString(Const.list_group_4, null);
+        String jsonIpSpk = sp.getString(Const.list_IpSpk, null);
+        String jsonIpG1 = sp.getString(Const.list_IpG1, null);
+        String jsonIpG2 = sp.getString(Const.list_IpG2, null);
+        String jsonIpG3 = sp.getString(Const.list_IpG3, null);
+        String jsonIpG4 = sp.getString(Const.list_IpG4, null);
+        String jsonAllIp = sp.getString(Const.list_AllIp, null);
+
+        Type type = new TypeToken<ArrayList>(){}.getType();
+
+        arrayAllIp = gson.fromJson(jsonAllIp, type);
+        arraySpk = gson.fromJson(jsonSpk, type);
+        arrayG1 = gson.fromJson(json1, type);
+        arrayG2 = gson.fromJson(json2, type);
+        arrayG3 = gson.fromJson(json3, type);
+        arrayG4 = gson.fromJson(json4, type);
+        arrayIpSpk = gson.fromJson(jsonIpSpk, type);
+        arrayIpG1 = gson.fromJson(jsonIpG1, type);
+        arrayIpG2 = gson.fromJson(jsonIpG2, type);
+        arrayIpG3 = gson.fromJson(jsonIpG3, type);
+        arrayIpG4 = gson.fromJson(jsonIpG4, type);
+        if (arrayAllIp == null) {
+            arrayAllIp = new ArrayList<>();
+        }
+        if (arraySpk == null) {
+            arraySpk = new ArrayList<>();
+        }
+        if (arrayG1 == null) {
+            arrayG1 = new ArrayList<>();
+        }
+        if (arrayG2 == null) {
+            arrayG2 = new ArrayList<>();
+        }
+        if (arrayG3 == null) {
+            arrayG3 = new ArrayList<>();
+        }
+        if (arrayG4 == null) {
+            arrayG4 = new ArrayList<>();
+        }
+        if (arrayIpSpk == null) {
+            arrayIpSpk = new ArrayList<>();
+        }
+        if (arrayIpG1 == null) {
+            arrayIpG1 = new ArrayList<>();
+        }
+        if (arrayIpG2 == null) {
+            arrayIpG2 = new ArrayList<>();
+        }
+        if (arrayIpG3 == null) {
+            arrayIpG3 = new ArrayList<>();
+        }
+        if (arrayIpG4 == null) {
+            arrayIpG4 = new ArrayList<>();
+        }
     }
 }

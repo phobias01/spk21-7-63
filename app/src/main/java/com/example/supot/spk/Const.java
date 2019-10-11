@@ -5,6 +5,9 @@ public class Const {
     public static String ip;
 
     public static final String sp_channel = "SP_CHANNEL";
+    public static final String save_fodder = "save_fodder";
+    public static final String fodder = "fodder";
+
     public static final String name = "name";
 
     //public static final String button_stop_eq_slide = "button_stop_eq_slide";
@@ -14,17 +17,6 @@ public class Const {
     public static final String master_eq_slide_value_3 = "master_eq_slide_value_3";
     public static final String master_eq_slide_value_4 = "master_eq_slide_value_4";
     public static final String master_eq_slide_value_5 = "master_eq_slide_value_5";
-    public static final String master_eq_slide_value_6 = "master_eq_slide_value_6";
-    public static final String master_eq_slide_value_7 = "master_eq_slide_value_7";
-    public static final String master_eq_slide_value_8 = "master_eq_slide_value_8";
-    public static final String master_eq_slide_value_9 = "master_eq_slide_value_9";
-    public static final String master_eq_slide_value_10 = "master_eq_slide_value_10";
-    public static final String master_eq_slide_value_11 = "master_eq_slide_value_11";
-    public static final String master_eq_slide_value_12 = "master_eq_slide_value_12";
-    public static final String master_eq_slide_value_13 = "master_eq_slide_value_13";
-    public static final String master_eq_slide_value_14 = "master_eq_slide_value_14";
-    public static final String master_eq_slide_value_15 = "master_eq_slide_value_15";
-    public static final String master_eq_slide_value_16 = "master_eq_slide_value_16";
 
     public static final String master_eq_slide_string = "master_eq_slide_string";
     public static final String master_eq_slide_value_1_string = "master_eq_slide_value_1_string";
@@ -32,17 +24,6 @@ public class Const {
     public static final String master_eq_slide_value_3_string = "master_eq_slide_value_3_string";
     public static final String master_eq_slide_value_4_string = "master_eq_slide_value_4_string";
     public static final String master_eq_slide_value_5_string = "master_eq_slide_value_5_string";
-    public static final String master_eq_slide_value_6_string = "master_eq_slide_value_6_string";
-    public static final String master_eq_slide_value_7_string = "master_eq_slide_value_7_string";
-    public static final String master_eq_slide_value_8_string = "master_eq_slide_value_8_string";
-    public static final String master_eq_slide_value_9_string = "master_eq_slide_value_9_string";
-    public static final String master_eq_slide_value_10_string = "master_eq_slide_value_10_string";
-    public static final String master_eq_slide_value_11_string = "master_eq_slide_value_11_string";
-    public static final String master_eq_slide_value_12_string = "master_eq_slide_value_12_string";
-    public static final String master_eq_slide_value_13_string = "master_eq_slide_value_13_string";
-    public static final String master_eq_slide_value_14_string = "master_eq_slide_value_14_string";
-    public static final String master_eq_slide_value_15_string = "master_eq_slide_value_15_string";
-    public static final String master_eq_slide_value_16_string = "master_eq_slide_value_16_string";
 
     public static final String position_EQ1 = "position_EQ1";
     public static final String position_EQ2 = "position_EQ2";
@@ -111,5 +92,7 @@ public class Const {
     public static final String stuMute3 = "stuMute3";
     public static final String stuMute4 = "stuMute4";
     public static final String stuMuteAll = "stuMuteAll";
+
+    public static final String check = "check";
 
 }

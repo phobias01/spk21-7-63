@@ -2,9 +2,11 @@ package com.example.supot.spk;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +18,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 
@@ -32,18 +38,45 @@ public class fmLoad extends Fragment {
 
     private Context context;
     private ListView loadList;
-    private ArrayList<String> arrayList;
+    private ArrayList<String> arrayFodder;
     private ArrayAdapter adapter;
     private Button butOpen,butDel;
-    private TextView TextView2;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fm_load, container, false);
+        Shared();
+        loadData();
         initloadList(view);
         return view;
+    }
+    private void Shared() {
+        sp = this.getActivity().getSharedPreferences(Const.save_fodder, Context.MODE_PRIVATE);
+        editor = sp.edit();
+    }
+    private void saveData() {
+        Gson gson = new Gson();
+        String jsonFodder = gson.toJson(arrayFodder);
+        editor.putString(Const.fodder, jsonFodder);
+        editor.commit();
+        //Log.d("26J","save Fodder : "+arrayFodder);
+    }
+
+    private void loadData() {
+        Gson gson = new Gson();
+        String jsonFodder = sp.getString(Const.fodder, null);
+
+        Type type = new TypeToken<ArrayList>() {}.getType();
+
+        arrayFodder = gson.fromJson(jsonFodder, type);
+
+        if (arrayFodder == null) {
+            arrayFodder = new ArrayList<>();
+        }
     }
 
     public void onAttach(Context context) {
@@ -55,21 +88,7 @@ public class fmLoad extends Fragment {
         loadList = (ListView) view.findViewById(R.id.loadList);
         butOpen = (Button) view.findViewById(R.id.butOpen);
         butDel = (Button) view.findViewById(R.id.butDel);
-        TextView2 = (TextView) view.findViewById(R.id.textView2);
-        arrayList = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            arrayList.add("ListView Items " + i);
-
-        }
-        try {
-            File f = new File(Environment.getRootDirectory().getAbsolutePath());
-            File[] list = f.listFiles();
-        }catch (Exception e) {}
-        TextView2.setText(context.getFilesDir().getAbsolutePath());
-        /*for (int i = 0; i < list.length; i++) {
-            arrayList.add(list[i].getName());
-        }*/
-        adapter = new ArrayAdapter<String>(this.context,android.R.layout.simple_list_item_single_choice,arrayList);
+        adapter = new ArrayAdapter<String>(this.context,android.R.layout.simple_list_item_single_choice,arrayFodder);
         loadList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         loadList.setAdapter(adapter);
 
@@ -85,13 +104,16 @@ public class fmLoad extends Fragment {
 
                         for(int i=itemCount-1; i >= 0; i--){
                             if(checkedItemPositions.get(i)){
-                                adapter.remove(arrayList.get(i));
-                                Toast.makeText(getContext(), "DELETE "+arrayList.get(i) , Toast.LENGTH_LONG).show();
+                                try {
+                                    adapter.remove(arrayFodder.get(i));
+                                    Toast.makeText(getContext(), "DELETE " + arrayFodder.get(i), Toast.LENGTH_LONG).show();
+                                }catch (Exception e){};
                             }
                         }
                         checkedItemPositions.clear();
                         adapter.notifyDataSetChanged();
                         //Toast.makeText(getContext(), "DELETE"+ , Toast.LENGTH_LONG).show();
+                        saveData();
                     }
                 });
             }

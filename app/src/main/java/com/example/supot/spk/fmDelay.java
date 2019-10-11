@@ -48,12 +48,15 @@ public class fmDelay extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fm_delay, container, false);
         swtest(view);
-        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
-        editor = sp.edit();
+        Shared();
         loadData();
         initDelayBar(view);
         initswLockdelayBar(view);
         return view;
+    }
+    private void Shared() {
+        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
+        editor = sp.edit();
     }
     private void swtest(View view) {
         b1 = (Button) view.findViewById(R.id.button1);
@@ -63,25 +66,33 @@ public class fmDelay extends Fragment {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.putString(Const.name,Const.sp_channel);
-                editor.commit();
+                sp = getActivity().getSharedPreferences(Const.name, Context.MODE_PRIVATE);
+                editor = sp.edit();
+               // editor.putString(Const.name,Const.sp_channel);
+                //editor.commit();
+                tv1.setText(sp.getString(Const.name, null));
+                delayBar1.setProgress(sp.getInt(Const.delay_bar_1,0));
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.putString(Const.name,"b1");
-                editor.commit();
+                sp = getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
+                editor = sp.edit();
+                //editor.putString(Const.name,"b1");
+               // editor.commit();
+                tv1.setText(sp.getString(Const.sp_channel, null));
+                delayBar1.setProgress(sp.getInt(Const.delay_bar_1,0));
             }
         });
-        b3.setOnClickListener(new View.OnClickListener() {
+        b3.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editor.putString(Const.name,"b2");
                 editor.commit();
+                tv1.setText(sp.getString(Const.name, null));
             }
         });
-        //tv1.setText(sp.getString(Const.name, null));
     }
     private void loadData() {
         Gson gson = new Gson();
@@ -136,7 +147,7 @@ public class fmDelay extends Fragment {
                 msView1.setText(progress + " ms");
                 mView1.setText(String.format("%.2f", progress * 0.343) + " m");
                 value = progress;
-                dataOutput = "D/" + progress;
+                dataOutput = "DELAY/" + progress;
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -169,7 +180,7 @@ public class fmDelay extends Fragment {
                 msView2.setText(progress+" ms");
                 mView2.setText(String.format("%.2f",progress*0.343)+" m");
                 value = progress;
-                dataOutput = "D/"+progress;
+                dataOutput = "DELAY/"+progress;
                 try {
                     for(int i = 0;i<arrayG2.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG2.get(i), Const.port);
@@ -197,7 +208,7 @@ public class fmDelay extends Fragment {
                 msView3.setText(progress+" ms");
                 mView3.setText(String.format("%.2f",progress*0.343)+" m");
                 value = progress;
-                dataOutput = "D/"+progress;
+                dataOutput = "DELAY/"+progress;
                 try {
                     for(int i = 0;i<arrayG3.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG3.get(i), Const.port);
@@ -225,7 +236,7 @@ public class fmDelay extends Fragment {
                 msView4.setText(progress+" ms");
                 mView4.setText(String.format("%.2f",progress*0.343)+" m");
                 value = progress;
-                dataOutput = "D/"+progress;
+                dataOutput = "DELAY/"+progress;
                 try {
                     for(int i = 0;i<arrayG4.size();i++) {
                         SimpleTcpClient.send(dataOutput, arrayG4.get(i), Const.port);

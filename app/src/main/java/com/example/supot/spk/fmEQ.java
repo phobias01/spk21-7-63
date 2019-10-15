@@ -544,22 +544,39 @@ public class fmEQ extends Fragment {
                     eqBar3.setProgress(150);
                     eqBar4.setProgress(150);
                     eqBar5.setProgress(150);
-                    eqBar_Master.setProgress(80);
-                    BarG1.setProgress(80);
-                    BarG2.setProgress(80);
-                    BarG3.setProgress(80);
-                    BarG4.setProgress(80);
+                    eqBar_Master.setProgress(0);
+                    BarG1.setProgress(0);
+                    BarG2.setProgress(0);
+                    BarG3.setProgress(0);
+                    BarG4.setProgress(0);
 
+                    spFrequencyEq1.setSelection(0);
+                    spFrequencyEq2.setSelection(0);
+                    spFrequencyEq3.setSelection(0);
+                    spFrequencyEq4.setSelection(0);
+                    spFrequencyEq5.setSelection(0);
+
+                    tvFq1.setText(arrayFrequency.get(0)+"Hz");
+                    tvFq2.setText(arrayFrequency2.get(0)+"Hz");
+                    tvFq3.setText(arrayFrequency3.get(0)+"Hz");
+                    tvFq4.setText(arrayFrequency4.get(0)+"Hz");
+                    tvFq5.setText(arrayFrequency5.get(0)+"Hz");
+
+                    editor.putInt(Const.position_EQ1,0);
+                    editor.putInt(Const.position_EQ2,0);
+                    editor.putInt(Const.position_EQ3,0);
+                    editor.putInt(Const.position_EQ4,0);
+                    editor.putInt(Const.position_EQ5,0);
                     editor.putInt(Const.master_eq_slide_value_1,150);
                     editor.putInt(Const.master_eq_slide_value_2,150);
                     editor.putInt(Const.master_eq_slide_value_3,150);
                     editor.putInt(Const.master_eq_slide_value_4,150);
                     editor.putInt(Const.master_eq_slide_value_5,150);
-                    editor.putInt(Const.master_eq_slide,80);
-                    editor.putInt(Const.group_value_1,80);
-                    editor.putInt(Const.group_value_2,80);
-                    editor.putInt(Const.group_value_3,80);
-                    editor.putInt(Const.group_value_4,80);
+                    editor.putInt(Const.master_eq_slide,0);
+                    editor.putInt(Const.group_value_1,0);
+                    editor.putInt(Const.group_value_2,0);
+                    editor.putInt(Const.group_value_3,0);
+                    editor.putInt(Const.group_value_4,0);
                     editor.commit();
                 }
             }
@@ -607,11 +624,10 @@ public class fmEQ extends Fragment {
         eqBar3.setProgress(sp.getInt(Const.master_eq_slide_value_3,150));
         eqBar4.setProgress(sp.getInt(Const.master_eq_slide_value_4,150));
         eqBar5.setProgress(sp.getInt(Const.master_eq_slide_value_5,150));
-        eqBar_Master.setProgress(sp.getInt(Const.master_eq_slide,80));
-        BarG1.setProgress(sp.getInt(Const.group_value_1,80));
-        BarG2.setProgress(sp.getInt(Const.group_value_2,80));
-        BarG3.setProgress(sp.getInt(Const.group_value_3,80));
-        BarG4.setProgress(sp.getInt(Const.group_value_4,80));
-
+        eqBar_Master.setProgress(sp.getInt(Const.master_eq_slide,0));
+        BarG1.setProgress(sp.getInt(Const.group_value_1,0));
+        BarG2.setProgress(sp.getInt(Const.group_value_2,0));
+        BarG3.setProgress(sp.getInt(Const.group_value_3,0));
+        BarG4.setProgress(sp.getInt(Const.group_value_4,0));
     }
 }

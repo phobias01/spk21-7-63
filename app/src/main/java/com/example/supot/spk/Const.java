@@ -94,5 +94,6 @@ public class Const {
     public static final String stuMuteAll = "stuMuteAll";
 
     public static final String check = "check";
+    public static final String reset = "reset";
 
 }

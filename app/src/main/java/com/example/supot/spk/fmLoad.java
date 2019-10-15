@@ -55,7 +55,7 @@ public class fmLoad extends Fragment {
         return view;
     }
     private void Shared() {
-        sp = this.getActivity().getSharedPreferences(Const.save_fodder, Context.MODE_PRIVATE);
+        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
         editor = sp.edit();
     }
     private void saveData() {
@@ -69,11 +69,9 @@ public class fmLoad extends Fragment {
     private void loadData() {
         Gson gson = new Gson();
         String jsonFodder = sp.getString(Const.fodder, null);
-
         Type type = new TypeToken<ArrayList>() {}.getType();
-
         arrayFodder = gson.fromJson(jsonFodder, type);
-
+        //Log.d("26J","load Fodder : "+arrayFodder);
         if (arrayFodder == null) {
             arrayFodder = new ArrayList<>();
         }
@@ -101,7 +99,6 @@ public class fmLoad extends Fragment {
 
                         SparseBooleanArray checkedItemPositions = loadList.getCheckedItemPositions();
                         int itemCount = adapter.getCount();
-
                         for(int i=itemCount-1; i >= 0; i--){
                             if(checkedItemPositions.get(i)){
                                 try {
@@ -112,8 +109,33 @@ public class fmLoad extends Fragment {
                         }
                         checkedItemPositions.clear();
                         adapter.notifyDataSetChanged();
-                        //Toast.makeText(getContext(), "DELETE"+ , Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getContext(), "DELETE", Toast.LENGTH_LONG).show();
                         saveData();
+                    }
+                });
+                butOpen.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        SparseBooleanArray checkedItemPositions = loadList.getCheckedItemPositions();
+                        int itemCount = adapter.getCount();
+                        for(int i=itemCount-1; i >= 0; i--){
+                            if(checkedItemPositions.get(i)){
+                                try {
+                                    editor.putString(Const.sp_channel,  arrayFodder.get(i));
+                                    editor.commit();
+                                    Log.d("26J","load : "+arrayFodder.get(i));
+                                }catch (Exception e){};
+                            }
+                        }
+                        checkedItemPositions.clear();
+                        adapter.notifyDataSetChanged();
+                        //Toast.makeText(getContext(), "DELETE", Toast.LENGTH_LONG).show();
+                        saveData();
+                        getActivity().getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.maincontent, new fmSetspk())
+                                .commit();
                     }
                 });
             }

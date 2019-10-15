@@ -57,6 +57,8 @@ public class fmDelay extends Fragment {
     private void Shared() {
         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
         editor = sp.edit();
+
+
     }
     private void swtest(View view) {
         b1 = (Button) view.findViewById(R.id.button1);
@@ -68,9 +70,7 @@ public class fmDelay extends Fragment {
             public void onClick(View v) {
                 sp = getActivity().getSharedPreferences(Const.name, Context.MODE_PRIVATE);
                 editor = sp.edit();
-               // editor.putString(Const.name,Const.sp_channel);
-                //editor.commit();
-                tv1.setText(sp.getString(Const.name, null));
+                tv1.setText("b1");
                 delayBar1.setProgress(sp.getInt(Const.delay_bar_1,0));
             }
         });
@@ -79,9 +79,7 @@ public class fmDelay extends Fragment {
             public void onClick(View v) {
                 sp = getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
                 editor = sp.edit();
-                //editor.putString(Const.name,"b1");
-               // editor.commit();
-                tv1.setText(sp.getString(Const.sp_channel, null));
+                tv1.setText("b2");
                 delayBar1.setProgress(sp.getInt(Const.delay_bar_1,0));
             }
         });

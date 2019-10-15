@@ -3,6 +3,7 @@ package com.example.supot.spk;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -107,6 +108,14 @@ public class fmCrossover extends Fragment {
         crossoverBar3 = (RangeSeekBar)view.findViewById(R.id.crossoverBar3);
         crossoverBar4 = (RangeSeekBar)view.findViewById(R.id.crossoverBar4);
         initsetCrossBar();
+        crossoverBar1.setProgressDefaultColor(getResources().getColor(R.color.colorAccent));
+        crossoverBar1.setProgressColor(getResources().getColor(R.color.rsbColorSeekBarDefault));
+        crossoverBar2.setProgressDefaultColor(getResources().getColor(R.color.colorAccent));
+        crossoverBar2.setProgressColor(getResources().getColor(R.color.rsbColorSeekBarDefault));
+        crossoverBar3.setProgressDefaultColor(getResources().getColor(R.color.colorAccent));
+        crossoverBar3.setProgressColor(getResources().getColor(R.color.rsbColorSeekBarDefault));
+        crossoverBar4.setProgressDefaultColor(getResources().getColor(R.color.colorAccent));
+        crossoverBar4.setProgressColor(getResources().getColor(R.color.rsbColorSeekBarDefault));
         crossoverBar1.setOnRangeChangedListener(new OnRangeChangedListener() {
             int Lvalue1=0;
             int Rvalue1=0;
@@ -121,7 +130,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG1.size(); i++) {
                             SimpleTcpClient.send(dataOutput1, arrayG1.get(i), Const.port);
-                            Log.d("26J", "Cross Bar 1 : " + arrayG1.get(i) + "/" + dataOutput1);
+                            //Log.d("26J", "Cross Bar 1 : " + arrayG1.get(i) + "/" + dataOutput1);
                         }
                     }catch (Exception e){}
                 }
@@ -130,7 +139,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG1.size(); i++) {
                             SimpleTcpClient.send(dataOutput2, arrayG1.get(i), Const.port);
-                            Log.d("26J", "Cross Bar 1 : " + arrayG1.get(i) + "/" + dataOutput2);
+                            //Log.d("26J", "Cross Bar 1 : " + arrayG1.get(i) + "/" + dataOutput2);
                         }
                     }catch (Exception e){}
                 }
@@ -163,7 +172,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG2.size(); i++) {
                             SimpleTcpClient.send(dataOutput1, arrayG2.get(i), Const.port);
-                            Log.d("26J", "Cross Bar 2 : " + arrayG2.get(i) + "/" + dataOutput1);
+                            //Log.d("26J", "Cross Bar 2 : " + arrayG2.get(i) + "/" + dataOutput1);
                         }
                     }catch (Exception e){}
                 }
@@ -172,7 +181,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG2.size(); i++) {
                             SimpleTcpClient.send(dataOutput2, arrayG2.get(i), Const.port);
-                            Log.d("26J", "Cross Bar 2 : " + arrayG2.get(i) + "/" + dataOutput2);
+                            //Log.d("26J", "Cross Bar 2 : " + arrayG2.get(i) + "/" + dataOutput2);
                         }
                     }catch (Exception e){}
                 }
@@ -205,7 +214,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG3.size(); i++) {
                             SimpleTcpClient.send(dataOutput1, arrayG3.get(i), Const.port);
-                            Log.d("26J", "Cross Bar 3 : " + arrayG3.get(i) + "/" + dataOutput1);
+                            //Log.d("26J", "Cross Bar 3 : " + arrayG3.get(i) + "/" + dataOutput1);
                         }
                     }catch (Exception e){}
                 }
@@ -214,7 +223,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG3.size(); i++) {
                             SimpleTcpClient.send(dataOutput2, arrayG3.get(i), Const.port);
-                            Log.d("26J", "Cross Bar 3 : " + arrayG3.get(i) + "/" + dataOutput2);
+                            //Log.d("26J", "Cross Bar 3 : " + arrayG3.get(i) + "/" + dataOutput2);
                         }
                     }catch (Exception e){}
                 }
@@ -247,7 +256,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG4.size(); i++) {
                             SimpleTcpClient.send(dataOutput1, arrayG4.get(i), Const.port);
-                            Log.d("26J", "Cross Bar : 4 " + arrayG4.get(i) + "/" + dataOutput1);
+                            //Log.d("26J", "Cross Bar : 4 " + arrayG4.get(i) + "/" + dataOutput1);
                         }
                     }catch (Exception e){}
                 }
@@ -256,7 +265,7 @@ public class fmCrossover extends Fragment {
                     try {
                         for (int i = 0; i < arrayG4.size(); i++) {
                             SimpleTcpClient.send(dataOutput2, arrayG4.get(i), Const.port);
-                            Log.d("26J", "Cross Bar 4 : " + arrayG4.get(i) + "/" + dataOutput2);
+                            //Log.d("26J", "Cross Bar 4 : " + arrayG4.get(i) + "/" + dataOutput2);
                         }
                     }catch (Exception e){}
                 }
@@ -319,8 +328,8 @@ public class fmCrossover extends Fragment {
                                     for (int i = 0; i < arrayG1.size(); i++) {
                                         SimpleTcpClient.send(dataOutput1, arrayG1.get(i), Const.port);
                                         SimpleTcpClient.send(dataOutput2, arrayG1.get(i), Const.port);
-                                        Log.d("26J", "Cross Bar 1: " + arrayG1.get(i) + "/" + dataOutput1);
-                                        Log.d("26J", "Cross Bar 1: " + arrayG1.get(i) + "/" + dataOutput2);
+                                        //Log.d("26J", "Cross Bar 1: " + arrayG1.get(i) + "/" + dataOutput1);
+                                        //Log.d("26J", "Cross Bar 1: " + arrayG1.get(i) + "/" + dataOutput2);
                                     }
                                 }
                             } else {
@@ -341,8 +350,8 @@ public class fmCrossover extends Fragment {
                                     for (int i = 0; i < arrayG2.size(); i++) {
                                         SimpleTcpClient.send(dataOutput1, arrayG2.get(i), Const.port);
                                         SimpleTcpClient.send(dataOutput2, arrayG2.get(i), Const.port);
-                                        Log.d("26J", "Cross Bar 2: " + arrayG2.get(i) + "/" + dataOutput1);
-                                        Log.d("26J", "Cross Bar 2: " + arrayG2.get(i) + "/" + dataOutput2);
+                                        //Log.d("26J", "Cross Bar 2: " + arrayG2.get(i) + "/" + dataOutput1);
+                                        //Log.d("26J", "Cross Bar 2: " + arrayG2.get(i) + "/" + dataOutput2);
                                     }
                                 }
                             } else {
@@ -363,8 +372,8 @@ public class fmCrossover extends Fragment {
                                     for (int i = 0; i < arrayG3.size(); i++) {
                                         SimpleTcpClient.send(dataOutput1, arrayG3.get(i), Const.port);
                                         SimpleTcpClient.send(dataOutput2, arrayG3.get(i), Const.port);
-                                        Log.d("26J", "Cross Bar 3: " + arrayG3.get(i) + "/" + dataOutput1);
-                                        Log.d("26J", "Cross Bar 3: " + arrayG3.get(i) + "/" + dataOutput2);
+                                        //Log.d("26J", "Cross Bar 3: " + arrayG3.get(i) + "/" + dataOutput1);
+                                        //Log.d("26J", "Cross Bar 3: " + arrayG3.get(i) + "/" + dataOutput2);
                                     }
                                 }
                             } else {
@@ -385,8 +394,8 @@ public class fmCrossover extends Fragment {
                                     for (int i = 0; i < arrayG4.size(); i++) {
                                         SimpleTcpClient.send(dataOutput1, arrayG4.get(i), Const.port);
                                         SimpleTcpClient.send(dataOutput2, arrayG4.get(i), Const.port);
-                                        Log.d("26J", "Cross Bar 4: " + arrayG4.get(i) + "/" + dataOutput1);
-                                        Log.d("26J", "Cross Bar 4: " + arrayG4.get(i) + "/" + dataOutput2);
+                                        //Log.d("26J", "Cross Bar 4: " + arrayG4.get(i) + "/" + dataOutput1);
+                                        //Log.d("26J", "Cross Bar 4: " + arrayG4.get(i) + "/" + dataOutput2);
                                     }
                                 }
                             } else {

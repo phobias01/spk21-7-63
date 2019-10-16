@@ -59,8 +59,7 @@ public class fmCrossover extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fm_crossover, container, false);
-        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
-        editor = sp.edit();
+        Shared();
         loadData();
         initCrossoverBar(view);
         initswLockdelayBar(view);
@@ -68,6 +67,14 @@ public class fmCrossover extends Fragment {
         return view;
 
     }
+
+    private void Shared() {
+        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
+        editor = sp.edit();
+        sp = this.getActivity().getSharedPreferences(sp.getString(Const.sp_channel,null), Context.MODE_PRIVATE);
+        editor = sp.edit();
+    }
+
     private void loadData() {
         Gson gson = new Gson();
         String json1 = sp.getString(Const.list_IpG1, null);

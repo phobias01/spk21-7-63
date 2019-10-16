@@ -54,12 +54,19 @@ public class fmSetspk extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fm_setspk, container, false);
-        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
-        editor = sp.edit();
+        Shared();
         PBload = (ProgressBar) view.findViewById(R.id.progressBar);
         loadData();
         initsetNumIP(view);
         return view;
+    }
+
+    private void Shared() {
+        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
+        editor = sp.edit();
+        //Log.d("26J","spkload : "+sp.getString(Const.sp_channel,null));
+        sp = this.getActivity().getSharedPreferences(sp.getString(Const.sp_channel,null), Context.MODE_PRIVATE);
+        editor = sp.edit();
     }
 
     private void saveData() {

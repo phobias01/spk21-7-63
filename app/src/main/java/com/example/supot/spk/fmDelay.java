@@ -36,7 +36,6 @@ public class fmDelay extends Fragment {
     private SeekBar delayBar1,delayBar2,delayBar3,delayBar4;
     private TextView msView1,msView2,msView3,msView4,mView1,mView2,mView3,mView4,tv1;
     private Switch swG1,swG2,swG3,swG4;
-    private Button b1,b2,b3;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
     private String dataOutput = null;
@@ -47,7 +46,6 @@ public class fmDelay extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fm_delay, container, false);
-        swtest(view);
         Shared();
         loadData();
         initDelayBar(view);
@@ -57,41 +55,11 @@ public class fmDelay extends Fragment {
     private void Shared() {
         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
         editor = sp.edit();
-
-
+        String folder = sp.getString(Const.sp_channel,null);
+        sp = this.getActivity().getSharedPreferences(folder, Context.MODE_PRIVATE);
+        editor = sp.edit();
     }
-    private void swtest(View view) {
-        b1 = (Button) view.findViewById(R.id.button1);
-        b2 = (Button) view.findViewById(R.id.button2);
-        b3 = (Button) view.findViewById(R.id.button3);
-        tv1 = (TextView) view.findViewById(R.id.textView26);
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sp = getActivity().getSharedPreferences(Const.name, Context.MODE_PRIVATE);
-                editor = sp.edit();
-                tv1.setText("b1");
-                delayBar1.setProgress(sp.getInt(Const.delay_bar_1,0));
-            }
-        });
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sp = getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
-                editor = sp.edit();
-                tv1.setText("b2");
-                delayBar1.setProgress(sp.getInt(Const.delay_bar_1,0));
-            }
-        });
-        b3.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.putString(Const.name,"b2");
-                editor.commit();
-                tv1.setText(sp.getString(Const.name, null));
-            }
-        });
-    }
+
     private void loadData() {
         Gson gson = new Gson();
         String json1 = sp.getString(Const.list_IpG1, null);
@@ -117,10 +85,10 @@ public class fmDelay extends Fragment {
         if (arrayG4 == null) {
             arrayG4 = new ArrayList<>();
         }
-        Log.d("26J", "arrayG1 : " + arrayG1);
+        /*Log.d("26J", "arrayG1 : " + arrayG1);
         Log.d("26J", "arrayG2 : " + arrayG2);
         Log.d("26J", "arrayG3 : " + arrayG3);
-        Log.d("26J", "arrayG4 : " + arrayG4);
+        Log.d("26J", "arrayG4 : " + arrayG4);*/
     }
     private void initDelayBar(View view){
         delayBar1 = (SeekBar) view.findViewById(R.id.delayBar1);
@@ -152,6 +120,7 @@ public class fmDelay extends Fragment {
                         try {
                             for (int i = 0; i < arrayG1.size(); i++) {
                                 SimpleTcpClient.send(dataOutput, arrayG1.get(i), Const.port);
+                               // Log.d("26J","delayload : "+sp.getString(Const.sp_channel,null));
                                 //Log.d("26J", "Delay Bar 1: " + arrayG1.get(i) + "/" + dataOutput);
                             }
                         }catch (Exception e){}

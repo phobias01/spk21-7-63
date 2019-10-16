@@ -50,8 +50,7 @@ public class fmEQ extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fm_eq, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("EQUALIZER");
-        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
-        editor = sp.edit();
+        Shared();
         loadData();
         initEq(view);
         createFrequency(view);
@@ -71,6 +70,14 @@ public class fmEQ extends Fragment {
         }
         return view;
     }
+
+    private void Shared() {
+        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
+        editor = sp.edit();
+        sp = this.getActivity().getSharedPreferences(sp.getString(Const.sp_channel,null), Context.MODE_PRIVATE);
+        editor = sp.edit();
+    }
+
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
@@ -572,6 +579,11 @@ public class fmEQ extends Fragment {
                     editor.putInt(Const.master_eq_slide_value_3,150);
                     editor.putInt(Const.master_eq_slide_value_4,150);
                     editor.putInt(Const.master_eq_slide_value_5,150);
+                    editor.putString(Const.master_eq_slide_value_1_string,"EQ1/F/32/V/0.00");
+                    editor.putString(Const.master_eq_slide_value_2_string,"EQ2/F/125/V/0.00");
+                    editor.putString(Const.master_eq_slide_value_3_string,"EQ3/F/500/V/0.00");
+                    editor.putString(Const.master_eq_slide_value_4_string,"EQ4/F/2000/V/0.00");
+                    editor.putString(Const.master_eq_slide_value_5_string,"EQ5/F/8000/V/0.00");
                     editor.putInt(Const.master_eq_slide,0);
                     editor.putInt(Const.group_value_1,0);
                     editor.putInt(Const.group_value_2,0);

@@ -52,8 +52,7 @@ public class fmHome extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fm_home, container, false);
-        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
-        editor = sp.edit();
+        Shared();
         loadData();
         initmasterBar(view);
         initmanegeGroup(view);
@@ -61,6 +60,14 @@ public class fmHome extends Fragment {
         adapterSpk.notifyDataSetChanged();
         return view;
     }
+
+    private void Shared() {
+        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
+        editor = sp.edit();
+        sp = this.getActivity().getSharedPreferences(sp.getString(Const.sp_channel,null), Context.MODE_PRIVATE);
+        editor = sp.edit();
+    }
+
     public void initbuttonMute(View view){
         final String dataOutput1 = "MUTE";
         final String dataOutput2 = "UNMUTE";
@@ -210,15 +217,27 @@ public class fmHome extends Fragment {
         });
         if(isOnMuteAll == sp.getBoolean(Const.stuMuteAll,true)) {
             butMuteAll.setBackgroundColor(getResources().getColor(R.color.color3));
+            butMute1.setEnabled(true);
+            butMute2.setEnabled(true);
+            butMute3.setEnabled(true);
+            butMute4.setEnabled(true);
             isOnMuteAll = true;
         }else {
             butMuteAll.setBackgroundColor(getResources().getColor(R.color.color5));
+            butMute1.setEnabled(false);
+            butMute2.setEnabled(false);
+            butMute3.setEnabled(false);
+            butMute4.setEnabled(false);
             isOnMuteAll = false;
         }
         butMuteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isOnMuteAll==true) {
+                    butMute1.setEnabled(false);
+                    butMute2.setEnabled(false);
+                    butMute3.setEnabled(false);
+                    butMute4.setEnabled(false);
                     try {
                         for (int i = 0; i < arrayAllIp.size(); i++) {
                             SimpleTcpClient.send(dataOutput1, arrayAllIp.get(i), Const.port);
@@ -230,6 +249,10 @@ public class fmHome extends Fragment {
                     editor.putBoolean(Const.stuMuteAll,isOnMuteAll);
                     editor.commit();
                 }else{
+                    butMute1.setEnabled(true);
+                    butMute2.setEnabled(true);
+                    butMute3.setEnabled(true);
+                    butMute4.setEnabled(true);
                     try {
                         for (int i = 0; i < arrayAllIp.size(); i++) {
                             SimpleTcpClient.send(dataOutput2, arrayAllIp.get(i), Const.port);

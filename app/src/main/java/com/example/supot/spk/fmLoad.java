@@ -201,11 +201,11 @@ public class fmLoad extends Fragment {
         int maxValue2 = sp.getInt(Const.crossover_max2,20000);
         int maxValue3 = sp.getInt(Const.crossover_max3,20000);
         int maxValue4 = sp.getInt(Const.crossover_max4,20000);
-        String eq1 = sp.getString(Const.master_eq_slide_value_1_string,null);
-        String eq2 = sp.getString(Const.master_eq_slide_value_2_string,null);
-        String eq3 = sp.getString(Const.master_eq_slide_value_3_string,null);
-        String eq4 = sp.getString(Const.master_eq_slide_value_4_string,null);
-        String eq5 = sp.getString(Const.master_eq_slide_value_5_string,null);
+        String eq1 = sp.getString(Const.master_eq_slide_value_1_string,"EQ1/F/32/V/0.00");
+        String eq2 = sp.getString(Const.master_eq_slide_value_2_string,"EQ2/F/125/V/0.00");
+        String eq3 = sp.getString(Const.master_eq_slide_value_3_string,"EQ3/F/500/V/0.00");
+        String eq4 = sp.getString(Const.master_eq_slide_value_4_string,"EQ4/F/2000/V/0.00");
+        String eq5 = sp.getString(Const.master_eq_slide_value_5_string,"EQ5/F/8000/V/0.00");
         int MasterAll = sp.getInt(Const.master_eq_slide,0);
         int Master1 = sp.getInt(Const.group_value_1,0);
         int Master2 = sp.getInt(Const.group_value_2,0);
@@ -311,6 +311,7 @@ public class fmLoad extends Fragment {
                             if(checkedItemPositions.get(i)){
                                 try {
                                     adapter.remove(arrayFodder.get(i));
+                                    editor.remove(arrayFodder.get(i));
                                     Toast.makeText(getContext(), "DELETE " + arrayFodder.get(i), Toast.LENGTH_LONG).show();
                                 }catch (Exception e){};
                             }

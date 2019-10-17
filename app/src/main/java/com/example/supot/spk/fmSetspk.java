@@ -40,7 +40,7 @@ public class fmSetspk extends Fragment {
     }
     private ProgressBar PBload;
     private ArrayAdapter adapterIp,adapterNum,adapterlistIN;
-    private ArrayList<String> arrayIp,arrayNum,arraylistIN,arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4,arrayIpG1,arrayIpG2,arrayIpG3,arrayIpG4;
+    private ArrayList<String> arrayIp,arrayNum,arraylistIN,arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4,arrayIpG1,arrayIpG2,arrayIpG3,arrayIpG4,arrayFodder;
     private ListView listSetspk;
     private Button butSetnum,butScan;
     private Spinner spinIP, spinNum;
@@ -65,8 +65,25 @@ public class fmSetspk extends Fragment {
         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
         editor = sp.edit();
         //Log.d("26J","spkload : "+sp.getString(Const.sp_channel,null));
+        loadFodder();
+        if(arrayFodder.size()==0){
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.maincontent, new fmNew())
+                    .commit();
+        }
         sp = this.getActivity().getSharedPreferences(sp.getString(Const.sp_channel,null), Context.MODE_PRIVATE);
         editor = sp.edit();
+    }
+    private void loadFodder(){
+        Gson gson = new Gson();
+        String jsonFodder = sp.getString(Const.fodder, null);
+        Type type = new TypeToken<ArrayList>() {}.getType();
+        arrayFodder = gson.fromJson(jsonFodder, type);
+        if (arrayFodder == null) {
+            arrayFodder = new ArrayList<>();
+        }
+        // Log.d("26J","load Fodder : "+arrayFodder);
     }
 
     private void saveData() {

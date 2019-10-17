@@ -36,6 +36,11 @@ public class Const {
     public static final String delay_bar_3 = "delay_bar_3";
     public static final String delay_bar_4 = "delay_bar_4";
 
+    public static final String delay_bar_1_float = "delay_bar_1_float";
+    public static final String delay_bar_2_float = "delay_bar_2_float";
+    public static final String delay_bar_3_float = "delay_bar_3_float";
+    public static final String delay_bar_4_float = "delay_bar_4_float";
+
     public static final String group_value_1 = "group_value_1";
     public static final String group_value_2 = "group_value_2";
     public static final String group_value_3 = "group_value_3";

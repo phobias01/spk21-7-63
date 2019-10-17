@@ -189,10 +189,10 @@ public class fmLoad extends Fragment {
     private void sentData() {
         sp = getActivity().getSharedPreferences(sp.getString(Const.sp_channel,null), Context.MODE_PRIVATE);
         loadData();
-        int delay1 = sp.getInt(Const.delay_bar_1,0);
-        int delay2 = sp.getInt(Const.delay_bar_2,0);
-        int delay3 = sp.getInt(Const.delay_bar_3,0);
-        int delay4 = sp.getInt(Const.delay_bar_4,0);
+        Float delay1 = sp.getFloat(Const.delay_bar_1_float,0);
+        Float delay2 = sp.getFloat(Const.delay_bar_2_float,0);
+        Float delay3 = sp.getFloat(Const.delay_bar_3_float,0);
+        Float delay4 = sp.getFloat(Const.delay_bar_4_float,0);
         int minValue1 = sp.getInt(Const.crossover_min1,20);
         int minValue2 = sp.getInt(Const.crossover_min2,20);
         int minValue3 = sp.getInt(Const.crossover_min3,20);
@@ -258,25 +258,25 @@ public class fmLoad extends Fragment {
 
             }
             for(int i = 0;i<arrayG1.size();i++) {
-                SimpleTcpClient.send("DELAY/"+delay1, arrayIpG1.get(i), Const.port);
+                SimpleTcpClient.send(String.format("DELAY/%.2f",delay1), arrayIpG1.get(i), Const.port);
                 SimpleTcpClient.send("LF/F/"+minValue1, arrayIpG1.get(i), Const.port);
                 SimpleTcpClient.send("HF/F/"+maxValue1, arrayIpG1.get(i), Const.port);
                 SimpleTcpClient.send(homeMute1, arrayIpG1.get(i), Const.port);
             }
             for(int i = 0;i<arrayG2.size();i++) {
-                SimpleTcpClient.send("DELAY/"+delay2, arrayIpG2.get(i), Const.port);
+                SimpleTcpClient.send(String.format("DELAY/%.2f",delay2), arrayIpG2.get(i), Const.port);
                 SimpleTcpClient.send("LF/F/"+minValue2, arrayIpG2.get(i), Const.port);
                 SimpleTcpClient.send("HF/F/"+maxValue2, arrayIpG2.get(i), Const.port);
                 SimpleTcpClient.send(homeMute2, arrayIpG2.get(i), Const.port);
             }
             for(int i = 0;i<arrayG3.size();i++) {
-                SimpleTcpClient.send("DELAY/"+delay3, arrayIpG3.get(i), Const.port);
+                SimpleTcpClient.send(String.format("DELAY/%.2f",delay3), arrayIpG3.get(i), Const.port);
                 SimpleTcpClient.send("LF/F/"+minValue3, arrayIpG3.get(i), Const.port);
                 SimpleTcpClient.send("HF/F/"+maxValue3, arrayIpG3.get(i), Const.port);
                 SimpleTcpClient.send(homeMute3, arrayIpG3.get(i), Const.port);
             }
             for(int i = 0;i<arrayG4.size();i++) {
-                SimpleTcpClient.send("DELAY/"+delay4, arrayIpG4.get(i), Const.port);
+                SimpleTcpClient.send(String.format("DELAY/%.2f",delay4), arrayIpG4.get(i), Const.port);
                 SimpleTcpClient.send("LF/F/"+minValue4, arrayIpG4.get(i), Const.port);
                 SimpleTcpClient.send("HF/F/"+maxValue4, arrayIpG4.get(i), Const.port);
                 SimpleTcpClient.send(homeMute4, arrayIpG4.get(i), Const.port);

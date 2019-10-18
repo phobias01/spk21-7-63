@@ -354,17 +354,12 @@ public class fmEQ extends Fragment {
                 }else {
                     dataOutput = String.format("EQ5/F/8000/V/%.2f", progressChanged);
                 }
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            for (int i = 0; i < arrayAllIp.size(); i++) {
-                                SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
-                                //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
-                            }
-                        }catch (Exception e) {}
+                try {
+                    for (int i = 0; i < arrayAllIp.size(); i++) {
+                        SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
+                        //Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + dataOutput);
                     }
-                }).start();
+                }catch (Exception e) {}
             }
 
             @Override
@@ -436,6 +431,7 @@ public class fmEQ extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 editor.putInt(Const.group_value_1,value);
+                editor.putString(Const.group_value_1_string,dataOutput);
                 editor.commit();
             }
         });
@@ -464,6 +460,7 @@ public class fmEQ extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 editor.putInt(Const.group_value_2,value);
+                editor.putString(Const.group_value_2_string,dataOutput);
                 editor.commit();
             }
         });
@@ -492,6 +489,7 @@ public class fmEQ extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 editor.putInt(Const.group_value_3,value);
+                editor.putString(Const.group_value_3_string,dataOutput);
                 editor.commit();
             }
         });
@@ -520,6 +518,7 @@ public class fmEQ extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 editor.putInt(Const.group_value_4,value);
+                editor.putString(Const.group_value_4_string,dataOutput);
                 editor.commit();
             }
         });

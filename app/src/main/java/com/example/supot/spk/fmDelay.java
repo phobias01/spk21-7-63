@@ -111,10 +111,10 @@ public class fmDelay extends Fragment {
             int value;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                progressChanged = Float.valueOf(progress)*0.1f;
+                progressChanged = Float.valueOf(progress*0.1f);
                 value = progress;
-                msView1.setText(String.format("%.2f",progressChanged) + " ms");
-                mView1.setText(String.format("%.2f", progressChanged * 0.343) + " m");
+                msView1.setText(String.format("%.2f", progressChanged-0.1) + " ms");
+                mView1.setText(String.format("%.2f", (progressChanged-0.1) * 0.343) + " m");
                 dataOutput = String.format("DELAY/%.2f",progressChanged);
                 new Thread(new Runnable() {
                     @Override
@@ -150,8 +150,8 @@ public class fmDelay extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChanged = Float.valueOf(progress)*0.1f;
                 value = progress;
-                msView2.setText(String.format("%.2f",progressChanged) + " ms");
-                mView2.setText(String.format("%.2f", progressChanged * 0.343) + " m");
+                msView2.setText(String.format("%.2f",progressChanged-0.1) + " ms");
+                mView2.setText(String.format("%.2f", (progressChanged-0.1) * 0.343) + " m");
                 dataOutput = String.format("DELAY/%.2f",progressChanged);
                 try {
                     for(int i = 0;i<arrayG2.size();i++) {
@@ -181,8 +181,8 @@ public class fmDelay extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChanged = Float.valueOf(progress)*0.1f;
                 value = progress;
-                msView3.setText(String.format("%.2f",progressChanged) + " ms");
-                mView3.setText(String.format("%.2f", progressChanged * 0.343) + " m");
+                msView3.setText(String.format("%.2f",progressChanged-0.1) + " ms");
+                mView3.setText(String.format("%.2f", (progressChanged-0.1)* 0.343) + " m");
                 dataOutput = String.format("DELAY/%.2f",progressChanged);
                 try {
                     for(int i = 0;i<arrayG3.size();i++) {
@@ -212,8 +212,8 @@ public class fmDelay extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChanged = Float.valueOf(progress)*0.1f;
                 value = progress;
-                msView4.setText(String.format("%.2f",progressChanged) + " ms");
-                mView4.setText(String.format("%.2f", progressChanged * 0.343) + " m");
+                msView4.setText(String.format("%.2f", progressChanged-0.1) + " ms");
+                mView4.setText(String.format("%.2f", (progressChanged-0.1) * 0.343) + " m");
                 dataOutput = String.format("DELAY/%.2f",progressChanged);
                 try {
                     for(int i = 0;i<arrayG4.size();i++) {
@@ -295,30 +295,34 @@ public class fmDelay extends Fragment {
         });
     }
     private void initsetDelayBar(){
-        delayBar1.setMax(100);
-        delayBar2.setMax(100);
-        delayBar3.setMax(100);
-        delayBar4.setMax(100);
+        delayBar1.setMin(1);
+        delayBar2.setMin(1);
+        delayBar3.setMin(1);
+        delayBar4.setMin(1);
+        delayBar1.setMax(105);
+        delayBar2.setMax(105);
+        delayBar3.setMax(105);
+        delayBar4.setMax(105);
 
-        delayBar1.setProgress(sp.getInt(Const.delay_bar_1,0));
-        delayBar2.setProgress(sp.getInt(Const.delay_bar_2,0));
-        delayBar3.setProgress(sp.getInt(Const.delay_bar_3,0));
-        delayBar4.setProgress(sp.getInt(Const.delay_bar_4,0));
+        delayBar1.setProgress(sp.getInt(Const.delay_bar_1,1));
+        delayBar2.setProgress(sp.getInt(Const.delay_bar_2,1));
+        delayBar3.setProgress(sp.getInt(Const.delay_bar_3,1));
+        delayBar4.setProgress(sp.getInt(Const.delay_bar_4,1));
 
-        float saveProgress1 = sp.getFloat(Const.delay_bar_1_float,0);
-        float saveProgress2 = sp.getFloat(Const.delay_bar_2_float,0);
-        float saveProgress3 = sp.getFloat(Const.delay_bar_3_float,0);
-        float saveProgress4 = sp.getFloat(Const.delay_bar_4_float,0);
+        float saveProgress1 = sp.getFloat(Const.delay_bar_1_float,1);
+        float saveProgress2 = sp.getFloat(Const.delay_bar_2_float,1);
+        float saveProgress3 = sp.getFloat(Const.delay_bar_3_float,1);
+        float saveProgress4 = sp.getFloat(Const.delay_bar_4_float,1);
 
 
-        msView1.setText(String.format("%.2f",saveProgress1)+" ms");
-        mView1.setText(String.format("%.2f",saveProgress1*0.343)+" m");
-        msView2.setText(String.format("%.2f",saveProgress2)+" ms");
-        mView2.setText(String.format("%.2f",saveProgress2*0.343)+" m");
-        msView3.setText(String.format("%.2f",saveProgress3)+" ms");;
-        mView3.setText(String.format("%.2f",saveProgress3*0.343)+" m");
-        msView4.setText(String.format("%.2f",saveProgress4)+" ms");
-        mView4.setText(String.format("%.2f",saveProgress4*0.343)+" m");
+        msView1.setText(String.format("%.2f",saveProgress1-0.1)+" ms");
+        mView1.setText(String.format("%.2f",(saveProgress1-0.1)*0.343)+" m");
+        msView2.setText(String.format("%.2f",saveProgress2-0.1)+" ms");
+        mView2.setText(String.format("%.2f",(saveProgress2-0.1)*0.343)+" m");
+        msView3.setText(String.format("%.2f",saveProgress3-0.1)+" ms");;
+        mView3.setText(String.format("%.2f",(saveProgress3-0.1)*0.343)+" m");
+        msView4.setText(String.format("%.2f",saveProgress4-0.1)+" ms");
+        mView4.setText(String.format("%.2f",(saveProgress4-0.1)*0.343)+" m");
     }
     private void initsetSwitchDelay() {
         swG1.setChecked(sp.getBoolean(Const.switch_delay_1, false));

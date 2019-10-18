@@ -46,6 +46,11 @@ public class Const {
     public static final String group_value_3 = "group_value_3";
     public static final String group_value_4 = "group_value_4";
 
+    public static final String group_value_1_string = "group_value_1_string";
+    public static final String group_value_2_string = "group_value_2_string";
+    public static final String group_value_3_string = "group_value_3_string";
+    public static final String group_value_4_string = "group_value_4_string";
+
     public static final String switch_delay_1 = "switch_delay_1";
     public static final String switch_delay_2 = "switch_delay_2";
     public static final String switch_delay_3 = "switch_delay_3";

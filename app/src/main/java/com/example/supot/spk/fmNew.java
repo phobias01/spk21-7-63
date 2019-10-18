@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.akexorcist.simpletcp.SimpleTcpClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -58,6 +59,39 @@ public class fmNew extends Fragment {
         editor = sp.edit();
     }
 
+    private void sent() {
+        //Log.d("26J", "sent");
+        final String eq1 = "EQ1/F/32" + "/V/0.00";
+        final String eq2 = "EQ2/F/125" + "/V/0.00";
+        final String eq3 = "EQ3/F/500" + "/V/0.00";
+        final String eq4 = "EQ4/F/2000" + "/V/0.00";
+        final String eq5 = "EQ5/F/8000" + "/V/0.00";
+        final String master = "MASTERVOL/-80";
+        final String delay = "DELAY/0.01";
+        final String crossLF = "LF/F/20";
+        final String crossHF = "HF/F/20000";
+        final String unmute = "UNMUTE";
+        final String unconnect = "UNCONNECT";
+       // Log.d("26J", "EQ : " + arrayAllIp.get(1) + "/" + eq1);
+        try {
+            for (int i = 0; i < arrayAllIp.size(); i++) {
+                SimpleTcpClient.send(eq1, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(eq2, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(eq3, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(eq4, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(eq5, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(master, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(delay, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(crossLF, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(crossHF, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(unmute, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(unconnect, arrayAllIp.get(i), Const.port);
+                //  Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + eq1);
+            }
+        }catch (Exception e) {}
+    }
+
+
     private void initView(View view) {
         butConfirm = (Button) view.findViewById(R.id.butConfirm);
         etName = (EditText) view.findViewById(R.id.etName);
@@ -82,6 +116,7 @@ public class fmNew extends Fragment {
                             editor.putString(Const.sp_channel,value);
                             editor.commit();
                             saveData();
+                            sent();
                             resetData();
                             getActivity().getSupportFragmentManager()
                                     .beginTransaction()
@@ -94,6 +129,7 @@ public class fmNew extends Fragment {
                         editor.putString(Const.sp_channel,value);
                         editor.commit();
                         saveData();
+                        sent();
                         resetData();
                         getActivity().getSupportFragmentManager()
                                 .beginTransaction()

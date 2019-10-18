@@ -340,7 +340,7 @@ public class fmCrossover extends Fragment {
                                     }
                                 }
                             } else {
-                                Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please enter a LF value to be less than the HF value.", Toast.LENGTH_SHORT).show();
                             }
                             break;
                         case 1:
@@ -362,7 +362,7 @@ public class fmCrossover extends Fragment {
                                     }
                                 }
                             } else {
-                                Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please enter a LF value to be less than the HF value.", Toast.LENGTH_SHORT).show();
                             }
                             break;
                         case 2:
@@ -384,7 +384,7 @@ public class fmCrossover extends Fragment {
                                     }
                                 }
                             } else {
-                                Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please enter a LF value to be less than the HF value.", Toast.LENGTH_SHORT).show();
                             }
                             break;
                         case 3:
@@ -406,7 +406,7 @@ public class fmCrossover extends Fragment {
                                     }
                                 }
                             } else {
-                                Toast.makeText(getActivity(), "Please enter a minvalue to be less than the maxvalue.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please enter a LF value to be less than the HF value.", Toast.LENGTH_SHORT).show();
                             }
                             break;
                         }

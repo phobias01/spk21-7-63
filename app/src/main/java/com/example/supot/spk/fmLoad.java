@@ -206,11 +206,11 @@ public class fmLoad extends Fragment {
         String eq3 = sp.getString(Const.master_eq_slide_value_3_string,"EQ3/F/500/V/0.00");
         String eq4 = sp.getString(Const.master_eq_slide_value_4_string,"EQ4/F/2000/V/0.00");
         String eq5 = sp.getString(Const.master_eq_slide_value_5_string,"EQ5/F/8000/V/0.00");
-        int MasterAll = sp.getInt(Const.master_eq_slide,0);
-        int Master1 = sp.getInt(Const.group_value_1,0);
-        int Master2 = sp.getInt(Const.group_value_2,0);
-        int Master3 = sp.getInt(Const.group_value_3,0);
-        int Master4 = sp.getInt(Const.group_value_4,0);
+        String MasterAll = sp.getString(Const.master_eq_slide_string,"MASTERVOL/0");
+        String Master1 = sp.getString(Const.group_value_1_string,"MASTERVOL/0");
+        String Master2 = sp.getString(Const.group_value_2_string,"MASTERVOL/0");
+        String Master3 = sp.getString(Const.group_value_3_string,"MASTERVOL/0");
+        String Master4 = sp.getString(Const.group_value_4_string,"MASTERVOL/0");
         String homeMute1;
         String homeMute2;
         String homeMute3;
@@ -250,11 +250,11 @@ public class fmLoad extends Fragment {
                 SimpleTcpClient.send(eq3, arrayAllIp.get(i), Const.port);
                 SimpleTcpClient.send(eq4, arrayAllIp.get(i), Const.port);
                 SimpleTcpClient.send(eq5, arrayAllIp.get(i), Const.port);
-                SimpleTcpClient.send("MASTERVOL/"+MasterAll, arrayAllIp.get(i), Const.port);
-                SimpleTcpClient.send("MASTERVOL/"+Master1, arrayAllIp.get(i), Const.port);
-                SimpleTcpClient.send("MASTERVOL/"+Master2, arrayAllIp.get(i), Const.port);
-                SimpleTcpClient.send("MASTERVOL/"+Master3, arrayAllIp.get(i), Const.port);
-                SimpleTcpClient.send("MASTERVOL/"+Master4, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(MasterAll, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(Master1, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(Master2, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(Master3, arrayAllIp.get(i), Const.port);
+                SimpleTcpClient.send(Master4, arrayAllIp.get(i), Const.port);
 
             }
             for(int i = 0;i<arrayG1.size();i++) {

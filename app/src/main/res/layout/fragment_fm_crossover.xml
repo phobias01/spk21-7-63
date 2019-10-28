@@ -17,9 +17,11 @@
             android:id="@+id/swCross2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="27dp"
+            android:layout_marginEnd="5dp"
             android:text="Group2"
+            app:layout_constraintEnd_toStartOf="@+id/tvMin2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/swCross1" />
 
@@ -27,9 +29,11 @@
             android:id="@+id/swCross3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="27dp"
+            android:layout_marginEnd="5dp"
             android:text="Group3"
+            app:layout_constraintEnd_toStartOf="@+id/tvMin3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/swCross2" />
 
@@ -37,9 +41,11 @@
             android:id="@+id/swCross4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="27dp"
+            android:layout_marginEnd="5dp"
             android:text="Group4"
+            app:layout_constraintEnd_toStartOf="@+id/tvMin4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/swCross3" />
 
@@ -49,100 +55,124 @@
             android:layout_height="35dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="68dp"
+            android:layout_marginEnd="29dp"
             android:ems="10"
             android:inputType="number"
             android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/spinGroup"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvMin1"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="110dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="125dp"
+            android:layout_marginEnd="5dp"
             android:text="TextView"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toStartOf="@+id/crossoverBar1"
+            app:layout_constraintStart_toEndOf="@+id/swCross1"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvMin2"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="110dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="35dp"
+            android:layout_marginEnd="5dp"
             android:text="TextView"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toStartOf="@+id/crossoverBar2"
+            app:layout_constraintStart_toEndOf="@+id/swCross2"
             app:layout_constraintTop_toBottomOf="@+id/tvMin1" />
 
         <TextView
             android:id="@+id/tvMin3"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="110dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="35dp"
+            android:layout_marginEnd="5dp"
             android:text="TextView"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toStartOf="@+id/crossoverBar3"
+            app:layout_constraintStart_toEndOf="@+id/swCross3"
             app:layout_constraintTop_toBottomOf="@+id/tvMin2" />
 
         <TextView
             android:id="@+id/tvMin4"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="110dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="35dp"
+            android:layout_marginEnd="7dp"
             android:text="TextView"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textAlignment="viewEnd"
+            app:layout_constraintEnd_toStartOf="@+id/crossoverBar4"
+            app:layout_constraintStart_toEndOf="@+id/swCross4"
             app:layout_constraintTop_toBottomOf="@+id/tvMin3" />
 
         <TextView
             android:id="@+id/tvMax1"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="125dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="50dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/crossoverBar1"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvMax2"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="35dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="50dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/crossoverBar2"
             app:layout_constraintTop_toBottomOf="@+id/tvMax1" />
 
         <TextView
             android:id="@+id/tvMax3"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="35dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="50dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/crossoverBar3"
             app:layout_constraintTop_toBottomOf="@+id/tvMax2" />
 
         <TextView
             android:id="@+id/tvMax4"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="35dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="50dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/crossoverBar4"
             app:layout_constraintTop_toBottomOf="@+id/tvMax3" />
 
         <com.jaygoo.widget.RangeSeekBar
             android:id="@+id/crossoverBar1"
             android:layout_width="370dp"
             android:layout_height="36dp"
-            android:layout_marginStart="173dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="115dp"
+            android:layout_marginEnd="5dp"
             android:scrollbarThumbHorizontal="@drawable/button_slide_blue"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvMax1"
+            app:layout_constraintStart_toEndOf="@+id/tvMin1"
             app:layout_constraintTop_toTopOf="parent"
             app:rsb_mode="range"
             app:rsb_progress_color="@color/colorAccent" />
@@ -151,9 +181,11 @@
             android:id="@+id/crossoverBar2"
             android:layout_width="370dp"
             android:layout_height="36dp"
-            android:layout_marginStart="173dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="18dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintEnd_toStartOf="@+id/tvMax2"
+            app:layout_constraintStart_toEndOf="@+id/tvMin2"
             app:layout_constraintTop_toBottomOf="@+id/crossoverBar1"
             app:rsb_mode="range"
             app:rsb_progress_color="@color/colorAccent" />
@@ -162,9 +194,11 @@
             android:id="@+id/crossoverBar3"
             android:layout_width="370dp"
             android:layout_height="36dp"
-            android:layout_marginStart="173dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="18dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintEnd_toStartOf="@+id/tvMax3"
+            app:layout_constraintStart_toEndOf="@+id/tvMin3"
             app:layout_constraintTop_toBottomOf="@+id/crossoverBar2"
             app:rsb_mode="range"
             app:rsb_progress_color="@color/colorAccent" />
@@ -173,9 +207,11 @@
             android:id="@+id/crossoverBar4"
             android:layout_width="370dp"
             android:layout_height="36dp"
-            android:layout_marginStart="173dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="18dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="-1dp"
+            app:layout_constraintEnd_toStartOf="@+id/tvMax4"
+            app:layout_constraintStart_toEndOf="@+id/tvMin4"
             app:layout_constraintTop_toBottomOf="@+id/crossoverBar3"
             app:rsb_mode="range"
             app:rsb_progress_color="@color/colorAccent" />
@@ -184,21 +220,25 @@
             android:id="@+id/editMin"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:layout_marginStart="160dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="68dp"
+            android:layout_marginEnd="28dp"
             android:ems="10"
             android:inputType="number"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView9"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/butSet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="55dp"
+            android:layout_marginEnd="20dp"
             android:text="SET"
+            app:layout_constraintEnd_toStartOf="@+id/textView10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -206,9 +246,11 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="75dp"
+            android:layout_marginEnd="5dp"
             android:text="HF : "
+            app:layout_constraintEnd_toStartOf="@+id/editMax"
             app:layout_constraintStart_toEndOf="@+id/editMin"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -216,20 +258,24 @@
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="129dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="75dp"
+            android:layout_marginEnd="5dp"
             android:text="LF : "
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/editMin"
+            app:layout_constraintStart_toEndOf="@+id/butSet"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/spinGroup"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="75dp"
+            android:layout_marginEnd="73dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/crossoverBar1"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editMax"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -237,9 +283,11 @@
             android:id="@+id/swCross1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="18dp"
+            android:layout_marginEnd="5dp"
             android:text="Group1"
+            app:layout_constraintEnd_toStartOf="@+id/tvMin1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/butSet" />
 

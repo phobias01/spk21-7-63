@@ -14,9 +14,11 @@
             android:id="@+id/butMute4"
             android:layout_width="59dp"
             android:layout_height="32dp"
-            android:layout_marginStart="17dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="10dp"
             android:text="MUTE4"
             android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/butMuteAll"
             app:layout_constraintStart_toEndOf="@+id/butMute3"
             app:layout_constraintTop_toBottomOf="@+id/butG4" />
 
@@ -24,9 +26,11 @@
             android:id="@+id/butMuteAll"
             android:layout_width="59dp"
             android:layout_height="32dp"
-            android:layout_marginStart="17dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:text="M-ALL"
             android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/divider2"
             app:layout_constraintStart_toEndOf="@+id/butMute4"
             app:layout_constraintTop_toBottomOf="@+id/butExport" />
 
@@ -34,9 +38,11 @@
             android:id="@+id/butMute3"
             android:layout_width="59dp"
             android:layout_height="32dp"
-            android:layout_marginStart="17dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:text="MUTE3"
             android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/butMute4"
             app:layout_constraintStart_toEndOf="@+id/butMute2"
             app:layout_constraintTop_toBottomOf="@+id/butG3" />
 
@@ -44,9 +50,11 @@
             android:id="@+id/butMute2"
             android:layout_width="59dp"
             android:layout_height="32dp"
-            android:layout_marginStart="17dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:text="MUTE2"
             android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/butMute3"
             app:layout_constraintStart_toEndOf="@+id/butMute1"
             app:layout_constraintTop_toBottomOf="@+id/butG2" />
 
@@ -54,9 +62,11 @@
             android:id="@+id/butMute1"
             android:layout_width="59dp"
             android:layout_height="32dp"
-            android:layout_marginStart="13dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:text="MUTE1"
             android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/butMute2"
             app:layout_constraintStart_toEndOf="@+id/divider1"
             app:layout_constraintTop_toBottomOf="@+id/butG1" />
 
@@ -66,7 +76,9 @@
             android:layout_height="288dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="49dp"
+            android:layout_marginEnd="5dp"
             android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toStartOf="@+id/divider8"
             app:layout_constraintStart_toEndOf="@+id/listSpk"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,19 +86,23 @@
             android:id="@+id/divider2"
             android:layout_width="1dp"
             android:layout_height="288dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="49dp"
-            android:layout_marginEnd="95dp"
+            android:layout_marginEnd="4dp"
             android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvMaster"
+            app:layout_constraintStart_toEndOf="@+id/divider6"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
             android:layout_width="23dp"
             android:layout_height="255dp"
             android:layout_marginStart="34dp"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="38dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/divider2"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/tvMaster">
 
             <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
                 android:id="@+id/masterBar"
@@ -105,6 +121,9 @@
             android:layout_height="250dp"
             android:layout_marginStart="2dp"
             android:layout_marginTop="64dp"
+            android:layout_marginEnd="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/divider1"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,19 +131,23 @@
             android:id="@+id/divider6"
             android:layout_width="182dp"
             android:layout_height="100dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="54dp"
-            android:layout_marginEnd="9dp"
+            android:layout_marginEnd="5dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toStartOf="@+id/divider2"
+            app:layout_constraintStart_toEndOf="@+id/divider8"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/divider8"
             android:layout_width="182dp"
             android:layout_height="100dp"
-            android:layout_marginStart="9dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="54dp"
+            android:layout_marginEnd="5dp"
             android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toStartOf="@+id/divider6"
             app:layout_constraintStart_toEndOf="@+id/divider1"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -132,9 +155,12 @@
             android:id="@+id/divider7"
             android:layout_width="182dp"
             android:layout_height="100dp"
-            android:layout_marginStart="9dp"
+            android:layout_marginStart="6dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
             android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toStartOf="@+id/divider9"
+            app:layout_constraintHorizontal_bias="0.68"
             app:layout_constraintStart_toEndOf="@+id/divider1"
             app:layout_constraintTop_toBottomOf="@+id/divider8" />
 
@@ -142,20 +168,24 @@
             android:id="@+id/divider9"
             android:layout_width="182dp"
             android:layout_height="100dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="9dp"
+            android:layout_marginEnd="6dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toStartOf="@+id/divider2"
+            app:layout_constraintStart_toEndOf="@+id/divider7"
             app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
         <Button
             android:id="@+id/butG1"
             android:layout_width="67dp"
             android:layout_height="39dp"
-            android:layout_marginStart="9dp"
+            android:layout_marginStart="7dp"
             android:layout_marginTop="1dp"
+            android:layout_marginEnd="7dp"
             android:text="GROUP1"
             android:textSize="11sp"
+            app:layout_constraintEnd_toStartOf="@+id/butG2"
             app:layout_constraintStart_toEndOf="@+id/divider1"
             app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
@@ -163,10 +193,12 @@
             android:id="@+id/butG2"
             android:layout_width="67dp"
             android:layout_height="39dp"
-            android:layout_marginStart="9dp"
+            android:layout_marginStart="7dp"
             android:layout_marginTop="1dp"
+            android:layout_marginEnd="7dp"
             android:text="GROUP2"
             android:textSize="11sp"
+            app:layout_constraintEnd_toStartOf="@+id/butG3"
             app:layout_constraintStart_toEndOf="@+id/butG1"
             app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
@@ -174,10 +206,12 @@
             android:id="@+id/butG3"
             android:layout_width="67dp"
             android:layout_height="39dp"
-            android:layout_marginStart="9dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="1dp"
+            android:layout_marginEnd="8dp"
             android:text="GROUP3"
             android:textSize="11sp"
+            app:layout_constraintEnd_toStartOf="@+id/butG4"
             app:layout_constraintStart_toEndOf="@+id/butG2"
             app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
@@ -185,10 +219,12 @@
             android:id="@+id/butG4"
             android:layout_width="67dp"
             android:layout_height="39dp"
-            android:layout_marginStart="9dp"
+            android:layout_marginStart="7dp"
             android:layout_marginTop="1dp"
+            android:layout_marginEnd="7dp"
             android:text="GROUP4"
             android:textSize="11sp"
+            app:layout_constraintEnd_toStartOf="@+id/butExport"
             app:layout_constraintStart_toEndOf="@+id/butG3"
             app:layout_constraintTop_toBottomOf="@+id/divider9" />
 
@@ -196,10 +232,12 @@
             android:id="@+id/butExport"
             android:layout_width="67dp"
             android:layout_height="39dp"
-            android:layout_marginStart="9dp"
+            android:layout_marginStart="7dp"
             android:layout_marginTop="1dp"
+            android:layout_marginEnd="7dp"
             android:text="export"
             android:textSize="11sp"
+            app:layout_constraintEnd_toStartOf="@+id/divider2"
             app:layout_constraintStart_toEndOf="@+id/butG4"
             app:layout_constraintTop_toBottomOf="@+id/divider9" />
 
@@ -207,8 +245,11 @@
             android:id="@+id/listG1"
             android:layout_width="181dp"
             android:layout_height="84dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="69dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintEnd_toStartOf="@+id/listG2"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toEndOf="@+id/divider1"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -260,17 +301,23 @@
             android:id="@+id/listG2"
             android:layout_width="181dp"
             android:layout_height="84dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="70dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="5dp"
             app:layout_constraintEnd_toStartOf="@+id/divider2"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toEndOf="@+id/divider8"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
             android:id="@+id/listG3"
             android:layout_width="181dp"
             android:layout_height="84dp"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="6dp"
             android:layout_marginTop="178dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/listG4"
+            app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toEndOf="@+id/divider1"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -278,21 +325,25 @@
             android:id="@+id/listG4"
             android:layout_width="181dp"
             android:layout_height="84dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="178dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="6dp"
             app:layout_constraintEnd_toStartOf="@+id/divider2"
+            app:layout_constraintStart_toEndOf="@+id/listG3"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvMaster"
-            android:layout_width="90dp"
+            android:layout_width="94dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="56dp"
             android:layout_marginEnd="1dp"
             android:text="MASTER : 0 dB"
             android:textAlignment="viewStart"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/divider2"
             app:layout_constraintTop_toTopOf="parent" />
 
 

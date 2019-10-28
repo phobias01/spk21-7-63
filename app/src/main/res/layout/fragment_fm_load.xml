@@ -13,10 +13,12 @@
 
         <ListView
             android:id="@+id/loadList"
-            android:layout_width="340dp"
+            android:layout_width="390dp"
             android:layout_height="250dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginEnd="114dp"
+            app:layout_constraintEnd_toStartOf="@+id/butOpen"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,21 +26,37 @@
             android:id="@+id/butOpen"
             android:layout_width="80dp"
             android:layout_height="45dp"
+            android:layout_marginStart="190dp"
             android:layout_marginTop="70dp"
             android:layout_marginEnd="67dp"
             android:text="OPEN"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv2"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/butDel"
             android:layout_width="80dp"
             android:layout_height="45dp"
+            android:layout_marginStart="114dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="67dp"
             android:text="DELETE"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/loadList"
             app:layout_constraintTop_toBottomOf="@+id/butOpen" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="335dp"
+            android:layout_marginTop="58dp"
+            android:layout_marginEnd="337dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

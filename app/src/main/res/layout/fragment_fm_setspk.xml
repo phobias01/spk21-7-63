@@ -28,7 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="70dp"
+            android:layout_marginEnd="5dp"
             android:text="SET NUMBER : "
+            app:layout_constraintEnd_toStartOf="@+id/spinNum"
             app:layout_constraintStart_toEndOf="@+id/spinIP"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,9 +38,11 @@
             android:id="@+id/textView28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
+            android:layout_marginStart="150dp"
             android:layout_marginTop="70dp"
+            android:layout_marginEnd="7dp"
             android:text="SPK IP : "
+            app:layout_constraintEnd_toStartOf="@+id/spinIP"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,8 +50,10 @@
             android:id="@+id/spinIP"
             android:layout_width="200dp"
             android:layout_height="24dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="7dp"
             android:layout_marginTop="68dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/textView27"
             app:layout_constraintStart_toEndOf="@+id/textView28"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,10 +61,12 @@
             android:id="@+id/spinNum"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="9dp"
             android:layout_marginTop="68dp"
+            android:layout_marginEnd="57dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/listSetspk"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView27"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,8 +74,10 @@
             android:id="@+id/listSetspk"
             android:layout_width="460dp"
             android:layout_height="199dp"
-            android:layout_marginStart="130dp"
+            android:layout_marginStart="165dp"
             android:layout_marginTop="100dp"
+            android:layout_marginEnd="106dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -86,9 +96,11 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:layout_marginStart="290dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginStart="332dp"
+            android:layout_marginTop="165dp"
+            android:layout_marginEnd="334dp"
             android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -89,9 +89,8 @@ public class fmEQ extends Fragment {
         spFrequencyEq4 = (Spinner) view.findViewById(R.id.spinner4);
         spFrequencyEq5 = (Spinner) view.findViewById(R.id.spinner5);
         arrayFrequency = new ArrayList<>();
-            arrayFrequency.add("32");
-            arrayFrequency.add("64");
-
+        arrayFrequency.add("32");
+        arrayFrequency.add("64");
 
         arrayFrequency2 = new ArrayList<>();
         arrayFrequency2.add("125");
@@ -385,6 +384,10 @@ public class fmEQ extends Fragment {
                 value = progress;
                 tvEq.setText(String.format("MASTER : %.0f dB",progressChanged));
                 dataOutput = String.format("MASTERVOL/%.0f",progressChanged);
+                BarG1.setProgress(progress);
+                BarG2.setProgress(progress);
+                BarG3.setProgress(progress);
+                BarG4.setProgress(progress);
                 try {
                     for (int i = 0; i < arrayAllIp.size(); i++) {
                         SimpleTcpClient.send(dataOutput, arrayAllIp.get(i), Const.port);
@@ -402,7 +405,15 @@ public class fmEQ extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 editor.putInt(Const.master_eq_slide,value);
+                editor.putInt(Const.group_value_1,value);
+                editor.putInt(Const.group_value_2,value);
+                editor.putInt(Const.group_value_3,value);
+                editor.putInt(Const.group_value_4,value);
                 editor.putString(Const.master_eq_slide_string,dataOutput);
+                editor.putString(Const.group_value_1_string,dataOutput);
+                editor.putString(Const.group_value_2_string,dataOutput);
+                editor.putString(Const.group_value_3_string,dataOutput);
+                editor.putString(Const.group_value_4_string,dataOutput);
                 editor.commit();
             }
         });
@@ -545,16 +556,27 @@ public class fmEQ extends Fragment {
             @Override
             public void onClick(View v) {
                 if (isOnEQ) {
-                    eqBar1.setProgress(150);
-                    eqBar2.setProgress(150);
-                    eqBar3.setProgress(150);
-                    eqBar4.setProgress(150);
-                    eqBar5.setProgress(150);
-                    eqBar_Master.setProgress(0);
-                    BarG1.setProgress(0);
-                    BarG2.setProgress(0);
-                    BarG3.setProgress(0);
-                    BarG4.setProgress(0);
+                    try {
+                        eqBar1.setProgress(150);
+                        Thread.sleep(100);
+                        eqBar2.setProgress(150);
+                        Thread.sleep(100);
+                        eqBar3.setProgress(150);
+                        Thread.sleep(100);
+                        eqBar4.setProgress(150);
+                        Thread.sleep(100);
+                        eqBar5.setProgress(150);
+                        Thread.sleep(100);
+                        eqBar_Master.setProgress(0);
+                        Thread.sleep(100);
+                        BarG1.setProgress(0 );
+                        Thread.sleep(100);
+                        BarG2.setProgress(0);
+                        Thread.sleep(100);
+                        BarG3.setProgress(0);
+                        Thread.sleep(100);
+                        BarG4.setProgress(0);
+                    }catch (Exception e) {}
 
                     spFrequencyEq1.setSelection(0);
                     spFrequencyEq2.setSelection(0);

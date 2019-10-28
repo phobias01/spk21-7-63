@@ -41,7 +41,7 @@ public class SimpleTcpClient {
             this.port = port;
             this.callback = callback;
             this.tag = tag;
-            Log.d("26J", "SendTCP 2: " +ip+"/"+ message);
+            Log.d("26J", "SendTCP 1: " +ip+"/"+ message);
         }
 
         protected Void doInBackground(Void... params) {
@@ -49,8 +49,8 @@ public class SimpleTcpClient {
                 Socket socket = new Socket(ip, port);
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
                 String outgoingMessage = message + System.getProperty("line.separator");
+                Log.d("26J", "SendTCP 2: " +ip+"/"+ message);
                 bufferedWriter.write(outgoingMessage);
-                //Log.d("26J", "SendTCP 2: " +ip+"/"+ message);
                 bufferedWriter.flush();
                 if (callback != null) {
                     socket.setSoTimeout(5000);

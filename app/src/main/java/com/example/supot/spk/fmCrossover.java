@@ -420,14 +420,14 @@ public class fmCrossover extends Fragment {
         crossoverBar2.setRange(20,20000);
         crossoverBar3.setRange(20,20000);
         crossoverBar4.setRange(20,20000);
-        int minValue1 = sp.getInt(Const.crossover_min1,20);
-        int minValue2 = sp.getInt(Const.crossover_min2,20);
-        int minValue3 = sp.getInt(Const.crossover_min3,20);
-        int minValue4 = sp.getInt(Const.crossover_min4,20);
-        int maxValue1 = sp.getInt(Const.crossover_max1,20000);
-        int maxValue2 = sp.getInt(Const.crossover_max2,20000);
-        int maxValue3 = sp.getInt(Const.crossover_max3,20000);
-        int maxValue4 = sp.getInt(Const.crossover_max4,20000);
+        int minValue1 = sp.getInt(Const.crossover_min1,1000);
+        int minValue2 = sp.getInt(Const.crossover_min2,1000);
+        int minValue3 = sp.getInt(Const.crossover_min3,1000);
+        int minValue4 = sp.getInt(Const.crossover_min4,1000);
+        int maxValue1 = sp.getInt(Const.crossover_max1,1001);
+        int maxValue2 = sp.getInt(Const.crossover_max2,1001);
+        int maxValue3 = sp.getInt(Const.crossover_max3,1001);
+        int maxValue4 = sp.getInt(Const.crossover_max4,1001);
 
         crossoverBar1.setValue(minValue1,maxValue1);
         crossoverBar2.setValue(minValue2,maxValue2);

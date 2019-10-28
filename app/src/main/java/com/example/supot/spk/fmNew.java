@@ -39,8 +39,6 @@ public class fmNew extends Fragment {
     private ArrayList<String> arrayIp,arrayNum,arraylistIN,arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4,arrayIpG1,arrayIpG2,arrayIpG3,arrayIpG4;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
-    private ListView loadList;
-    private ArrayAdapter adapter;
     private int check = 0;
 
     @Override
@@ -67,24 +65,34 @@ public class fmNew extends Fragment {
         final String eq4 = "EQ4/F/2000" + "/V/0.00";
         final String eq5 = "EQ5/F/8000" + "/V/0.00";
         final String master = "MASTERVOL/-80";
-        final String delay = "DELAY/0.01";
-        final String crossLF = "LF/F/20";
-        final String crossHF = "HF/F/20000";
+        final String delay = "DELAY/0.1";
+        final String crossLF = "LF/F/1000";
+        final String crossHF = "HF/F/1001";
         final String unmute = "UNMUTE";
         final String unconnect = "UNCONNECT";
        // Log.d("26J", "EQ : " + arrayAllIp.get(1) + "/" + eq1);
         try {
             for (int i = 0; i < arrayAllIp.size(); i++) {
                 SimpleTcpClient.send(eq1, arrayAllIp.get(i), Const.port);
+                Thread.sleep(50);
                 SimpleTcpClient.send(eq2, arrayAllIp.get(i), Const.port);
+                Thread.sleep(50);
                 SimpleTcpClient.send(eq3, arrayAllIp.get(i), Const.port);
+                Thread.sleep(50);
                 SimpleTcpClient.send(eq4, arrayAllIp.get(i), Const.port);
+                Thread.sleep(50);
                 SimpleTcpClient.send(eq5, arrayAllIp.get(i), Const.port);
+                Thread.sleep(50);
                 SimpleTcpClient.send(master, arrayAllIp.get(i), Const.port);
+                Thread.sleep(50);
                 SimpleTcpClient.send(delay, arrayAllIp.get(i), Const.port);
+                Thread.sleep(50);
                 SimpleTcpClient.send(crossLF, arrayAllIp.get(i), Const.port);
+                Thread.sleep(50);
                 SimpleTcpClient.send(crossHF, arrayAllIp.get(i), Const.port);
+                Thread.sleep(50);
                 SimpleTcpClient.send(unmute, arrayAllIp.get(i), Const.port);
+                Thread.sleep(50);
                 SimpleTcpClient.send(unconnect, arrayAllIp.get(i), Const.port);
                 //  Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + eq1);
             }
@@ -95,7 +103,6 @@ public class fmNew extends Fragment {
     private void initView(View view) {
         butConfirm = (Button) view.findViewById(R.id.butConfirm);
         etName = (EditText) view.findViewById(R.id.etName);
-        loadList = (ListView) view.findViewById(R.id.loadList);
         //Log.d("26J","arrayFodder.size : "+arrayFodder.size());
         butConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +125,7 @@ public class fmNew extends Fragment {
                             saveData();
                             sent();
                             resetData();
+                            Toast.makeText(getContext(), "New : "+sp.getString(Const.sp_channel,"null"), Toast.LENGTH_LONG).show();
                             getActivity().getSupportFragmentManager()
                                     .beginTransaction()
                                     .replace(R.id.maincontent, new fmSetspk())
@@ -286,14 +294,14 @@ public class fmNew extends Fragment {
         editor.putInt(Const.group_value_3,0);
         editor.putInt(Const.group_value_4,0);
         ////////////////CROSS OVER///////////////
-        editor.putInt(Const.crossover_min1,20);
-        editor.putInt(Const.crossover_max1,20000);
-        editor.putInt(Const.crossover_min2,20);
-        editor.putInt(Const.crossover_max2,20000);
-        editor.putInt(Const.crossover_min3,20);
-        editor.putInt(Const.crossover_max3,20000);
-        editor.putInt(Const.crossover_min4,20);
-        editor.putInt(Const.crossover_max4,20000);
+        editor.putInt(Const.crossover_min1,1000);
+        editor.putInt(Const.crossover_max1,1001);
+        editor.putInt(Const.crossover_min2,1000);
+        editor.putInt(Const.crossover_max2,1001);
+        editor.putInt(Const.crossover_min3,1000);
+        editor.putInt(Const.crossover_max3,1001);
+        editor.putInt(Const.crossover_min4,1000);
+        editor.putInt(Const.crossover_max4,1001);
         editor.putBoolean(Const.switch_crossover_1, false);
         editor.putBoolean(Const.switch_crossover_2, false);
         editor.putBoolean(Const.switch_crossover_3, false);

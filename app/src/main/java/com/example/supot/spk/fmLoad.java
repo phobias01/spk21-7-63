@@ -43,6 +43,7 @@ public class fmLoad extends Fragment {
     private ArrayList<String> arrayIp,arrayNum,arraylistIN,arrayAddHomeNum,arrayAddHomeIP,arrayAllIp,arrayG1,arrayG2,arrayG3,arrayG4,arrayIpG1,arrayIpG2,arrayIpG3,arrayIpG4;
     private ArrayAdapter adapter;
     private Button butOpen,butDel;
+    private TextView tv2;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
 
@@ -189,33 +190,34 @@ public class fmLoad extends Fragment {
     private void sentData() {
         sp = getActivity().getSharedPreferences(sp.getString(Const.sp_channel,null), Context.MODE_PRIVATE);
         loadData();
-        Float delay1 = sp.getFloat(Const.delay_bar_1_float,0);
-        Float delay2 = sp.getFloat(Const.delay_bar_2_float,0);
-        Float delay3 = sp.getFloat(Const.delay_bar_3_float,0);
-        Float delay4 = sp.getFloat(Const.delay_bar_4_float,0);
-        int minValue1 = sp.getInt(Const.crossover_min1,20);
-        int minValue2 = sp.getInt(Const.crossover_min2,20);
-        int minValue3 = sp.getInt(Const.crossover_min3,20);
-        int minValue4 = sp.getInt(Const.crossover_min4,20);
-        int maxValue1 = sp.getInt(Const.crossover_max1,20000);
-        int maxValue2 = sp.getInt(Const.crossover_max2,20000);
-        int maxValue3 = sp.getInt(Const.crossover_max3,20000);
-        int maxValue4 = sp.getInt(Const.crossover_max4,20000);
+        Float delay1 = sp.getFloat(Const.delay_bar_1_float,0.10f);
+        Float delay2 = sp.getFloat(Const.delay_bar_2_float,0.10f);
+        Float delay3 = sp.getFloat(Const.delay_bar_3_float,0.10f);
+        Float delay4 = sp.getFloat(Const.delay_bar_4_float,0.10f);
+        int minValue1 = sp.getInt(Const.crossover_min1,1000);
+        int minValue2 = sp.getInt(Const.crossover_min2,1000);
+        int minValue3 = sp.getInt(Const.crossover_min3,1000);
+        int minValue4 = sp.getInt(Const.crossover_min4,1000);
+        int maxValue1 = sp.getInt(Const.crossover_max1,1001);
+        int maxValue2 = sp.getInt(Const.crossover_max2,1001);
+        int maxValue3 = sp.getInt(Const.crossover_max3,1001);
+        int maxValue4 = sp.getInt(Const.crossover_max4,1001);
         String eq1 = sp.getString(Const.master_eq_slide_value_1_string,"EQ1/F/32/V/0.00");
         String eq2 = sp.getString(Const.master_eq_slide_value_2_string,"EQ2/F/125/V/0.00");
         String eq3 = sp.getString(Const.master_eq_slide_value_3_string,"EQ3/F/500/V/0.00");
         String eq4 = sp.getString(Const.master_eq_slide_value_4_string,"EQ4/F/2000/V/0.00");
         String eq5 = sp.getString(Const.master_eq_slide_value_5_string,"EQ5/F/8000/V/0.00");
-        String MasterAll = sp.getString(Const.master_eq_slide_string,"MASTERVOL/0");
-        String Master1 = sp.getString(Const.group_value_1_string,"MASTERVOL/0");
-        String Master2 = sp.getString(Const.group_value_2_string,"MASTERVOL/0");
-        String Master3 = sp.getString(Const.group_value_3_string,"MASTERVOL/0");
-        String Master4 = sp.getString(Const.group_value_4_string,"MASTERVOL/0");
+        String MasterAll = sp.getString(Const.master_eq_slide_string,"MASTERVOL/-80");
+        String Master1 = sp.getString(Const.group_value_1_string,"MASTERVOL/-80");
+        String Master2 = sp.getString(Const.group_value_2_string,"MASTERVOL/-80");
+        String Master3 = sp.getString(Const.group_value_3_string,"MASTERVOL/-80");
+        String Master4 = sp.getString(Const.group_value_4_string,"MASTERVOL/-80");
         String homeMute1;
         String homeMute2;
         String homeMute3;
         String homeMute4;
         String homeMuteAll;
+        int po = 50;
         if(sp.getBoolean(Const.stuMute1,true)==false){
             homeMute1 = "MUTE";
         }else{
@@ -244,42 +246,69 @@ public class fmLoad extends Fragment {
         try {
             for(int i = 0;i<arrayAllIp.size();i++) {
                 SimpleTcpClient.send("CONNECT", arrayAllIp.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send(homeMuteAll, arrayAllIp.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send(eq1, arrayAllIp.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send(eq2, arrayAllIp.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send(eq3, arrayAllIp.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send(eq4, arrayAllIp.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send(eq5, arrayAllIp.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send(MasterAll, arrayAllIp.get(i), Const.port);
-                SimpleTcpClient.send(Master1, arrayAllIp.get(i), Const.port);
-                SimpleTcpClient.send(Master2, arrayAllIp.get(i), Const.port);
-                SimpleTcpClient.send(Master3, arrayAllIp.get(i), Const.port);
-                SimpleTcpClient.send(Master4, arrayAllIp.get(i), Const.port);
-
+                Thread.sleep(po);
             }
             for(int i = 0;i<arrayG1.size();i++) {
                 SimpleTcpClient.send(String.format("DELAY/%.2f",delay1), arrayIpG1.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send("LF/F/"+minValue1, arrayIpG1.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send("HF/F/"+maxValue1, arrayIpG1.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send(homeMute1, arrayIpG1.get(i), Const.port);
+                Thread.sleep(po);
+                SimpleTcpClient.send(Master1, arrayIpG1.get(i), Const.port);
+                Thread.sleep(po);
             }
             for(int i = 0;i<arrayG2.size();i++) {
                 SimpleTcpClient.send(String.format("DELAY/%.2f",delay2), arrayIpG2.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send("LF/F/"+minValue2, arrayIpG2.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send("HF/F/"+maxValue2, arrayIpG2.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send(homeMute2, arrayIpG2.get(i), Const.port);
+                Thread.sleep(po);
+                SimpleTcpClient.send(Master2, arrayIpG2.get(i), Const.port);
+                Thread.sleep(po);
             }
             for(int i = 0;i<arrayG3.size();i++) {
                 SimpleTcpClient.send(String.format("DELAY/%.2f",delay3), arrayIpG3.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send("LF/F/"+minValue3, arrayIpG3.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send("HF/F/"+maxValue3, arrayIpG3.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send(homeMute3, arrayIpG3.get(i), Const.port);
+                Thread.sleep(po);
+                SimpleTcpClient.send(Master3,arrayIpG3.get(i), Const.port);
+                Thread.sleep(po);
             }
             for(int i = 0;i<arrayG4.size();i++) {
                 SimpleTcpClient.send(String.format("DELAY/%.2f",delay4), arrayIpG4.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send("LF/F/"+minValue4, arrayIpG4.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send("HF/F/"+maxValue4, arrayIpG4.get(i), Const.port);
+                Thread.sleep(po);
                 SimpleTcpClient.send(homeMute4, arrayIpG4.get(i), Const.port);
+                Thread.sleep(po);
+                SimpleTcpClient.send(Master4, arrayIpG4.get(i), Const.port);
+                Thread.sleep(po);
             }
         }catch (Exception e){}
         sp = getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
@@ -294,10 +323,11 @@ public class fmLoad extends Fragment {
         loadList = (ListView) view.findViewById(R.id.loadList);
         butOpen = (Button) view.findViewById(R.id.butOpen);
         butDel = (Button) view.findViewById(R.id.butDel);
+        tv2 = (TextView) view.findViewById(R.id.tv2);
+        tv2.setText("Present : "+sp.getString(Const.sp_channel,"No Present"));
         adapter = new ArrayAdapter<String>(this.context,android.R.layout.simple_list_item_single_choice,arrayFodder);
         loadList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         loadList.setAdapter(adapter);
-
         loadList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -312,7 +342,7 @@ public class fmLoad extends Fragment {
                                 try {
                                     adapter.remove(arrayFodder.get(i));
                                     editor.remove(arrayFodder.get(i));
-                                    Toast.makeText(getContext(), "DELETE " + arrayFodder.get(i), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), "DELETE : " + arrayFodder.get(i), Toast.LENGTH_LONG).show();
                                 }catch (Exception e){};
                             }
                         }
@@ -332,6 +362,8 @@ public class fmLoad extends Fragment {
                                 try {
                                     editor.putString(Const.sp_channel,  arrayFodder.get(i));
                                     editor.commit();
+                                   // int Index =
+                                    Toast.makeText(getContext(), "LOAD :  " + arrayFodder.get(i), Toast.LENGTH_LONG).show();
                                     sentData();
                                     //Log.d("26J","load : "+arrayFodder.get(i));
                                 }catch (Exception e){};

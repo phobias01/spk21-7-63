@@ -68,7 +68,7 @@ public class fmNew extends Fragment {
         final String delay = "DELAY/0.1";
         final String crossLF = "LF/F/1000";
         final String crossHF = "HF/F/1001";
-        final String unmute = "UNMUTE";
+        final String unmute = "UNMUTE/";
         final String unconnect = "UNCONNECT";
        // Log.d("26J", "EQ : " + arrayAllIp.get(1) + "/" + eq1);
         try {
@@ -125,7 +125,7 @@ public class fmNew extends Fragment {
                             saveData();
                             sent();
                             resetData();
-                            Toast.makeText(getContext(), "New : "+sp.getString(Const.sp_channel,"null"), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "New : "+value, Toast.LENGTH_LONG).show();
                             getActivity().getSupportFragmentManager()
                                     .beginTransaction()
                                     .replace(R.id.maincontent, new fmSetspk())

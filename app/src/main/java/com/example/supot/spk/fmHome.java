@@ -69,8 +69,8 @@ public class fmHome extends Fragment {
     }
 
     public void initbuttonMute(View view){
-        final String dataOutput1 = "MUTE";
-        final String dataOutput2 = "UNMUTE";
+        final String dataOutput1 = "MUTE/";
+        final String dataOutput2 = "UNMUTE/";
         butMute1 = (Button) view.findViewById(R.id.butMute1);
         butMute2 = (Button) view.findViewById(R.id.butMute2);
         butMute3 = (Button) view.findViewById(R.id.butMute3);
@@ -245,6 +245,10 @@ public class fmHome extends Fragment {
                         }
                     }catch (Exception e) {}
                     butMuteAll.setBackgroundColor(getResources().getColor(R.color.color5));
+                    butMute1.setBackgroundColor(getResources().getColor(R.color.color5));
+                    butMute2.setBackgroundColor(getResources().getColor(R.color.color5));
+                    butMute3.setBackgroundColor(getResources().getColor(R.color.color5));
+                    butMute4.setBackgroundColor(getResources().getColor(R.color.color5));
                     isOnMuteAll = false;
                     editor.putBoolean(Const.stuMuteAll,isOnMuteAll);
                     editor.commit();
@@ -260,6 +264,10 @@ public class fmHome extends Fragment {
                         }
                     }catch (Exception e) {}
                     butMuteAll.setBackgroundColor(getResources().getColor(R.color.color3));
+                    butMute1.setBackgroundColor(getResources().getColor(R.color.color3));
+                    butMute2.setBackgroundColor(getResources().getColor(R.color.color3));
+                    butMute3.setBackgroundColor(getResources().getColor(R.color.color3));
+                    butMute4.setBackgroundColor(getResources().getColor(R.color.color3));
                     isOnMuteAll = true;
                     editor.putBoolean(Const.stuMuteAll,isOnMuteAll);
                     editor.commit();

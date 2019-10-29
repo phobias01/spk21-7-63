@@ -219,24 +219,24 @@ public class fmLoad extends Fragment {
         String homeMuteAll;
         int po = 50;
         if(sp.getBoolean(Const.stuMute1,true)==false){
-            homeMute1 = "MUTE";
+            homeMute1 = "MUTE/";
         }else{
-            homeMute1 = "UNMUTE";
+            homeMute1 = "UNMUTE/";
         }
         if(sp.getBoolean(Const.stuMute2,true)==false){
-            homeMute2 = "MUTE";
+            homeMute2 = "MUTE/";
         }else{
-            homeMute2 = "UNMUTE";
+            homeMute2 = "UNMUTE/";
         }
         if(sp.getBoolean(Const.stuMute3,true)==false){
-            homeMute3 = "MUTE";
+            homeMute3 = "MUTE/";
         }else{
-            homeMute3 = "UNMUTE";
+            homeMute3 = "UNMUTE/";
         }
         if(sp.getBoolean(Const.stuMute4,true)==false){
-            homeMute4 = "MUTE";
+            homeMute4 = "MUTE/";
         }else{
-            homeMute4 = "UNMUTE";
+            homeMute4 = "UNMUTE/";
         }
         if(sp.getBoolean(Const.stuMuteAll,true)==false){
             homeMuteAll = "MUTE";

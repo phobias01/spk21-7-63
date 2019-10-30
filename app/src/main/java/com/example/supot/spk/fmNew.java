@@ -58,18 +58,28 @@ public class fmNew extends Fragment {
     }
 
     private void sent() {
-        //Log.d("26J", "sent");
-        final String eq1 = "EQ1/F/32" + "/V/0.00";
-        final String eq2 = "EQ2/F/125" + "/V/0.00";
-        final String eq3 = "EQ3/F/500" + "/V/0.00";
-        final String eq4 = "EQ4/F/2000" + "/V/0.00";
-        final String eq5 = "EQ5/F/8000" + "/V/0.00";
-        final String master = "MASTERVOL/-80";
-        final String delay = "DELAY/0.1";
-        final String crossLF = "LF/F/1000";
-        final String crossHF = "HF/F/1001";
-        final String unmute = "UNMUTE/";
-        final String unconnect = "UNCONNECT";
+        sp = this.getActivity().getSharedPreferences(sp.getString(Const.sp_channel,null), Context.MODE_PRIVATE);
+        editor = sp.edit();
+        Log.d("26J", "fodder : "+sp.getString(Const.sp_channel,null));
+        Log.d("26J","ip : "+arrayAllIp);
+        Gson gson = new Gson();
+        String jsonAllIp = sp.getString(Const.list_AllIp, null);
+        Type type = new TypeToken<ArrayList>() {}.getType();
+        arrayAllIp = gson.fromJson(jsonAllIp, type);
+        if (arrayAllIp == null) {
+            arrayAllIp = new ArrayList<>();
+        }
+        String eq1 = "EQ1/F/32" + "/V/0.00";
+        String eq2 = "EQ2/F/125" + "/V/0.00";
+        String eq3 = "EQ3/F/500" + "/V/0.00";
+        String eq4 = "EQ4/F/2000" + "/V/0.00";
+        String eq5 = "EQ5/F/8000" + "/V/0.00";
+        String master = "MASTERVOL/-80";
+        String delay = "DELAY/0.1";
+        String crossLF = "LF/F/1000";
+        String crossHF = "HF/F/1001";
+        String unmute = "UNMUTE/";
+        String unconnect = "UNCONNECT";
        // Log.d("26J", "EQ : " + arrayAllIp.get(1) + "/" + eq1);
         try {
             for (int i = 0; i < arrayAllIp.size(); i++) {
@@ -97,6 +107,8 @@ public class fmNew extends Fragment {
                 //  Log.d("26J", "EQ : " + arrayAllIp.get(i) + "/" + eq1);
             }
         }catch (Exception e) {}
+        sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
+        editor = sp.edit();
     }
 
 
@@ -118,12 +130,12 @@ public class fmNew extends Fragment {
                             }else {check++;}
                         }
                         if(check!=0){
+                            sent();
                             arrayFodder.add(value);
                             check = 0;
                             editor.putString(Const.sp_channel,value);
                             editor.commit();
                             saveData();
-                            sent();
                             resetData();
                             Toast.makeText(getContext(), "New : "+value, Toast.LENGTH_LONG).show();
                             getActivity().getSupportFragmentManager()
@@ -132,13 +144,14 @@ public class fmNew extends Fragment {
                                     .commit();
                          }
                     }else {
+                        sent();
                         arrayFodder.add(value);
                         check = 0;
                         editor.putString(Const.sp_channel,value);
                         editor.commit();
                         saveData();
-                        sent();
                         resetData();
+                        Toast.makeText(getContext(), "New : "+value, Toast.LENGTH_LONG).show();
                         getActivity().getSupportFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.maincontent, new fmSetspk())
@@ -315,6 +328,10 @@ public class fmNew extends Fragment {
         editor.putInt(Const.delay_bar_2,0);
         editor.putInt(Const.delay_bar_3,0);
         editor.putInt(Const.delay_bar_4,0);
+        editor.putFloat(Const.delay_bar_1_float,0.1f);
+        editor.putFloat(Const.delay_bar_2_float,0.1f);
+        editor.putFloat(Const.delay_bar_3_float,0.1f);
+        editor.putFloat(Const.delay_bar_4_float,0.1f);
         //////////////////HOME///////////////////
         editor.putBoolean(Const.stuMute1,true);
         editor.putBoolean(Const.stuMute2,true);

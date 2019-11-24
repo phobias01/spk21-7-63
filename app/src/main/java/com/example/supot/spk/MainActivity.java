@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId()){
             case R.id.nav_home:
                 fm = new fmHome();
-                strTitle = "Home";
+                strTitle = "GROUP MANGE";
                 break;
             case R.id.nav_load:
                 fm = new fmLoad();

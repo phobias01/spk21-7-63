@@ -249,7 +249,7 @@ public class fmSetspk extends Fragment {
         butScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("26J", "All IP :"+arrayAllIp.size());
+                //Log.d("26J", "All IP :"+arrayAllIp.size());
                         try {
                             for (int i = 0; i < arrayAllIp.size(); i++) {
                                 SimpleTcpClient.send("UNCONNECT", arrayAllIp.get(i), Const.port);

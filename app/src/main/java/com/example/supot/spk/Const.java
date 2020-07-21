@@ -103,5 +103,14 @@ public class Const {
     public static final String stuMute4 = "stuMute4";
     public static final String stuMuteAll = "stuMuteAll";
 
+    public static final String stuMuteHigh1 = "stuMuteHigh1";
+    public static final String stuMuteHigh2 = "stuMuteHigh2";
+    public static final String stuMuteHigh3 = "stuMuteHigh3";
+    public static final String stuMuteHigh4 = "stuMuteHigh4";
+    public static final String stuMuteLow1 = "stuMuteLow1";
+    public static final String stuMuteLow2 = "stuMuteLow2";
+    public static final String stuMuteLow3 = "stuMuteLow3";
+    public static final String stuMuteLow4 = "stuMuteLow4";
+
     public static final String check = "check";
 }

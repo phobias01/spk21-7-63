@@ -13,12 +13,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/butMuteHigh3"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="23dp"
+            android:text="mute h"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/tvMax3"
+            app:layout_constraintTop_toBottomOf="@+id/butMuteHigh2" />
+
+        <Button
+            android:id="@+id/butMuteHigh4"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="23dp"
+            android:text="mute h"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/tvMax4"
+            app:layout_constraintTop_toBottomOf="@+id/butMuteHigh3" />
+
         <Switch
             android:id="@+id/swCross2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="33dp"
             android:layout_marginEnd="5dp"
             android:text="Group2"
             app:layout_constraintEnd_toStartOf="@+id/tvMin2"
@@ -30,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="33dp"
             android:layout_marginEnd="5dp"
             android:text="Group3"
             app:layout_constraintEnd_toStartOf="@+id/tvMin3"
@@ -42,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="33dp"
             android:layout_marginEnd="5dp"
             android:text="Group4"
             app:layout_constraintEnd_toStartOf="@+id/tvMin4"
@@ -81,7 +103,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="41dp"
             android:layout_marginEnd="5dp"
             android:text="TextView"
             android:textAlignment="viewEnd"
@@ -94,7 +116,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="41dp"
             android:layout_marginEnd="5dp"
             android:text="TextView"
             android:textAlignment="viewEnd"
@@ -107,7 +129,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="41dp"
             android:layout_marginEnd="7dp"
             android:text="TextView"
             android:textAlignment="viewEnd"
@@ -121,8 +143,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="125dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="200dp"
             android:text="TextView"
+            android:textAlignment="viewEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/crossoverBar1"
             app:layout_constraintTop_toTopOf="parent" />
@@ -132,9 +155,10 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="200dp"
             android:text="TextView"
+            android:textAlignment="viewEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/crossoverBar2"
             app:layout_constraintTop_toBottomOf="@+id/tvMax1" />
@@ -144,9 +168,10 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="200dp"
             android:text="TextView"
+            android:textAlignment="viewEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/crossoverBar3"
             app:layout_constraintTop_toBottomOf="@+id/tvMax2" />
@@ -156,16 +181,17 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="200dp"
             android:text="TextView"
+            android:textAlignment="viewEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/crossoverBar4"
             app:layout_constraintTop_toBottomOf="@+id/tvMax3" />
 
         <com.jaygoo.widget.RangeSeekBar
             android:id="@+id/crossoverBar1"
-            android:layout_width="370dp"
+            android:layout_width="320dp"
             android:layout_height="36dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="115dp"
@@ -179,10 +205,10 @@
 
         <com.jaygoo.widget.RangeSeekBar
             android:id="@+id/crossoverBar2"
-            android:layout_width="370dp"
+            android:layout_width="320dp"
             android:layout_height="36dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="5dp"
             app:layout_constraintEnd_toStartOf="@+id/tvMax2"
             app:layout_constraintStart_toEndOf="@+id/tvMin2"
@@ -192,10 +218,10 @@
 
         <com.jaygoo.widget.RangeSeekBar
             android:id="@+id/crossoverBar3"
-            android:layout_width="370dp"
+            android:layout_width="320dp"
             android:layout_height="36dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="5dp"
             app:layout_constraintEnd_toStartOf="@+id/tvMax3"
             app:layout_constraintStart_toEndOf="@+id/tvMin3"
@@ -205,10 +231,10 @@
 
         <com.jaygoo.widget.RangeSeekBar
             android:id="@+id/crossoverBar4"
-            android:layout_width="370dp"
+            android:layout_width="320dp"
             android:layout_height="36dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="-1dp"
             app:layout_constraintEnd_toStartOf="@+id/tvMax4"
             app:layout_constraintStart_toEndOf="@+id/tvMin4"
@@ -271,13 +297,14 @@
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="65dp"
             android:layout_marginEnd="73dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/crossoverBar1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editMax"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Switch
             android:id="@+id/swCross1"
@@ -290,6 +317,80 @@
             app:layout_constraintEnd_toStartOf="@+id/tvMin1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/butSet" />
+
+        <Button
+            android:id="@+id/butMuteHigh1"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="4dp"
+            android:text="mute h"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/tvMax1"
+            app:layout_constraintTop_toBottomOf="@+id/spinGroup" />
+
+        <Button
+            android:id="@+id/butMuteHigh2"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="23dp"
+            android:text="mute h"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/tvMax2"
+            app:layout_constraintTop_toBottomOf="@+id/butMuteHigh1" />
+
+        <Button
+            android:id="@+id/butMuteLow1"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="mute l"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/butMuteHigh1"
+            app:layout_constraintTop_toBottomOf="@+id/spinGroup" />
+
+        <Button
+            android:id="@+id/butMuteLow2"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="16dp"
+            android:text="mute l"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/butMuteHigh2"
+            app:layout_constraintTop_toBottomOf="@+id/butMuteLow1" />
+
+        <Button
+            android:id="@+id/butMuteLow3"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="16dp"
+            android:text="mute l"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/butMuteHigh3"
+            app:layout_constraintTop_toBottomOf="@+id/butMuteLow2" />
+
+        <Button
+            android:id="@+id/butMuteLow4"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="16dp"
+            android:text="mute l"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/butMuteHigh4"
+            app:layout_constraintTop_toBottomOf="@+id/butMuteLow3" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

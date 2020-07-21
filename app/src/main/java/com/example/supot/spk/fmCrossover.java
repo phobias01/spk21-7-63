@@ -3,7 +3,6 @@ package com.example.supot.spk;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -38,6 +37,7 @@ public class fmCrossover extends Fragment {
     public fmCrossover() {
         // Required empty public constructor
     }
+    private boolean isOnMuteHigh1 = true,isOnMuteHigh2 = true,isOnMuteHigh3 = true,isOnMuteHigh4 = true, isOnMuteLow1 = true,isOnMuteLow2 = true,isOnMuteLow3 = true,isOnMuteLow4 = true;
     private ArrayList<String> arrayG1,arrayG2,arrayG3,arrayG4;
     private Context context;
     private EditText editMin,editMax;
@@ -45,7 +45,7 @@ public class fmCrossover extends Fragment {
     private TextView tvMax1,tvMax2,tvMax3,tvMax4;
     private RangeSeekBar crossoverBar1,crossoverBar2,crossoverBar3,crossoverBar4;
     private Switch swG1,swG2,swG3,swG4;
-    private Button butSet;
+    private Button butSet,butMuteHigh1,butMuteHigh2,butMuteHigh3,butMuteHigh4,butMuteLow1,butMuteLow2,butMuteLow3,butMuteLow4;
     private Spinner spinGroup;
     private ArrayList<String> arrayGroup;
     private ArrayAdapter adapterGroup;
@@ -64,9 +64,11 @@ public class fmCrossover extends Fragment {
         initCrossoverBar(view);
         initswLockdelayBar(view);
         setVolumeCrossover(view);
+        initbuttonMute(view);
         return view;
 
     }
+
 
     private void Shared() {
         sp = this.getActivity().getSharedPreferences(Const.sp_channel, Context.MODE_PRIVATE);
@@ -75,6 +77,298 @@ public class fmCrossover extends Fragment {
         editor = sp.edit();
     }
 
+    public void initbuttonMute(View view){
+        final String dataOutput1 = "MUTE/";
+        final String dataOutput2 = "UNMUTE/";
+        butMuteHigh1 = (Button) view.findViewById(R.id.butMuteHigh1);
+        butMuteHigh2 = (Button) view.findViewById(R.id.butMuteHigh2);
+        butMuteHigh3 = (Button) view.findViewById(R.id.butMuteHigh3);
+        butMuteHigh4 = (Button) view.findViewById(R.id.butMuteHigh4);
+        butMuteLow1 = (Button) view.findViewById(R.id.butMuteLow1);
+        butMuteLow2 = (Button) view.findViewById(R.id.butMuteLow2);
+        butMuteLow3 = (Button) view.findViewById(R.id.butMuteLow3);
+        butMuteLow4 = (Button) view.findViewById(R.id.butMuteLow4);
+        if(isOnMuteHigh1 == sp.getBoolean(Const.stuMuteHigh1,true)) {
+            butMuteHigh1.setBackgroundColor(getResources().getColor(R.color.color3));
+            isOnMuteHigh1 = true;
+        }else {
+            butMuteHigh1.setBackgroundColor(getResources().getColor(R.color.color5));
+            isOnMuteHigh1 = false;
+        }
+        butMuteHigh1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isOnMuteHigh1==true) {
+                    try {
+                        for (int i = 0; i < arrayG1.size(); i++) {
+                            SimpleTcpClient.send("HF/"+dataOutput1, arrayG1.get(i), Const.port);
+                            //Log.d("26J", "BUTMUTE : " + arrayG1.get(i)+"HF/"+dataOutput1);
+                        }
+                    }catch (Exception e) {}
+                    butMuteHigh1.setBackgroundColor(getResources().getColor(R.color.color5));
+                    isOnMuteHigh1 = false;
+                    editor.putBoolean(Const.stuMuteHigh1,isOnMuteHigh1);
+                    editor.commit();
+                }else{
+                    try {
+                        for (int i = 0; i < arrayG1.size(); i++) {
+                            SimpleTcpClient.send("HF/"+dataOutput2, arrayG1.get(i), Const.port);
+                            // Log.d("26J", "BUTMUTE : " + arrayG1.get(i)+"/"+dataOutput2);
+                        }
+                    }catch (Exception e) {}
+                    butMuteHigh1.setBackgroundColor(getResources().getColor(R.color.color3));
+                    isOnMuteHigh1 = true;
+                    editor.putBoolean(Const.stuMuteHigh1,isOnMuteHigh1);
+                    editor.commit();
+                }
+            }
+        });
+        if(isOnMuteHigh2 == sp.getBoolean(Const.stuMuteHigh2,true)) {
+            butMuteHigh2.setBackgroundColor(getResources().getColor(R.color.color3));
+            isOnMuteHigh2 = true;
+        }else {
+            butMuteHigh2.setBackgroundColor(getResources().getColor(R.color.color5));
+            isOnMuteHigh2 = false;
+        }
+        butMuteHigh2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isOnMuteHigh2==true) {
+                    try {
+                        for (int i = 0; i < arrayG2.size(); i++) {
+                            SimpleTcpClient.send("HF/"+dataOutput1, arrayG2.get(i), Const.port);
+                           // Log.d("26J", "BUTMUTE : " + arrayG2.get(i)+"/"+dataOutput1);
+                        }
+                    }catch (Exception e) {}
+                    butMuteHigh2.setBackgroundColor(getResources().getColor(R.color.color5));
+                    isOnMuteHigh2 = false;
+                    editor.putBoolean(Const.stuMuteHigh2,isOnMuteHigh2);
+                    editor.commit();
+                }else{
+                    try {
+                        for (int i = 0; i < arrayG2.size(); i++) {
+                            SimpleTcpClient.send("HF/"+dataOutput2, arrayG2.get(i), Const.port);
+                            //Log.d("26J", "BUTMUTE : " + arrayG2.get(i)+"/"+dataOutput2);
+                        }
+                    }catch (Exception e) {}
+                    butMuteHigh2.setBackgroundColor(getResources().getColor(R.color.color3));
+                    isOnMuteHigh2 = true;
+                    editor.putBoolean(Const.stuMuteHigh2,isOnMuteHigh2);
+                    editor.commit();
+                }
+            }
+        });
+        if(isOnMuteHigh3 == sp.getBoolean(Const.stuMuteHigh3,true)) {
+            butMuteHigh3.setBackgroundColor(getResources().getColor(R.color.color3));
+            isOnMuteHigh3 = true;
+        }else {
+            butMuteHigh3.setBackgroundColor(getResources().getColor(R.color.color5));
+            isOnMuteHigh3 = false;
+        }
+        butMuteHigh3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isOnMuteHigh3==true) {
+                    try {
+                        for (int i = 0; i < arrayG3.size(); i++) {
+                            SimpleTcpClient.send("HF/"+dataOutput1, arrayG3.get(i), Const.port);
+                            //Log.d("26J", "BUTMUTE : " + arrayG3.get(i)+"/"+dataOutput1);
+                        }
+                    }catch (Exception e) {}
+                    butMuteHigh3.setBackgroundColor(getResources().getColor(R.color.color5));
+                    isOnMuteHigh3 = false;
+                    editor.putBoolean(Const.stuMuteHigh3,isOnMuteHigh3);
+                    editor.commit();
+                }else{
+                    try {
+                        for (int i = 0; i < arrayG3.size(); i++) {
+                            SimpleTcpClient.send("HF/"+dataOutput2, arrayG3.get(i), Const.port);
+                           // Log.d("26J", "BUTMUTE : " + arrayG3.get(i)+"/"+dataOutput2);
+                        }
+                    }catch (Exception e) {}
+                    butMuteHigh3.setBackgroundColor(getResources().getColor(R.color.color3));
+                    isOnMuteHigh3 = true;
+                    editor.putBoolean(Const.stuMuteHigh3,isOnMuteHigh3);
+                    editor.commit();
+                }
+            }
+        });
+        if(isOnMuteHigh4 == sp.getBoolean(Const.stuMuteHigh4,true)) {
+            butMuteHigh4.setBackgroundColor(getResources().getColor(R.color.color3));
+            isOnMuteHigh4 = true;
+        }else {
+            butMuteHigh4.setBackgroundColor(getResources().getColor(R.color.color5));
+            isOnMuteHigh4 = false;
+        }
+        butMuteHigh4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isOnMuteHigh4==true) {
+                    try {
+                        for (int i = 0; i < arrayG4.size(); i++) {
+                            SimpleTcpClient.send("HF/"+dataOutput1, arrayG4.get(i), Const.port);
+                            //Log.d("26J", "BUTMUTE : " + arrayG4.get(i)+"/"+dataOutput1);
+                        }
+                    }catch (Exception e) {}
+                    butMuteHigh4.setBackgroundColor(getResources().getColor(R.color.color5));
+                    isOnMuteHigh4 = false;
+                    editor.putBoolean(Const.stuMuteHigh4,isOnMuteHigh4);
+                    editor.commit();
+                }else{
+                    try {
+                        for (int i = 0; i < arrayG4.size(); i++) {
+                            SimpleTcpClient.send("HF/"+dataOutput2, arrayG4.get(i), Const.port);
+                           // Log.d("26J", "BUTMUTE : " + arrayG4.get(i)+"/"+dataOutput2);
+                        }
+                    }catch (Exception e) {}
+                    butMuteHigh4.setBackgroundColor(getResources().getColor(R.color.color3));
+                    isOnMuteHigh4 = true;
+                    editor.putBoolean(Const.stuMuteHigh4,isOnMuteHigh4);
+                    editor.commit();
+                }
+            }
+        });
+        if(isOnMuteLow1 == sp.getBoolean(Const.stuMuteLow1,true)) {
+            butMuteLow1.setBackgroundColor(getResources().getColor(R.color.color3));
+            isOnMuteLow1 = true;
+        }else {
+            butMuteLow1.setBackgroundColor(getResources().getColor(R.color.color5));
+            isOnMuteLow1 = false;
+        }
+        butMuteLow1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isOnMuteLow1==true) {
+                    try {
+                        for (int i = 0; i < arrayG1.size(); i++) {
+                            SimpleTcpClient.send("HF/"+dataOutput1, arrayG1.get(i), Const.port);
+                            //Log.d("26J", "BUTMUTE : " + arrayG4.get(i)+"/"+dataOutput1);
+                        }
+                    }catch (Exception e) {}
+                    butMuteLow1.setBackgroundColor(getResources().getColor(R.color.color5));
+                    isOnMuteLow1 = false;
+                    editor.putBoolean(Const.stuMuteLow1,isOnMuteLow1);
+                    editor.commit();
+                }else{
+                    try {
+                        for (int i = 0; i < arrayG1.size(); i++) {
+                            SimpleTcpClient.send("LF/"+dataOutput2, arrayG1.get(i), Const.port);
+                            // Log.d("26J", "BUTMUTE : " + arrayG4.get(i)+"/"+dataOutput2);
+                        }
+                    }catch (Exception e) {}
+                    butMuteLow1.setBackgroundColor(getResources().getColor(R.color.color3));
+                    isOnMuteLow1 = true;
+                    editor.putBoolean(Const.stuMuteLow1,isOnMuteLow1);
+                    editor.commit();
+                }
+            }
+        });
+        if(isOnMuteLow2 == sp.getBoolean(Const.stuMuteLow2,true)) {
+            butMuteLow2.setBackgroundColor(getResources().getColor(R.color.color3));
+            isOnMuteLow2 = true;
+        }else {
+            butMuteLow2.setBackgroundColor(getResources().getColor(R.color.color5));
+            isOnMuteLow2 = false;
+        }
+        butMuteLow2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isOnMuteLow2==true) {
+                    try {
+                        for (int i = 0; i < arrayG2.size(); i++) {
+                            SimpleTcpClient.send("LF/"+dataOutput1, arrayG2.get(i), Const.port);
+                            //Log.d("26J", "BUTMUTE : " + arrayG4.get(i)+"/"+dataOutput1);
+                        }
+                    }catch (Exception e) {}
+                    butMuteLow2.setBackgroundColor(getResources().getColor(R.color.color5));
+                    isOnMuteLow2 = false;
+                    editor.putBoolean(Const.stuMuteLow2,isOnMuteLow2);
+                    editor.commit();
+                }else{
+                    try {
+                        for (int i = 0; i < arrayG2.size(); i++) {
+                            SimpleTcpClient.send("LF/"+dataOutput2, arrayG2.get(i), Const.port);
+                            // Log.d("26J", "BUTMUTE : " + arrayG4.get(i)+"/"+dataOutput2);
+                        }
+                    }catch (Exception e) {}
+                    butMuteLow2.setBackgroundColor(getResources().getColor(R.color.color3));
+                    isOnMuteLow2 = true;
+                    editor.putBoolean(Const.stuMuteLow2,isOnMuteLow2);
+                    editor.commit();
+                }
+            }
+        });
+        if(isOnMuteLow3 == sp.getBoolean(Const.stuMuteLow3,true)) {
+            butMuteLow3.setBackgroundColor(getResources().getColor(R.color.color3));
+            isOnMuteLow3 = true;
+        }else {
+            butMuteLow3.setBackgroundColor(getResources().getColor(R.color.color5));
+            isOnMuteLow3 = false;
+        }
+        butMuteLow3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isOnMuteLow3==true) {
+                    try {
+                        for (int i = 0; i < arrayG3.size(); i++) {
+                            SimpleTcpClient.send("LF/"+dataOutput1, arrayG3.get(i), Const.port);
+                            //Log.d("26J", "BUTMUTE : " + arrayG4.get(i)+"/"+dataOutput1);
+                        }
+                    }catch (Exception e) {}
+                    butMuteLow3.setBackgroundColor(getResources().getColor(R.color.color5));
+                    isOnMuteLow3 = false;
+                    editor.putBoolean(Const.stuMuteLow3,isOnMuteLow3);
+                    editor.commit();
+                }else{
+                    try {
+                        for (int i = 0; i < arrayG3.size(); i++) {
+                            SimpleTcpClient.send("LF/"+dataOutput2, arrayG3.get(i), Const.port);
+                            // Log.d("26J", "BUTMUTE : " + arrayG4.get(i)+"/"+dataOutput2);
+                        }
+                    }catch (Exception e) {}
+                    butMuteLow3.setBackgroundColor(getResources().getColor(R.color.color3));
+                    isOnMuteLow3 = true;
+                    editor.putBoolean(Const.stuMuteLow3,isOnMuteLow3);
+                    editor.commit();
+                }
+            }
+        });
+        if(isOnMuteLow4 == sp.getBoolean(Const.stuMuteLow4,true)) {
+            butMuteLow4.setBackgroundColor(getResources().getColor(R.color.color3));
+            isOnMuteLow4 = true;
+        }else {
+            butMuteLow4.setBackgroundColor(getResources().getColor(R.color.color5));
+            isOnMuteLow4 = false;
+        }
+        butMuteLow4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isOnMuteLow4==true) {
+                    try {
+                        for (int i = 0; i < arrayG4.size(); i++) {
+                            SimpleTcpClient.send("LF/"+dataOutput1, arrayG4.get(i), Const.port);
+                            //Log.d("26J", "BUTMUTE : " + arrayG4.get(i)+"/"+dataOutput1);
+                        }
+                    }catch (Exception e) {}
+                    butMuteLow4.setBackgroundColor(getResources().getColor(R.color.color5));
+                    isOnMuteLow4 = false;
+                    editor.putBoolean(Const.stuMuteLow4,isOnMuteLow4);
+                    editor.commit();
+                }else{
+                    try {
+                        for (int i = 0; i < arrayG4.size(); i++) {
+                            SimpleTcpClient.send("LF/"+dataOutput2, arrayG4.get(i), Const.port);
+                            // Log.d("26J", "BUTMUTE : " + arrayG4.get(i)+"/"+dataOutput2);
+                        }
+                    }catch (Exception e) {}
+                    butMuteLow4.setBackgroundColor(getResources().getColor(R.color.color3));
+                    isOnMuteLow4 = true;
+                    editor.putBoolean(Const.stuMuteLow4,isOnMuteLow4);
+                    editor.commit();
+                }
+            }
+        });
+    }
     private void loadData() {
         Gson gson = new Gson();
         String json1 = sp.getString(Const.list_IpG1, null);

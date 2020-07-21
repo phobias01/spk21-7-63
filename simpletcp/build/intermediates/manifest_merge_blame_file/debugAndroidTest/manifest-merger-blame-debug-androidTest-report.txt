@@ -3,35 +3,35 @@
 3    package="com.akexorcist.simpletcp.test" >
 4
 5    <uses-sdk
-5-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:5:5-74
+5-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:5:5-74
 6        android:minSdkVersion="18"
-6-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:5:15-41
+6-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:5:15-41
 7        android:targetSdkVersion="26" />
-7-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:5:42-71
+7-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:5:42-71
 8
 9    <instrumentation
-9-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:11:5-15:79
+9-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:11:5-15:79
 10        android:name="android.support.test.runner.AndroidJUnitRunner"
-10-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:11:22-83
+10-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:11:22-83
 11        android:functionalTest="false"
-11-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:14:22-52
+11-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:14:22-52
 12        android:handleProfiling="false"
-12-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:13:22-53
+12-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:13:22-53
 13        android:label="Tests for com.akexorcist.simpletcp.test"
-13-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:15:22-77
+13-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:15:22-77
 14        android:targetPackage="com.akexorcist.simpletcp.test" />
-14-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:12:22-75
+14-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:12:22-75
 15
 16    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 16-->[__tested_artifact__::simpletcp] C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-76
 16-->[__tested_artifact__::simpletcp] C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:22-73
 17
 18    <application android:debuggable="true" >
-18-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:7:5-9:19
-18-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:7:18-43
+18-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:7:5-9:19
+18-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:7:18-43
 19        <uses-library android:name="android.test.runner" />
-19-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:8:9-60
-19-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7489660150947152956.xml:8:23-57
+19-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:8:9-60
+19-->C:\Users\Supot\Downloads\spk1.4-master\simpletcp\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3221538530660126887.xml:8:23-57
 20
 21        <meta-data
 21-->[com.android.support:appcompat-v7:26.1.0] C:\Users\Supot\.gradle\caches\transforms-2\files-2.1\e4a41c2346dd5a38c111db5ef8bb8159\appcompat-v7-26.1.0\AndroidManifest.xml:26:9-28:38
